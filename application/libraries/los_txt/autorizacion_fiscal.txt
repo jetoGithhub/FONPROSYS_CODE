@@ -1,0 +1,1 @@
+Caracas, $data['fecha']['dia'] de $data['fecha']['mes'] de $data['fecha']['anio']

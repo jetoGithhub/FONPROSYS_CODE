@@ -1,0 +1,20 @@
+
+
+- Cambiar los saltos de linea dobles del Internet Explorer en saltos de linea sencillos.
+
+- Quizas no mostrar el editor hasta que se cargue por completo, mientras carga que salga
+  un mensaje "Cargando...".
+
+- Hacer el script compatible con otros exploradores.
+
+- Quizas hacer que los botones no cambien de linea en el mismo sitio, sino que dependiendo
+  del ancho del editor se partan en un lado o en otro sin separar botones del mismo grupo.
+
+- Quizas poner para cambiar el tipo de fuente, tamaño y color de la misma.
+
+- Añadir subindices, superindices y un desplegable de caracteres "extraños".
+
+- Añadir un sistema de templates para que sea mas facil al programador organizar los
+  botones como el quiera poniendo solo los que considere necesario.
+
+- Quizas hacer un creador de templates.

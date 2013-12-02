@@ -1,0 +1,76 @@
+
+Version 1.0
+___________
+
+- (Nueva Feature) En Internet Explorer, para introducir las urls ahora
+  se abre un cuadro de dialogo con varias opciones, y si no hay texto
+  seleccionado, se introduce el propio enlace como texto del enlace.
+  En FireFox aun no, pero si no hay texto seleccionado, en vez del
+  cuadro pidiendote la dirección, se muestra otro cuadro diciendo que
+  necesitas seleccionar un texto primero.
+
+- (Cambio) Ahora en FireFox tambien introduce el propio enlace como
+  texto del mismo si no existe una selección en el texto.
+
+
+
+Version 1.0 RC3
+_______________
+
+- (Nueva Feature) Al pasar el raton por encima de las imagenes de
+  acciones o emoticons el cursor cambia de forma.
+
+- (Cambio) Ahora el valor del textarea se actualiza en tiempo real,
+  antes solo se actualizaba si estaba dentro de un form y este era
+  enviado.
+
+- 0206052000 (BUG - {Arias}) (CORREGIDO) Si el textarea estaba en un
+  form y este tenia definido un ONSUBMIT que por ejemplo validase que
+  si el textarea tenia algo de texto introducido, el script
+  actualizaba el valor del textarea despues de la comprobacion, con lo
+  que necesitariamos darle dos veces al SUBMIT para enviarlo.
+
+- (Nueva Feature) Se incluye un sistema de exclusion de textareas, con
+  el cual, especificando el ID, puedes hacer que un textarea no se
+  convierta en editor WYSIWYG. Para más info leer el README.
+
+- (Cambios) Cuando el explorador no era el Internet Explorer, el
+  script trataba los textareas como si fuera en FireFox. Ahora si no
+  es ni Internet Explorer ni FireFox el script no realiza ninguna
+  operación.
+
+- (Nueva Feature) Si el textarea este incluido en un form, si el form
+  es reseteado, el editor tambien se resetea tomando el valor inicial
+  del textarea.
+
+
+Version 1.0 RC2
+_______________
+
+- 3105051645 (BUG - _ONe_) (CORREGIDO) Si el textarea pertenecia a un
+  formulario, este no se enviaba con el submit.
+
+- (Nueva Feature) Ahora el editor toma el tamaño del textarea.
+
+- (Cambio) Ahora si el textarea no tiene ID, el editor coge el valor
+  del atributo NAME del textarea.
+
+- 0106050105 (BUG - Danny) (CORREGIDO) Si el textarea no tenia un ID y
+  si un NAME no se enviaba la información a persar de que el editor ya
+  cogiera el NAME.
+
+- (Nueva Feature) Ahora el editor toma el borde y el color del fondo
+  del textarea si están definidos a través del atributo STYLE o en el
+  archivo CSS en un textarea genérico (No busca por el CLASS o el ID
+  del textarea en el archivo CSS).
+
+- (Nueva Feature) Añadido sistema de emoticons al script.
+
+- 0206050115 (Bug - Savagge) (CORREGIDO) El cuadro de los emoticons no
+  se abria en el lugar adecuado.
+
+
+Version 1.0 RC1
+_______________
+
+- Primera versión estable del script

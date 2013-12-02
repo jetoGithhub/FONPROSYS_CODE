@@ -1,0 +1,35 @@
+En Caracas a los  ___________ (__) días del mes de __________ de dos mil diez (2010), constituido el funcionario $variables_txt[nomfiscal], titular de la cédula de identidad Nº $variables_txt[cedfiscal], en su carácter de Auditor Fiscal, adscrito a la Gerencia de Fiscalización Tributaria del Fondo de Promoción y Financiamiento del Cine (FONPROCINE), órgano perteneciente al Centro Nacional Autónomo de Cinematografía (CNAC) adscrito al Ministerio del Poder Popular para la Cultura, actuando de conformidad con la Autorización Fiscal identificada con las letras y números CNAC/FONPROCINE/GFT/AF-$variables_txt[correlativo], de fecha FECHA DE LA AUTORIZACION FISCAL, notificada en fecha ___/___/2010, en el domicilio fiscal de la sociedad mercantil $variables_txt[nombre], ubicado en $variables_txt[domfiscal], representado en este acto por el (la) ciudadano (a) _NOMBRE DEL REPRESENTANTE DEL CONTRIBUYENTE_____, titular de la C.I. Nº _CEDULA DE IDENTIDAD DEL REPRESENTANTE DEL CONTRIBUYENTE_, en su carácter de _CARGO DENTRO DE LA EMPRESA DEL REPRESENTANTE DEL CONTRIBUYENTE__ del citado contribuyente, a fin de dar inicio a la fiscalización ordenada en la autorización antes mencionada, conforme lo establecen los artículos 121 y 127, numerales 1, 2 y 3 del vigente Código Orgánico Tributario publicado en Gaceta Oficial Nº 37.305 de fecha 17/10/2001, en concordancia con lo dispuesto en el artículo 41 de La Ley de la Cinematografía Nacional publicada en Gaceta Oficial Nº 38.281 de fecha 27/09/2005, reimpresa por error del ente emisor en Gaceta Oficial Nº 5.789, Extraordinario, de fecha 26/10/2005, a requerir los siguientes documentos del período comprendido desde PERIODO OBJETO DE FISCALIZACIÓN hasta PERIODO OBJETO DE FISCALIZACIÓN, a saber:
+
+
+1. Copia del Registro Mercantil (estatutario) y su (s) última (s) modificación (es) (Aumento o Disminución de Capital, Cambio de Junta Directiva, Sustitución de Representante Legal o Cambio de Razón y Objeto Social). 
+
+2. 	Copia de los Contratos que surtan efectos en la determinación de la base imponible de la Contribución Especial que corresponda.
+
+3. Copia de las facturas, notas de crédito y notas de débito sobre las ventas (medios magnéticos).
+
+4. Copia de la (s) declaración (es) Jurada (s) de Ingresos Brutos presentadas ante el  Municipio que corresponda. En caso de que el contribuyente posea más de un establecimiento permanente, debe suministrar copia de todas las declaraciones de ingresos brutos a las que esté sujeto.
+
+5. Copia de la declaración definitiva del Impuestos sobre la Renta (SENIAT). 
+
+6. Copia de las Declaraciones del Impuesto al Valor Agregado (SENIAT), acompañadas de sus respectivos libros de venta en forma digital en formato Excel ó xls (CD, Diskette, o cualquier otro medio).
+
+7. 	Autoliquidaciones y depósitos bancarios presentados a FONPROCINE y detalle sobre el cálculo de los ingresos declarados.
+
+8. Copia del Balance General, Balances de Comprobación trimestrales, Mayor (es) Analítico (s) de la (s) cuenta (s) de ingreso (s) y Estado de Ganancias y Pérdidas trimestrales. En caso de que el contribuyente no posea el Balance General, Estado de Ganancias y Pérdidas y Balance de Comprobación correspondientes al período fiscalizado porque su presentación es distinta a este período, el contribuyente deberá entregar copia del último Balance General, Estado de Ganancias y Pérdidas y Balance de Comprobación que posea.
+
+9. En caso que realice actividades distintas a las de difusión de señal de televisión por suscripción, facilitar los mayores analíticos de las cuentas de ingresos discriminando cada una de las partidas.
+
+10. Copia del Registro de Información Fiscal (RIF). 
+
+11. Copia del Certificado de Registro de Cinematografía Nacional.
+
+
+Se concede el plazo de tres (3) días hábiles contados a partir de la fecha de notificación de la presente acta, para la entrega de la información antes requerida al fiscal actuante.
+
+La revisión de la facturación podrá ser realizada en las instalaciones del establecimiento del contribuyente. Si durante la fiscalización se evidencia la necesidad de solicitar cualquier otra información, la misma podrá ser efectuada mediante acta de requerimientos dirigida al contribuyente.
+
+El contribuyente, de conformidad con lo establecido en los artículos 145 y 147 del Código Orgánico Tributario vigente, está obligado a cumplir con los deberes formales relativos a las tareas de fiscalización e investigación que realice la Administración Tributaria, cuya inobservancia se considera tipificada como Ilícitos Formales, lo cual genera la aplicación de las sanciones mencionadas en el artículo 105 del citado Código.
+
+La presente acta se emite en dos (2) ejemplares de un mismo tenor y a un solo efecto, uno de los cuales queda en poder del contribuyente que firma en señal de notificación
+
+

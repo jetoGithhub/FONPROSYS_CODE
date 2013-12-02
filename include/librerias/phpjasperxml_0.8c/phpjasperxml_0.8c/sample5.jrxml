@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planilla_registro_contribuyente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d2fe2c2-6f27-47e1-ba8b-363bb17e3241">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="70a55fa9-f715-4d19-b9ce-3722f5f825f4"/>
+	<subDataset name="Table Dataset 2" uuid="9e7f92bf-afba-47cb-9374-9b84b15ddca3"/>
+	<subDataset name="New Dataset 1" uuid="c7b134e0-acf2-4b7c-b5bf-039d3c90ec38">
+		<queryString language="SQL">
+			<![CDATA[select
+      contribu.*,
+      est.nombre as nomest,
+      ciu.nombre as nomciu
+
+from datos.contribu as contribu
+
+join datos.estados as est on est.id = contribu.estadoid
+
+join datos.ciudades as ciu on ciu.id = contribu.ciudadid]]>
+		</queryString>
+		<field name="dencomerci" class="java.lang.String"/>
+		<field name="actieconid" class="java.lang.Integer"/>
+		<field name="rif" class="java.lang.String"/>
+		<field name="numregcine" class="java.lang.Integer"/>
+		<field name="domfiscal" class="java.lang.String">
+			<fieldDescription><![CDATA[Domicilio fiscal del accionista]]></fieldDescription>
+		</field>
+		<field name="zonapostal" class="java.lang.String">
+			<fieldDescription><![CDATA[Zona postal del contribuyente]]></fieldDescription>
+		</field>
+		<field name="telef1" class="java.lang.String">
+			<fieldDescription><![CDATA[Telefono 1 del contribuyente]]></fieldDescription>
+		</field>
+		<field name="telef2" class="java.lang.String">
+			<fieldDescription><![CDATA[Telefono 2 del contribuyente]]></fieldDescription>
+		</field>
+		<field name="telef3" class="java.lang.String">
+			<fieldDescription><![CDATA[Telefono 3 del contribuyente]]></fieldDescription>
+		</field>
+		<field name="fax1" class="java.lang.String">
+			<fieldDescription><![CDATA[Fax 1 del contribuyente]]></fieldDescription>
+		</field>
+		<field name="fax2" class="java.lang.String">
+			<fieldDescription><![CDATA[Fax 2 del contribuyente]]></fieldDescription>
+		</field>
+		<field name="email" class="java.lang.String"/>
+		<field name="pinbb" class="java.lang.String">
+			<fieldDescription><![CDATA[Pin de BlackBerry]]></fieldDescription>
+		</field>
+		<field name="skype" class="java.lang.String">
+			<fieldDescription><![CDATA[Dirección de skype]]></fieldDescription>
+		</field>
+		<field name="twitter" class="java.lang.String">
+			<fieldDescription><![CDATA[Direccion de twitter]]></fieldDescription>
+		</field>
+		<field name="facebook" class="java.lang.String">
+			<fieldDescription><![CDATA[Direccion de facebook]]></fieldDescription>
+		</field>
+		<field name="nuacciones" class="java.lang.Integer">
+			<fieldDescription><![CDATA[Numero de acciones]]></fieldDescription>
+		</field>
+		<field name="valaccion" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[Valor nominal de las acciones]]></fieldDescription>
+		</field>
+		<field name="capitalsus" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[Capital suscrito segun registro mercantil]]></fieldDescription>
+		</field>
+		<field name="capitalpag" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[Capital pagado segun registro mercantil]]></fieldDescription>
+		</field>
+		<field name="regmerofc" class="java.lang.String">
+			<fieldDescription><![CDATA[Oficina de registro mercantil en donde se registro la empresa]]></fieldDescription>
+		</field>
+		<field name="rmnumero" class="java.lang.String">
+			<fieldDescription><![CDATA[Numero de registro del documento de registro mercantil]]></fieldDescription>
+		</field>
+		<field name="rmfolio" class="java.lang.String">
+			<fieldDescription><![CDATA[Numero de folio del documento de registro mercantil]]></fieldDescription>
+		</field>
+		<field name="rmtomo" class="java.lang.String">
+			<fieldDescription><![CDATA[Numero de folio del documento de registro mercantil]]></fieldDescription>
+		</field>
+		<field name="rmfechapro" class="java.sql.Date">
+			<fieldDescription><![CDATA[Fecha de protocololizacion del registro del documento de registro mercantil]]></fieldDescription>
+		</field>
+		<field name="rmncontrol" class="java.lang.String">
+			<fieldDescription><![CDATA[Numero de control del documento de registro mercantil]]></fieldDescription>
+		</field>
+		<field name="rmobjeto" class="java.lang.String">
+			<fieldDescription><![CDATA[Objeto de la empresa segun registro mercantil]]></fieldDescription>
+		</field>
+		<field name="domcomer" class="java.lang.String">
+			<fieldDescription><![CDATA[domicilio comercial]]></fieldDescription>
+		</field>
+		<field name="nomest" class="java.lang.String"/>
+		<field name="nomciu" class="java.lang.String"/>
+		<field name="razonsocia" class="java.lang.String"/>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select
+      contribu.*,
+      est.nombre as nomest,
+      ciu.nombre as nomciu
+
+from datos.contribu as contribu
+
+join datos.estados as est on est.id = contribu.estadoid
+
+join datos.ciudades as ciu on ciu.id = contribu.ciudadid]]>
+	</queryString>
+	<field name="razonsocia" class="java.lang.String"/>
+	<field name="dencomerci" class="java.lang.String"/>
+	<field name="actieconid" class="java.lang.Integer"/>
+	<field name="rif" class="java.lang.String"/>
+	<field name="numregcine" class="java.lang.Integer"/>
+	<field name="domfiscal" class="java.lang.String">
+		<fieldDescription><![CDATA[Domicilio fiscal del accionista]]></fieldDescription>
+	</field>
+	<field name="estadoid" class="java.lang.Integer"/>
+	<field name="ciudadid" class="java.lang.Integer"/>
+	<field name="zonapostal" class="java.lang.String">
+		<fieldDescription><![CDATA[Zona postal del contribuyente]]></fieldDescription>
+	</field>
+	<field name="telef1" class="java.lang.String">
+		<fieldDescription><![CDATA[Telefono 1 del contribuyente]]></fieldDescription>
+	</field>
+	<field name="telef2" class="java.lang.String">
+		<fieldDescription><![CDATA[Telefono 2 del contribuyente]]></fieldDescription>
+	</field>
+	<field name="telef3" class="java.lang.String">
+		<fieldDescription><![CDATA[Telefono 3 del contribuyente]]></fieldDescription>
+	</field>
+	<field name="fax1" class="java.lang.String">
+		<fieldDescription><![CDATA[Fax 1 del contribuyente]]></fieldDescription>
+	</field>
+	<field name="fax2" class="java.lang.String">
+		<fieldDescription><![CDATA[Fax 2 del contribuyente]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String"/>
+	<field name="pinbb" class="java.lang.String">
+		<fieldDescription><![CDATA[Pin de BlackBerry]]></fieldDescription>
+	</field>
+	<field name="skype" class="java.lang.String">
+		<fieldDescription><![CDATA[Dirección de skype]]></fieldDescription>
+	</field>
+	<field name="twitter" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion de twitter]]></fieldDescription>
+	</field>
+	<field name="facebook" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion de facebook]]></fieldDescription>
+	</field>
+	<field name="nuacciones" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Numero de acciones]]></fieldDescription>
+	</field>
+	<field name="valaccion" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Valor nominal de las acciones]]></fieldDescription>
+	</field>
+	<field name="capitalsus" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Capital suscrito segun registro mercantil]]></fieldDescription>
+	</field>
+	<field name="capitalpag" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Capital pagado segun registro mercantil]]></fieldDescription>
+	</field>
+	<field name="regmerofc" class="java.lang.String">
+		<fieldDescription><![CDATA[Oficina de registro mercantil en donde se registro la empresa]]></fieldDescription>
+	</field>
+	<field name="rmnumero" class="java.lang.String">
+		<fieldDescription><![CDATA[Numero de registro del documento de registro mercantil]]></fieldDescription>
+	</field>
+	<field name="rmfolio" class="java.lang.String">
+		<fieldDescription><![CDATA[Numero de folio del documento de registro mercantil]]></fieldDescription>
+	</field>
+	<field name="rmtomo" class="java.lang.String">
+		<fieldDescription><![CDATA[Numero de folio del documento de registro mercantil]]></fieldDescription>
+	</field>
+	<field name="rmfechapro" class="java.sql.Date">
+		<fieldDescription><![CDATA[Fecha de protocololizacion del registro del documento de registro mercantil]]></fieldDescription>
+	</field>
+	<field name="rmncontrol" class="java.lang.String">
+		<fieldDescription><![CDATA[Numero de control del documento de registro mercantil]]></fieldDescription>
+	</field>
+	<field name="rmobjeto" class="java.lang.String">
+		<fieldDescription><![CDATA[Objeto de la empresa segun registro mercantil]]></fieldDescription>
+	</field>
+	<field name="domcomer" class="java.lang.String">
+		<fieldDescription><![CDATA[domicilio comercial]]></fieldDescription>
+	</field>
+	<field name="nomest" class="java.lang.String"/>
+	<field name="nomciu" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="83" splitType="Stretch">
+			<image>
+				<reportElement uuid="11d70745-face-4052-b802-6b472613dd98" x="13" y="0" width="119" height="73"/>
+				<imageExpression><![CDATA["simitlogo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="6c026f74-9a22-4078-b5fc-1650cb2b367d" x="132" y="28" width="423" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="12" isBold="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[PLANILLA DE REGISTRO PARA CONTRIBUYENTE CENAC]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="101" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
