@@ -281,8 +281,8 @@ envio_form=function(form,url){
 
                     }
                     td#botonera-usu button{
-                        width: 25px;
-                        height: 25px
+                        /*width: 25px;
+                        height: 25px*/
 
                     }
 
