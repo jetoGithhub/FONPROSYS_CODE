@@ -46,7 +46,7 @@
 });
     jQuery(function($){
 //        $.mask.definitions['#'] = '[JVGEjvge]';
-//        $("#nrif").mask("#999999999");
+        $("#ci").mask("V-999999?99");
         $("#telefono_hab").mask('0999-9999999');
         $("#telefono_ofi").mask('0999-9999999');
         $("#telefono3").mask('0999-9999999');
@@ -65,7 +65,7 @@
     <table border="0">
             <tr>
                 <td colspan="">
-                <label ><strong>Cedula de identidad:</strong></label><br /> 
+                    <label ><strong>C&eacute;dula de identidad:</strong></label><br /> 
                 <input  type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all requerido" name="ci" id="ci" />
                 </td>
                 <td colspan="">
@@ -140,7 +140,7 @@
                 </td>            
                 <td>
                      <label ><strong>Fax:</strong></label><br />
-                    <input  type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all requerido" name="fax1" id="fax_rep2" />
+                    <input  type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all " name="fax1" id="fax_rep2" />
                  </td>   
             </tr>
             <tr>

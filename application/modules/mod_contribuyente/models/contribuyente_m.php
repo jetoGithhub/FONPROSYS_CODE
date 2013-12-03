@@ -454,7 +454,7 @@ class Contribuyente_m extends CI_Model{
                             $data[] = array(
                                 'resultado'=>true,
                                  'cedula'=>$row->ci,
-                                 'nombre'=>$row->nombre,
+                                 'nombre'=>$row->nombre.' '.$row->apellido,
                                  'apellido'=>$row->apellido,
                                  'domicilio'=>$row->domfiscal,
                                  'estado'=>$row->nomest,
