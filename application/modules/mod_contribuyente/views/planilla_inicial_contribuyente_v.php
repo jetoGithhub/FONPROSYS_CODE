@@ -243,11 +243,11 @@ function bloqueaInputs(form,tipo)
                 } 
       });
     
-   setInterval(function()
-    {     
-        $('#msjmarque').animate({'color': random_color()}, 900);
-
-    },1000); 
+//   setInterval(function()
+//    {     
+////        $('#msjmarque').animate({'color': random_color()}, 900);
+//
+//    },1000); 
 });
 function random_color()
 {
@@ -520,7 +520,7 @@ position: relative;
                 </td>
                 <td>
                     <label><strong>5).Registro Cinematografico:</strong></label>     
-                    <input  value="<?php echo  $infoplanilla['registrocine']; ?>" type="text" class="requerido " name="nrcinema" style=" width: 86%; float:left;" id="nrcinama" condicion="number:true"/><strong class="rojo">*</strong>
+                    <input  value="<?php echo  $infoplanilla['registrocine']; ?>" type="text" class="requerido " name="nrcinema" style=" width: 86%; float:left;" id="nrcinama" condicion="number:true"/>
                 </td>    
             </tr>
             <tr>
