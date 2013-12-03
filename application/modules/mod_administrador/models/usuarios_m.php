@@ -264,7 +264,7 @@ class Usuarios_m extends CI_Model{
                 //seleccionasr todo de la tabla usfonpro
                    ->select("*")
                    ->from("datos.usfonpro")
-                   ->where(array("departamid"=>$gerencia,"cargoid"=>$cargo));
+                   ->where(array("departamid"=>$gerencia,"cargoid"=>$cargo,'bln_borrado'=>'false'));
 
             $query = $this->db->get();
             if( $query->num_rows()>0 ){
