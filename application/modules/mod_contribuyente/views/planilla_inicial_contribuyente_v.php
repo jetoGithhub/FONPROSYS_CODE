@@ -72,11 +72,19 @@ function bloqueaInputs(form,tipo)
             $(" textarea ").removeClass('ui-state-highlight ui-corner-all');
             bloqueaInputs('form_registra_planilla',false);
             document.getElementById("btn_registro_planilla").disabled='';
-            $( "#fregistro" ).datepicker();
+//            $( "#fregistro" ).datepicker();
             $( "#fregistro" ).datepicker( "option", "showAnim",'slideDown');
-            $('#fregistro').datepicker('option', {dateFormat: 'yy-mm-dd'});
-            $.datepicker.setDefaults( $.datepicker.regional[ "" ] );
-            $( "#fregistro" ).datepicker( $.datepicker.regional[ "es" ] );
+            $('#fregistro').datepicker({
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
+                yearRange: "1900:<?php echo date('Y');?>",
+                changeMonth: true,
+                changeYear: true
+            });
+//            $.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+//            $( "#fregistro" ).datepicker( $.datepicker.regional[ "es" ] );
             $("#fregistro").val('<?php echo  $infoplanilla['rmfechapro']; ?>');
         });       
 //       $( document ).tooltip({
@@ -287,11 +295,20 @@ function random_color()
           endif;
           
         if(empty($infoplanilla['rmfechapro'])): ?> 
-          $( "#fregistro" ).datepicker();
+//          $( "#fregistro" ).datepicker();
           $( "#fregistro" ).datepicker( "option", "showAnim",'slideDown');
-          $('#fregistro').datepicker('option', {dateFormat: 'yy-mm-dd'});
-          $.datepicker.setDefaults( $.datepicker.regional[ "" ] );
-          $( "#fregistro" ).datepicker( $.datepicker.regional[ "es" ] );
+          $('#fregistro').datepicker({
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
+                yearRange: "1900:<?php echo date('Y');?>",
+                changeMonth: true,
+                changeYear: true
+            });
+//          $.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+//          $( "#fregistro" ).datepicker( $.datepicker.regional[ "es" ] );
+          
           <?php 
           else:
               
@@ -520,7 +537,7 @@ position: relative;
                 </td>
                 <td>
                     <label><strong>5).Registro Cinematografico:</strong></label>     
-                    <input  value="<?php echo  $infoplanilla['registrocine']; ?>" type="text" class="requerido " name="nrcinema" style=" width: 86%; float:left;" id="nrcinama" condicion="number:true"/>
+                    <input  value="<?php echo  $infoplanilla['registrocine']; ?>" type="text" class=" " name="nrcinema" style=" width: 86%; float:left;" id="nrcinama" condicion="number:true"/>
                 </td>    
             </tr>
             <tr>
