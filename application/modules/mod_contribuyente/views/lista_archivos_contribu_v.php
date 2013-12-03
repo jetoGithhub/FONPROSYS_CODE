@@ -7,7 +7,7 @@
 </style>
 
     
-    <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Lista de Archivos Cargados</div>
+    <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Lista de archivos cargados</div>
     <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar-archivos" width="">
 	<thead>
 		<tr>
@@ -24,10 +24,12 @@
            foreach ($lista_img as $clave => $valor) {
             $con=$clave+1;
             $descarga_ruta=base_url().'archivos/contribuyente/documentos_planilla/'.$valor["ruta_imagen"];
+            $separa=  explode(".", $valor["ruta_imagen"]);
+            if($separa[1]=='pdf'){$text_ruta='include/imagenes/iconos/pdf3.png'; }else{ $text_ruta='archivos/contribuyente/documentos_planilla/miniaturas/'.$valor["ruta_imagen"]; }
             ?>
                <tr>
                         <td><?php print($con); ?></td>
-                        <td><img  src="<?php print(base_url()); ?>archivos/contribuyente/documentos_planilla/miniaturas/<?php print($valor["ruta_imagen"]); ?>" /> </td>
+                        <td><img  src="<?php print(base_url().$text_ruta); ?>" /> </td>
                         <td><?php print($valor["descripcion"]); ?></td>
                         
                         <td><?php print($valor["fecha"]); ?></td>
