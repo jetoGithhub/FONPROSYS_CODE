@@ -25,7 +25,7 @@
             $con=$clave+1;
             $descarga_ruta=base_url().'archivos/contribuyente/documentos_planilla/'.$valor["ruta_imagen"];
             $separa=  explode(".", $valor["ruta_imagen"]);
-            if($separa[1]=='pdf'){$text_ruta='include/imagenes/iconos/pdf3.png'; }else{ $text_ruta='archivos/contribuyente/documentos_planilla/miniaturas/'.$valor["ruta_imagen"]; }
+            if($separa[1]=='pdf'){$text_ruta='include/imagenes/iconos/ic_pdf.png'; }else{ $text_ruta='archivos/contribuyente/documentos_planilla/miniaturas/'.$valor["ruta_imagen"]; }
             ?>
                <tr>
                         <td><?php print($con); ?></td>

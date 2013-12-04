@@ -16,18 +16,19 @@ class Gestion_calendarios_de_pago_c extends CI_Controller{
     }
     
     function crea_cal(){
-        sleep(1);
+//        sleep(1);
             $datos['tipo_contribuyentes'] = $this->gestion_calendarios_de_pago_m->lista_tipo_contribuyente();
             $this->load->view('mod_gestioncontribuyente/crea_calendario_de_pago_v_1',$datos);
         
     }
     function consulta_cal(){
-        sleep(1);
-        echo 'consulta;';
+//        sleep(1);
+        $datos['tipo_contribuyentes'] = $this->gestion_calendarios_de_pago_m->lista_tipo_contribuyente();
+        $this->load->view('mod_gestioncontribuyente/consulta_calendario_de_pago_v',$datos);
         
     }
     function gestiona_cal(){
-        sleep(1);
+//        sleep(1);
         echo 'gestiona;';
         
     }
@@ -113,5 +114,31 @@ class Gestion_calendarios_de_pago_c extends CI_Controller{
         endif;
         print(json_encode($repuesta));
     }    
+    
+    function cuerpo_consulta_calendario($valor,$anio)
+    {
+        $string=  $valor;
+        $partes=  explode(':', $string);
+        $tipe_grav=$partes[0];
+        $tipo=$partes[1];
+        
+        $data['datos_calendario']=  $this->gestion_calendarios_de_pago_m->consulta_calendario($tipe_grav,$anio);
+        $data['tipo']=$tipo;
+        $data['anio']=$anio;
+        $data['tipe_grav']=$tipe_grav;
+        $this->load->view('mod_gestioncontribuyente/consulta_segun_tipgrav_v',$data);
+//        print_r($data);die;
+    }
+    function genera_pdf_calenda($tipegrav,$tipo,$anio)
+    {
+        $data['datos_calendario']=  $this->gestion_calendarios_de_pago_m->consulta_calendario($tipegrav,$anio);
+        $data['tipo']=$tipo;
+        $data['anio']=$anio;
+        $data['tipe_grav']=$tipegrav;
+        $tipegrav = $this->gestion_calendarios_de_pago_m->trae_tipegrav($tipegrav); 
+        $data['nombre']=$tipegrav[0]['nombre'];
+        $this->funciones_complemento->generar_pdf_html('html_pdfs/calendario_pdf_v',$data,'calendario-'.$anio.'.pdf','D');
+        
+    }
 }
 ?>

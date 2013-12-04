@@ -111,5 +111,34 @@ class Gestion_calendarios_de_pago_m extends CI_Model{
        endif;
                
     }
+    
+    function consulta_calendario($tipe_grav,$anio)
+    {
+        $this->db
+                ->select("calpago.ano as anio")
+                ->select("calpagod.*")
+                ->from("datos.calpago") 
+                ->join('datos.calpagod','calpagod.calpagoid=calpago.id')
+                ->where(array('calpago.tipegravid'=>$tipe_grav,'calpago.ano'=>$anio))
+                ->order_by("calpagod.periodo");
+        $query = $this->db->get();
+        if( $query->num_rows()>0 ):
+            $data = array();
+        foreach ($query->result() as $row):
+            $data[] = array(
+                "id"        => $row->id,
+                "fechai"    => $row->fechaini,
+                "fechaf"      => $row->fechafin,
+                "fechal"     => $row->fechalim,
+                "periodo"     => $row->periodo,
+
+                            );
+        endforeach;
+        return $data;
+        else:
+            return false;
+        endif;
+        
+    }
 }
 ?>
