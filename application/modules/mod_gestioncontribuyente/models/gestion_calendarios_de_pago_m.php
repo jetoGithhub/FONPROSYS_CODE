@@ -5,16 +5,18 @@ class Gestion_calendarios_de_pago_m extends CI_Model{
     }
     function lista_tipo_contribuyente(){
         $this->db
-                ->select("*")
-                ->from("datos.tipegrav")                
-                ->order_by("nombre");
+                ->select("tipocont.nombre as ntcon")
+                ->select("tipegrav.*")
+                ->from("datos.tipocont") 
+                ->join('datos.tipegrav','tipegrav.id=tipocont.tipegravid')
+                ->order_by("peano");
         $query = $this->db->get();
         if( $query->num_rows()>0 ):
             $data = array();
         foreach ($query->result() as $row):
             $data[] = array(
                 "id"        => $row->id,
-                "nombre"    => $row->nombre,
+                "nombre"    => $row->ntcon,
                 "tipe"      => $row->tipe,
                 "peano"     => $row->peano,
 
@@ -48,26 +50,35 @@ class Gestion_calendarios_de_pago_m extends CI_Model{
             return false;
         endif;
     }
-    function inserta_calendario($data_calpago = array(), $data_calpagod = array()){
+    function inserta_calendario($data_calpago = array(), $fecha_periodoi= array(),$fecha_periodof= array(),$fecha_periodol= array()){
 
         $this->db->trans_begin();
 
        
         $this->db->insert('datos.calpago', $data_calpago); 
         $id_calpago = $this->db->insert_id();
-        
-        foreach ($data_calpagod as $clave=>$valor):
+        $tamanio=  count($fecha_periodoi);
+//        foreach ($data_calpagod as $clave=>$valor):
+        for($i=1;$i<=$tamanio;$i++):
+            if($i<10):
+                
+                $clave='0'.$i;
+            else:
+                $clave=$i;   
+                
+            endif;
             $data_calpagod_true = array(
                 'calpagoid'     =>$id_calpago,
-                'fechaini'      =>$valor,
-                'fechafin'      =>$valor,
-                'fechalim'      =>$valor,
+                'fechaini'      =>$fecha_periodoi[$i],
+                'fechafin'      =>$fecha_periodof[$i],
+                'fechalim'      =>$fecha_periodol[$i],
                 'usuarioid'     =>$this->session->userdata('id'),
                 'ip'            =>$this->input->ip_address(),
                 'periodo'=>$clave
             );
             $this->db->insert('datos.calpagod', $data_calpagod_true); 
-        endforeach;
+        endfor;
+//        endforeach;
         if ($this->db->trans_status() === FALSE)
         {
             $this->db->trans_rollback();
@@ -75,8 +86,7 @@ class Gestion_calendarios_de_pago_m extends CI_Model{
         }
         else
         {
-            $this->db->trans_rollback();
-//            $this->db->trans_commit();
+            $this->db->trans_commit();
             return TRUE;
         }        
     }
@@ -86,6 +96,20 @@ class Gestion_calendarios_de_pago_m extends CI_Model{
         $this->db->where(array('id'=>$id));
         $query = $this->db->get();
         return ($query->num_rows()>0 ? $query->result_array() : FALSE);
+    }
+    
+    function verifica_calendario($tipegrav,$anio){
+       $this->db->select('*');
+        $this->db->from('datos.calpago');
+        $this->db->where(array('ano'=>$anio,'tipegravid'=>$tipegrav));
+        $query = $this->db->get();
+       if($query->num_rows()>0): 
+               
+           return TRUE;
+       else:
+           return FALSE;
+       endif;
+               
     }
 }
 ?>

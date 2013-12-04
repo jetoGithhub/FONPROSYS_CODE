@@ -3,6 +3,9 @@
       #barra_cal {
         padding: 4px;
         display: inline-block;
+        /*border: 2px solid black;*/
+        margin-bottom: 10px;
+        width: 100%
       }
       /* support: IE7 */
       *+html #barra_cal {
@@ -12,6 +15,7 @@
           width:100%;
           display:block;
       }
+      
   </style>
   <script>
       $(function() {
@@ -24,18 +28,18 @@
 	
 	$("#crea_cal").button({
             icons: {
-                    primary: 'ui-icon ui-icon-pencil'//,
+                    primary: 'ui-icon ui-icon-plusthick'//,
                     //secondary: 'ui-icon ui-icon-mail-closed'
             }
 	});
         $("#gestiona_cal").button( {
             icons: {
-                primary: 'ui-icon ui-icon-refresh'
+                primary: 'ui-icon ui-icon-pencil'
             }
         });
 
           $( ".btn_cal" ).click(function() {
-              $("#cuerpo_cal").html('Espere procesando envio...<img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" />');
+              $("#cuerpo_cal").html('<center><p style="font-size:14px; font-weigh:bold">Espere por favor...</p><img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" /></center>');
               $("#cuerpo_cal").load(
               "<?php print(base_url().'index.php/mod_gestioncontribuyente/gestion_calendarios_de_pago_c/'); ?>"+this.id, 
               function(response, status, xhr) {
@@ -51,18 +55,21 @@
           });
           
           $( ".btn_cal" ).button();
-          $( "#botonera_cal" ).buttonset();
+          $( ".btn_cal" ).buttonset();
       });
 
   </script>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Operaciones para la manipulacion de el calendario de pago</div>
 
-<div id="barra_cal" class="ui-widget-header ui-corner-all">
-    <span id="botonera_cal">
-        <input type="radio" id="consulta_cal" class="btn_cal" name="boton_cal" checked="checked" /><label for="consulta_cal">Consultar</label>
-        <input type="radio" id="crea_cal" class="btn_cal" name="boton_cal"  /><label for="crea_cal">Crear</label>
-        <input type="radio" id="gestiona_cal" class="btn_cal" name="boton_cal" /><label for="gestiona_cal">Gestion</label>
-    </span>
+<div id="barra_cal" class=" ">
+    <!--<span id="botonera_cal">-->
+    <center>
+        <input type="radio" id="consulta_cal" class="btn_cal" name="boton_cal" checked="checked" /><label style=" margin-right: 20px" for="consulta_cal">CONSULTAR</label>
+        <input type="radio" id="crea_cal" class="btn_cal" name="boton_cal"  /><label style=" margin-right: 20px" for="crea_cal">CREAR</label>
+        <input type="radio" id="gestiona_cal" class="btn_cal" name="boton_cal" /><label for="gestiona_cal">GESTION</label>
+    </center>
+        <!--</span>-->
 </div>
-  <div id="cuerpo_cal" class="ui-widget-content ui-corner-all">
+  <div id="cuerpo_cal" class="" style="margin-top: 5px">
 
   </div>
