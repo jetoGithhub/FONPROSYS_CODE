@@ -37,7 +37,7 @@ class Filecontroller extends CI_Controller {
     }
     
     function subir_archivo() {
-        sleep(5);
+//        sleep(5);
         $estatus = '';
         $message = '';
         $background = '';
@@ -105,7 +105,7 @@ class Filecontroller extends CI_Controller {
         $this->image_lib->resize();
     }
     function archivo_elimina($id){
-        sleep(5);
+//        sleep(5);
         
         if ($this->temporal->elimina_archivo($id)):
             $data=array(
@@ -121,7 +121,7 @@ class Filecontroller extends CI_Controller {
         print(json_encode($data));
     }
     function borrado_accionista($id){
-        sleep(5);
+//        sleep(5);
         if ($this->temporal->elimina_accionista($id)):
             $data=array(
                 'success' =>true,
