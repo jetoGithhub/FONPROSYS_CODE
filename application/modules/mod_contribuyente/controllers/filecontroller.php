@@ -46,7 +46,7 @@ class Filecontroller extends CI_Controller {
             //Ruta donde se guarda la imagen completa
             $configuracion['upload_path'] = './archivos/contribuyente/documentos_planilla/';
             //$configuracion['allowed_types'] = 'gif|jpg|png|doc|docx|pdf|txt|xsl|xslx|html|odf|rar|zip|7zip';
-            $configuracion['allowed_types'] = 'gif|jpg|png|pdf';//Formatos permitidos
+            $configuracion['allowed_types'] = 'gif|jpg|png|pdf|jpeg';//Formatos permitidos
             $configuracion['max_size'] = $this->max_size * 8;
             $configuracion['overwrite'] = FALSE;
             $configuracion['encrypt_name'] = TRUE;
