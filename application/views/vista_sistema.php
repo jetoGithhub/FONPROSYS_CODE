@@ -2,7 +2,6 @@
 if ( ! defined('BASEPATH')) exit('No esta permitido el acceso directo');
 $primer_nombre = $info["nombre"];
 $base_url=base_url()."index.php/";
-echo "hola este cambio lo hice en la rama principal";
 ?>
 <script>
     $(function(){
