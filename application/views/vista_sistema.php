@@ -51,6 +51,12 @@ $base_url=base_url()."index.php/";
                
 
             });
+            $("#dialogo-error-conexion").dialog({       
+               autoOpen:false,
+               modal: true,
+               show: "clip",
+               hide:"clip"
+            });
             
     });  
 </script>
@@ -91,6 +97,7 @@ carga_vista_inicio_backend=function(){
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
 
     </div>
+    <div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
     
     <!--<div id="banner_container" style="border: 0px solid green; ">-->
        <img src="<?php echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>

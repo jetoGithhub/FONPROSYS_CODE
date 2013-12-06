@@ -2,18 +2,20 @@
 <script type="text/javascript" charset="utf-8">
 
         $(document).ready(function() {
-$('#respuesta_buscar').hide();
-            ayudas('.','interes_bcv','bottom right','top left','fold','up');
+			
+			$('#respuesta_buscar').hide();
+
+            ayudas('.','bancos','bottom right','top left','fold','up');
             
             $(".btn_reportes").button();
             
             $('#btn_excel').click(function() {
         
-					window.location='<?php echo base_url()."index.php/mod_finanzas/interes_bcv_c/excel_interes_bcv"?>';
+					window.location='<?php echo base_url()."index.php/mod_finanzas/bancos_c/excel_bancos"?>';
         
 			});
             
-            $( '#listar_interes_bcv button' ).button({
+            $( '#listar_bancos button' ).button({
                                     icons: {
                                     primary: "ui-icon-trash"
                                     },
@@ -33,7 +35,7 @@ $('#respuesta_buscar').hide();
                     });
                     
                     //id del div donde se mostrara el formulario
-                            $( "#frm_interes_bcv" ).dialog(
+                            $( "#frm_bancos" ).dialog(
                             {
                                 modal: true, //inhabilitada pantalla de atras
                                 autoOpen: false,
@@ -42,25 +44,24 @@ $('#respuesta_buscar').hide();
                                 resizable: false, //evita cambiar tamaño del cuadro del mensaje
                                 show: "show", //efecto para abrir cuadro de mensaje
                                 hide: "slide", //efecto para cerrar cuadro de mensaje
-                                title: "Interes BCV"
+                                title: "Bancos"
                                 
                             });
 
 
         });
-                    
-////                    //funcion para cargar la vista con el formulario de agregar nuevo interes bcv
-//                    //funcion para cargar la vista con el formulario de agregar nuevo interes bcv
-                    cargar_vista_dialog_interesbcv=function(url,ident,id_div){
+
+ //funcion para cargar la vista con el formulario de agregar nuevo banco
+                    cargar_vista_dialog_bancos=function(url,ident,id_div){
 //                       
 //                        //si encuentra lleno el parametro id_div le agregara al formulario los botones de guardar y cancelar
                         $("#"+id_div).dialog(
                         {
-                         //carga el div con el formulario para agregar nuevos intereses bcv, haciendo submit al form
+                         //carga el div con el formulario para agregar nuevos bancos, haciendo submit al form
                             
                             buttons: {
                                 Guardar:function(){
-                                    $('#form_new_intbcv').submit();
+                                    $('#form_new_bancos').submit();
                                 },
                                 Cancelar:function(){
                                     $( this ).dialog("close");
@@ -99,30 +100,28 @@ $('#respuesta_buscar').hide();
                     };
 
 
-                    envio_form_intbcv=function(form,url){
+                    envio_form_bancos=function(form,url){
                                     
-                            $.ajax({
-                                type:"post",
-                                data: $("#"+form).serialize(),
-                                dataType:"json",
-                                url:url,
-                                success:function(data){
-                                    if (data.resultado){
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $('#tabs').tabs('load',0);
-    //                                    alert('La información fue registrada exitosamente')
-    //                                    $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=168"; ?>')
-                                        //alert(data.mensaje)
-
+                        $.ajax({
+                            type:"post",
+                            data: $("#"+form).serialize(),
+                            dataType:"json",
+                            url:url,
+                            success:function(data){
+                                if (data.resultado){
+                                    $("#respuesta_buscar").hide();
+                                    $('#frm_bancos').dialog('close');
+//                                    alert('La información fue registrada exitosamente');
+//                                    $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=179"; ?>')
+                                    //alert(data.mensaje)
+                                    $('#tabs').tabs('load',0);
                                 } else
-                                    {
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $("#respuesta_buscar").html("<p>"+data.mensaje+"</p>");
-                                        $("#respuesta_buscar").show('slide',{ direction: "up" },500);
-
-                                    }
-
+                                {
+                                    $('#frm_bancos').dialog('close');
+                                    $("#respuesta_buscar").html("<p>"+data.mensaje+"</p>");
+                                    $("#respuesta_buscar").show('slide',{ direction: "up" },500);
+									
+                                }
                             },
                             error: function (request, status, error) {
                               $('#frm_bancos').dialog('close');
@@ -138,12 +137,13 @@ $('#respuesta_buscar').hide();
                            }
 
                         });
+
                     };
 
-                                //mensaje deconfirmacion al hacer clic en el boton eliminar
+              //mensaje deconfirmacion al hacer clic en el boton eliminar
               cargar_alert_dialog=function(url,id,ident,id_div){
 
-                         $( "#frm_interes_bcv" ).dialog(
+                         $( "#frm_bancos" ).dialog(
                          {
                              modal: true, //inhabilitada pantalla de atras
                              autoOpen: false,
@@ -152,7 +152,7 @@ $('#respuesta_buscar').hide();
                              resizable: false, //evita cambiar tamaño del cuadro del mensaje
                              show: "show", //efecto para abrir cuadro de mensaje
                              hide: "slide", //efecto para cerrar cuadro de mensaje
-                             title: "Interes BCV",
+                             title: "Bancos",
                              buttons: {
                                  "SI": function() {
                                      $( this ).dialog( "close" );
@@ -163,11 +163,9 @@ $('#respuesta_buscar').hide();
                                          url:url,
                                          success:function(data){
                                              if (data.resultado){
-                                                 
-                                             $('#tabs').tabs('load',0);
 //                                                 alert('La información fue eliminada exitosamente')
-//                                                 $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=168"; ?>')
-
+//                                                 $('#muestra_cuerpo_message').load('<?php echo base_url()."index.php/mod_administrador/principal_c?padre=179"; ?>')
+                                                    $('#tabs').tabs('load',0);
                                               }
                                          }
                                      });
@@ -180,10 +178,10 @@ $('#respuesta_buscar').hide();
                                  }
                      });
                      //mensaje que mostrara en el dialog de alerta o confirmacion
-                     $( "#frm_interes_bcv" ).html('<h3>Procedera a eliminar el Interes BCV. ¿Desea continuar?</h3>')
-                     $( "#frm_interes_bcv" ).dialog('open')
+                     $( "#frm_bancos" ).html('<h3>Procedera a eliminar el Banco. ¿Desea continuar?</h3>')
+                     $( "#frm_bancos" ).dialog('open')
 
-                 };
+                 }
             </script>
 
                 
@@ -215,42 +213,28 @@ $('#respuesta_buscar').hide();
         } 
 </style>
 
-          <!--condicion para que no se muestren los botones de excel y pdf en el caso de no existir data-->
-<!-- <?php // if (!empty($data)){?>        
-		 botones generar excel y pdf 
-		<div class="botonera_reportes" style="float: right">
-			<button id="btn_excel" class="btn_reportes">
-				<img src="<? // echo base_url().'include/imagenes/iconos/ic_excel.png'?>" width="14px" height="12px"/>
-				<b>Excel</b>
-			</button>
-		</div>
-<? // } ?>
-        <p>&nbsp;</p>-->
-
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Intereses del Banco Central de Venezuela</div>
-<table cellpadding="0" cellspacing="0" border="0" class="display interes_bcv" id="listar_interes_bcv" width="100%">
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Bancos</div>
+<table cellpadding="0" cellspacing="0" border="0" class="display bancos" id="listar_bancos" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Mes</th>
-                        <th>Año</th>
-			<th>Tasa</th>
-                        <th>Opciones</th> 
-                </tr>
+			<th>Nombre</th>
+			<th>Fecha</th>
+            <th>Opciones</th> 
+        </tr>
 	</thead>
 	<tbody>
            <?
            $baseurl=base_url();
            foreach ($data as $clave => $valor) {
             $con=$clave+1;
-            $v=$valor['mes'];
+            $v=$valor['id_bancos'];
                echo '<tr >
                         <td>'. $con .'</td>    
-			<td>'. $this->funciones_complemento->devuelve_meses_text($valor["mes"]).'</td>
-                        <td>'. $valor["anio"].'</td>
-			<td>'. $valor["tasa"].'</td>
-                        <td>
-                            <button txtayuda="Eliminar Interes BCV" class="ayuda" id="b'.$valor["id_interesbcv"].'" onclick="cargar_alert_dialog('."'".$baseurl.'index.php/mod_finanzas/interes_bcv_c/eliminar_interesbcv'."'".','.$valor["id_interesbcv"].',1,'."'frm_interes_bcv'".')" title="Eliminar Interese BCV"></button>
+						<td>'. $valor["nombre"].'</td>
+						<td>'. $valor["fecha_registro"].'</td>
+						<td>
+                            <button txtayuda="Eliminar Banco" class="ayuda" id="b'.$valor["id_bancos"].'" onclick="cargar_alert_dialog('."'".$baseurl.'index.php/mod_finanzas/bancos_c/eliminar_bancos'."'".','.$valor["id_bancos"].',1,'."'frm_bancos'".')" title="Eliminar Bancos"></button>
                         </td>
                            
                 </tr>';
@@ -259,10 +243,10 @@ $('#respuesta_buscar').hide();
   
          </table>
         
-         <table border="0" width="100%" class="interes_bcv">
+         <table border="0" width="100%" class="bancos">
                 <tr>
                     <td align="right">
-                        <button txtayuda="Ingresar nuevo Interes BCV" class="ayuda" id="boton_enviar" title="Agregar Nuevo Interes BCV" style="width:30px; height:30px;" onclick="cargar_vista_dialog_interesbcv('<?php echo base_url().'index.php/mod_finanzas/interes_bcv_c/cargar_dialog_new_interesbcv';?>',5,'frm_interes_bcv');"></button>
+                        <button txtayuda="Ingresar nuevo Banco" class="ayuda" id="boton_enviar" title="Agregar Nuevo Banco" style="width:30px; height:30px;" onclick="cargar_vista_dialog_bancos('<?php echo base_url().'index.php/mod_finanzas/bancos_c/cargar_dialog_new_bancos';?>',5,'frm_bancos');"></button>
                        <?php if (!empty($data)){?>        
 		<!-- botones generar excel y pdf -->
                     <!--<td align="right">-->
@@ -278,16 +262,18 @@ $('#respuesta_buscar').hide();
 		</tr>
         </table>
 <!-- formularios-->
-            <div id="frm_interes_bcv"> 
-
+            <div id="frm_bancos"> 
+				<!-- div para cargar el formulario de agregar nuevos bancos-->
             </div>
- <div id="respuesta_buscar" class="ui-state-error ui-corner-all" style=" width: 200px; height: auto; text-align: center; margin-top: 2%" >
+            
+            <div id="respuesta_buscar" class="ui-state-error ui-corner-all" style=" width: 200px; height: auto; text-align: center; margin-top: 2%" >
 				<!--div donde se mostrara el mensaje de alerta al seleccionar una opcion invalida en la busqueda-->
 			</div>
 
+
          <script>
 //            script para asignar atributos al listar diseñado con datatables
-            oTable = $('#listar_interes_bcv').dataTable({
+            oTable = $('#listar_bancos').dataTable({
 					"bJQueryUI": true,
 					"sPaginationType": "full_numbers",
                                         "oLanguage": {

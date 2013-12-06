@@ -2,18 +2,18 @@
 <script type="text/javascript" charset="utf-8">
 
         $(document).ready(function() {
-$('#respuesta_buscar').hide();
-            ayudas('.','interes_bcv','bottom right','top left','fold','up');
+            $('#respuesta_buscar').hide();
+            ayudas('.','cuentas_banc','bottom right','top left','fold','up');
             
             $(".btn_reportes").button();
             
             $('#btn_excel').click(function() {
         
-					window.location='<?php echo base_url()."index.php/mod_finanzas/interes_bcv_c/excel_interes_bcv"?>';
+					window.location='<?php echo base_url()."index.php/mod_finanzas/cuentas_banc_c/excel_cuentas_banc"?>';
         
 			});
             
-            $( '#listar_interes_bcv button' ).button({
+            $( '#listar_cuentas_banc button' ).button({
                                     icons: {
                                     primary: "ui-icon-trash"
                                     },
@@ -33,7 +33,7 @@ $('#respuesta_buscar').hide();
                     });
                     
                     //id del div donde se mostrara el formulario
-                            $( "#frm_interes_bcv" ).dialog(
+                            $( "#frm_cuentas_banc" ).dialog(
                             {
                                 modal: true, //inhabilitada pantalla de atras
                                 autoOpen: false,
@@ -42,16 +42,16 @@ $('#respuesta_buscar').hide();
                                 resizable: false, //evita cambiar tamaño del cuadro del mensaje
                                 show: "show", //efecto para abrir cuadro de mensaje
                                 hide: "slide", //efecto para cerrar cuadro de mensaje
-                                title: "Interes BCV"
+                                title: "Cuentas Bancarias"
                                 
                             });
 
 
         });
                     
-////                    //funcion para cargar la vista con el formulario de agregar nuevo interes bcv
-//                    //funcion para cargar la vista con el formulario de agregar nuevo interes bcv
-                    cargar_vista_dialog_interesbcv=function(url,ident,id_div){
+
+//                    //funcion para cargar la vista con el formulario de agregar nuevo cuentas bancarias
+                    cargar_vista_dialog_cuentasbanc=function(url,ident,id_div){
 //                       
 //                        //si encuentra lleno el parametro id_div le agregara al formulario los botones de guardar y cancelar
                         $("#"+id_div).dialog(
@@ -60,7 +60,7 @@ $('#respuesta_buscar').hide();
                             
                             buttons: {
                                 Guardar:function(){
-                                    $('#form_new_intbcv').submit();
+                                    $('#form_new_cuentasbanc').submit();
                                 },
                                 Cancelar:function(){
                                     $( this ).dialog("close");
@@ -81,54 +81,39 @@ $('#respuesta_buscar').hide();
                                     $("#"+id_div).dialog('open')
                                 }
                                    
-                            },
-                            error: function (request, status, error) {
-                              $("#"+id_div).dialog('close');
-                              var html='<p style=" margin-top: 15px">';
-                                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
-                                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
-                                  html+='</p><br />';
-                                  html+='<center><p>';
-                                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
-                                  html+='</p></center>';
-                               $("#dialogo-error-conexion").html(html);
-                               $("#dialogo-error-conexion").dialog('open');
-                           }
+                            }
                            
                         });
-                    };
+                    }
 
 
-                    envio_form_intbcv=function(form,url){
+                    envio_form_cuentasbanc=function(form,url){
                                     
-                            $.ajax({
-                                type:"post",
-                                data: $("#"+form).serialize(),
-                                dataType:"json",
-                                url:url,
-                                success:function(data){
-                                    if (data.resultado){
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $('#tabs').tabs('load',0);
-    //                                    alert('La información fue registrada exitosamente')
-    //                                    $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=168"; ?>')
-                                        //alert(data.mensaje)
-
+                        $.ajax({
+                            type:"post",
+                            data: $("#"+form).serialize(),
+                            dataType:"json",
+                            url:url,
+                            success:function(data){
+                                if (data.resultado){
+                                    $('#frm_cuentas_banc').dialog('close')
+//                                    alert('La información fue registrada exitosamente')
+//                                    $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=182"; ?>')
+                                    //alert(data.mensaje)
+                                    $('#tabs').tabs('load',0);
                                 } else
-                                    {
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $('#frm_interes_bcv').dialog('close');
-                                        $("#respuesta_buscar").html("<p>"+data.mensaje+"</p>");
-                                        $("#respuesta_buscar").show('slide',{ direction: "up" },500);
-
-                                    }
-
+                                {
+                                    $('#frm_cuentas_banc').dialog('close');
+                                    $("#respuesta_buscar").html("<p>"+data.mensaje+"</p>");
+                                    $("#respuesta_buscar").show('slide',{ direction: "up" },500);
+									
+                                }
                             },
                             error: function (request, status, error) {
-                              $('#frm_bancos').dialog('close');
+                              $('#frm_cuentas_banc').dialog('close')
                               var html='<p style=" margin-top: 15px">';
                                   html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
-                                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                                  html+='Disculpe ocurrio un error de conexion intente de nuevo. Verifique que no este Registrando una cuenta Repetida <br /> <b>ERROR:"'+error+'"</b>';
                                   html+='</p><br />';
                                   html+='<center><p>';
                                   html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
@@ -138,12 +123,13 @@ $('#respuesta_buscar').hide();
                            }
 
                         });
-                    };
+
+                    }
 
                                 //mensaje deconfirmacion al hacer clic en el boton eliminar
               cargar_alert_dialog=function(url,id,ident,id_div){
 
-                         $( "#frm_interes_bcv" ).dialog(
+                         $( "#frm_cuentas_banc" ).dialog(
                          {
                              modal: true, //inhabilitada pantalla de atras
                              autoOpen: false,
@@ -152,7 +138,7 @@ $('#respuesta_buscar').hide();
                              resizable: false, //evita cambiar tamaño del cuadro del mensaje
                              show: "show", //efecto para abrir cuadro de mensaje
                              hide: "slide", //efecto para cerrar cuadro de mensaje
-                             title: "Interes BCV",
+                             title: "Cuentas Bancarias",
                              buttons: {
                                  "SI": function() {
                                      $( this ).dialog( "close" );
@@ -163,11 +149,9 @@ $('#respuesta_buscar').hide();
                                          url:url,
                                          success:function(data){
                                              if (data.resultado){
-                                                 
-                                             $('#tabs').tabs('load',0);
 //                                                 alert('La información fue eliminada exitosamente')
-//                                                 $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=168"; ?>')
-
+//                                                 $('#muestra_cuerpo_message').load('<?php // echo base_url()."index.php/mod_administrador/principal_c?padre=182"; ?>')
+                                                    $('#tabs').tabs('load',0);
                                               }
                                          }
                                      });
@@ -180,10 +164,10 @@ $('#respuesta_buscar').hide();
                                  }
                      });
                      //mensaje que mostrara en el dialog de alerta o confirmacion
-                     $( "#frm_interes_bcv" ).html('<h3>Procedera a eliminar el Interes BCV. ¿Desea continuar?</h3>')
-                     $( "#frm_interes_bcv" ).dialog('open')
+                     $( "#frm_cuentas_banc" ).html('<h3>Procedera a eliminar la Cuenta Bancaria. ¿Desea continuar?</h3>')
+                     $( "#frm_cuentas_banc" ).dialog('open')
 
-                 };
+                 }
             </script>
 
                 
@@ -215,42 +199,31 @@ $('#respuesta_buscar').hide();
         } 
 </style>
 
-          <!--condicion para que no se muestren los botones de excel y pdf en el caso de no existir data-->
-<!-- <?php // if (!empty($data)){?>        
-		 botones generar excel y pdf 
-		<div class="botonera_reportes" style="float: right">
-			<button id="btn_excel" class="btn_reportes">
-				<img src="<? // echo base_url().'include/imagenes/iconos/ic_excel.png'?>" width="14px" height="12px"/>
-				<b>Excel</b>
-			</button>
-		</div>
-<? // } ?>
-        <p>&nbsp;</p>-->
 
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Intereses del Banco Central de Venezuela</div>
-<table cellpadding="0" cellspacing="0" border="0" class="display interes_bcv" id="listar_interes_bcv" width="100%">
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Cuentas Bancarias</div>
+<table cellpadding="0" cellspacing="0" border="0" class="display cuentas_banc" id="listar_cuentas_banc" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Mes</th>
-                        <th>Año</th>
-			<th>Tasa</th>
-                        <th>Opciones</th> 
-                </tr>
+			<th>Número</th>
+            <th>Tipo</th>
+			<th>Banco</th>
+            <th>Opciones</th> 
+         </tr>
 	</thead>
 	<tbody>
            <?
            $baseurl=base_url();
            foreach ($data as $clave => $valor) {
             $con=$clave+1;
-            $v=$valor['mes'];
+            $v=$valor['id_cuentabanc'];
                echo '<tr >
                         <td>'. $con .'</td>    
-			<td>'. $this->funciones_complemento->devuelve_meses_text($valor["mes"]).'</td>
-                        <td>'. $valor["anio"].'</td>
-			<td>'. $valor["tasa"].'</td>
+						<td>'. $valor["num_cuenta"].'</td>
+						<td>'. $valor["tipo_cuenta"].'</td>
+						<td>'. $valor["nombre_banco"].'</td>
                         <td>
-                            <button txtayuda="Eliminar Interes BCV" class="ayuda" id="b'.$valor["id_interesbcv"].'" onclick="cargar_alert_dialog('."'".$baseurl.'index.php/mod_finanzas/interes_bcv_c/eliminar_interesbcv'."'".','.$valor["id_interesbcv"].',1,'."'frm_interes_bcv'".')" title="Eliminar Interese BCV"></button>
+                            <button txtayuda="Eliminar Cuenta Bancaria" class="ayuda" id="b'.$valor["id_cuentabanc"].'" onclick="cargar_alert_dialog('."'".$baseurl.'index.php/mod_finanzas/cuentas_banc_c/eliminar_cuentasbanc'."'".','.$valor["id_cuentabanc"].',1,'."'frm_cuentas_banc'".')" title="Eliminar Cuentas Bancarias"></button>
                         </td>
                            
                 </tr>';
@@ -259,10 +232,10 @@ $('#respuesta_buscar').hide();
   
          </table>
         
-         <table border="0" width="100%" class="interes_bcv">
+         <table border="0" width="100%" class="cuentas_banc">
                 <tr>
                     <td align="right">
-                        <button txtayuda="Ingresar nuevo Interes BCV" class="ayuda" id="boton_enviar" title="Agregar Nuevo Interes BCV" style="width:30px; height:30px;" onclick="cargar_vista_dialog_interesbcv('<?php echo base_url().'index.php/mod_finanzas/interes_bcv_c/cargar_dialog_new_interesbcv';?>',5,'frm_interes_bcv');"></button>
+                        <button txtayuda="Ingresar nueva Cuenta Bancaria" class="ayuda" id="boton_enviar" title="Agregar Nueva Cuenta Bancaria" style="width:30px; height:30px;" onclick="cargar_vista_dialog_cuentasbanc('<?php echo base_url().'index.php/mod_finanzas/cuentas_banc_c/cargar_dialog_new_cuentasbanc';?>',5,'frm_cuentas_banc');"></button>
                        <?php if (!empty($data)){?>        
 		<!-- botones generar excel y pdf -->
                     <!--<td align="right">-->
@@ -278,16 +251,16 @@ $('#respuesta_buscar').hide();
 		</tr>
         </table>
 <!-- formularios-->
-            <div id="frm_interes_bcv"> 
+            <div id="frm_cuentas_banc"> 
 
             </div>
- <div id="respuesta_buscar" class="ui-state-error ui-corner-all" style=" width: 200px; height: auto; text-align: center; margin-top: 2%" >
+            <div id="respuesta_buscar" class="ui-state-error ui-corner-all" style=" width: 200px; height: auto; text-align: center; margin-top: 2%" >
 				<!--div donde se mostrara el mensaje de alerta al seleccionar una opcion invalida en la busqueda-->
-			</div>
+	    </div>
 
          <script>
 //            script para asignar atributos al listar diseñado con datatables
-            oTable = $('#listar_interes_bcv').dataTable({
+            oTable = $('#listar_cuentas_banc').dataTable({
 					"bJQueryUI": true,
 					"sPaginationType": "full_numbers",
                                         "oLanguage": {

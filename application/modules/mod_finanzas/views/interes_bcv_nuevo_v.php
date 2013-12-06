@@ -3,7 +3,7 @@
         ayudas('#','form_new_intbcv','bottom center','top center','slide','up');
         //funcion para la validacion
         //Parametros: id del form, url del controlador, metodo ajax para el submit del boton
-        validador('form_new_intbcv','<?php echo base_url()."index.php/mod_gestioncontribuyente/interes_bcv_c/agregar_interesbcv"; ?>','envio_form_intbcv');
+        validador('form_new_intbcv','<?php echo base_url()."index.php/mod_finanzas/interes_bcv_c/agregar_interesbcv"; ?>','envio_form_intbcv');
         //funcion para el cambio de estilo de los radiobutton
         $( "#radio" ).buttonset();
 		
@@ -40,18 +40,18 @@
                         <label>Mes: </label> 
                         <select id="mes" name="mes" class="requerido  ui-widget-content ui-corner-all" >
                             <option value="">Seleccione Mes</option>
-                            <option value="Enero">Enero</option>
-                            <option value="Febrero">Febrero</option>
-                            <option value="Marzo">Marzo</option>
-                            <option value="Abril">Abril</option>
-                            <option value="Mayo">Mayo</option>
-                            <option value="Junio">Junio</option>
-                            <option value="Julio">Julio</option>
-                            <option value="Agosto">Agosto</option>
-                            <option value="Septiembre">Septiembre</option>
-                            <option value="Octubre">Octubre</option>
-                            <option value="Noviembre">Noviembre</option>
-                            <option value="Diciembre">Diciembre</option>
+                            <option value="01">Enero</option>
+                            <option value="02">Febrero</option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06">Junio</option>
+                            <option value="07">Julio</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
                         </select>
                        <label>Año: </label> 
                         <input name="anio" type="text" id="anio" class="text ui-widget-content ui-corner-all requerido" title="Ingresar Año" maxlength="4" onkeydown="return soloNumeros(this, event);" />

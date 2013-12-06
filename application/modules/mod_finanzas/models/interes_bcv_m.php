@@ -14,7 +14,7 @@ class Interes_bcv_m extends CI_Model{
         $this->db
                    ->select("*")
                    ->from("datos.interes_bcv")
-                   ->order_by('anio');
+                   ->order_by('anio desc, mes asc');
            
             $query = $this->db->get();
             if( $query->num_rows()>0 ){
@@ -58,6 +58,28 @@ class Interes_bcv_m extends CI_Model{
             endif;
 
             
+     }
+      //funcion que verifica si el banco que se intenta registrar ya se encuentra registrado
+     function verifica_interes($anio,$mes){
+		
+        $this->db
+                //seleccionar todo de la tabla bancos
+                   ->select("*")
+                   ->from("datos.interes_bcv")
+//                   ->where(array("nombre"=>$nombre_bancos));
+                   ->where(array("anio"=>$anio,"mes"=>$mes));
+
+            $query = $this->db->get();
+            if( $query->num_rows()>0 ){
+
+                $return=TRUE;
+           }else{
+               $return=FALSE;
+           }
+           
+           return $return;
+
+
      }
 
 }

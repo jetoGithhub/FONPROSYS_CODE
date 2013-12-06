@@ -47,19 +47,32 @@ class Interes_bcv_c extends CI_Controller {
         
 	function agregar_interesbcv()
 	{
-		$array=array(                
-						'anio'=>  $this->input->post('anio'),
-						'tasa'=>  $this->input->post('tasa'),
-						'ip'=> $_SERVER['REMOTE_ADDR'],
-						'usuarioid'=>$this->session->userdata('id'),
-						'mes'=>  $this->input->post('mes'),
-					 
-					);
+            $this->load->model('interes_bcv_m');
+            $anio=$this->input->post('anio');
+            $mes=$this->input->post('mes');
+		 
+		$existe_interes=$this->interes_bcv_m->verifica_interes($anio,$mes);
 		
-		$tabla='datos.interes_bcv';
+//                print_r($existe_interes);die;
 		
-		$this->load->library('operaciones_bd');
-		$result=$this->operaciones_bd->insertar_BD(1,$array,$tabla,1);        
+		if(!$existe_interes)
+		{
+                        $array=array(                
+                                                        'anio'=> $anio,
+                                                        'tasa'=>  $this->input->post('tasa'),
+                                                        'ip'=> $_SERVER['REMOTE_ADDR'],
+                                                        'usuarioid'=>$this->session->userdata('id'),
+                                                        'mes'=> $mes,
+
+                                                );
+
+                        $tabla='datos.interes_bcv';
+
+                        $this->load->library('operaciones_bd');
+                        $result=$this->operaciones_bd->insertar_BD(1,$array,$tabla,1); 
+                }else{
+                    $result=array('resultado'=>FALSE,'mensaje'=>'ya existe un interes para este añio y mes especifico');
+                }
 		echo json_encode($result);
 	
 	}
