@@ -77,11 +77,11 @@ carga_vista_inicio_backend=function(){
 </script>
 
 <style>
-
+/*
             .ui-accordion-content a:link {
                 text-decoration: none;
                 color: #2209AE;
-            }
+            }*/
             .ui-accordion-content a:hover {
                 text-decoration: none;
                 color: #E40101;
