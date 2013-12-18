@@ -61,11 +61,29 @@ class Gestion_pagos_c extends CI_Controller {
                 break;
         }
         
-//        print_r($data);die;
-        $html=  $this->load->view('listado_gestion_pagos_v',array("data"=>$data,"tipo"=>$tipo,'tipo_pago'=>$tipo_pago),true);
+        
+        $bancos= $this->gestion_pagos_m->bancos();
+//        print_r($bancos);die;
+        $html=  $this->load->view('listado_gestion_pagos_v',array("data"=>$data,"tipo"=>$tipo,'tipo_pago'=>$tipo_pago,"bancos"=>$bancos),true);
+        //        print_r($html);die;
         echo json_encode(array("resultado"=>true,"html"=>$html));
     }
-    
+    function numero_cuentas($id)
+    {
+      $cuentas= $this->gestion_pagos_m->numero_cuentas($id);
+      $html='<option value="" >Seleccione</option> ';
+      if(is_array($cuentas)):
+          foreach ($cuentas as $key => $value) {
+            $html.="<option value='$value[id_cuenta]' >$value[cuenta]</option>";
+          
+          }
+          
+      endif;
+      
+      echo json_encode(array('html'=>$html));
+      
+    }
+            
     function cargar_pago(){
 //        sleep(3);
         $cadena=  $this->input->post('cadena');
@@ -73,6 +91,13 @@ class Gestion_pagos_c extends CI_Controller {
         $id=$partes[1];
         $tipo=$partes[2];
 //        print_r($partes);die;
+        $select=array(
+            "tabla"=>'datos.declara',
+            "where"=>array('nudeposito'=>$this->input->post('deposito')),
+            "respuesta"=>array('id')            
+        );
+        $result=$this->operaciones_bd->seleciona_BD($select);
+        if(empty($result)){
         if(($tipo=='1') || ($tipo=='2')){
             
              $tabla='datos.declara'; 
@@ -81,7 +106,9 @@ class Gestion_pagos_c extends CI_Controller {
                         'dw'=>array('id'=>$id),
                         'dac'=>array('nudeposito'=>$this->input->post('deposito'),
                                      'fechapago'=> $this->input->post('fdeposito'),
-                                     'fecha_carga_pago'=>'now()'),
+                                     'fecha_carga_pago'=>'now()',
+                                     'banco'=>$this->input->post('bancos'),
+                                     'cuenta'=>$this->input->post('cuentas')),
                         'tabla'=>$tabla
 
 
@@ -95,14 +122,18 @@ class Gestion_pagos_c extends CI_Controller {
                                                     'dw'=>array('id'=>$id),
                                                     'dac'=>array('nudeposito'=>$this->input->post('deposito'),
                                                                  'fechapago'=> $this->input->post('fdeposito'),
-                                                                 'fecha_carga_pago'=>'now()')
+                                                                 'fecha_carga_pago'=>'now()',
+                                                                'banco'=>$this->input->post('bancos'),
+                                                                'cuenta'=>$this->input->post('cuentas'))
                                                     ),
                         "pre_aprobacion.intereses"=>array(
                                                     
                                                         'dw'=>array('multaid'=>$id),
                                                         'dac'=>array('nudeposito'=>$this->input->post('depositoi'),
                                                                      'fecha_pago'=> $this->input->post('fdepositoi'),
-                                                                     'fecha_carga_pago'=>'now()') 
+                                                                     'fecha_carga_pago'=>'now()',
+                                                                    'banco'=>$this->input->post('bancosi'),
+                                                                    'cuenta'=>$this->input->post('cuentasi')) 
                             
                                                     )
 
@@ -119,11 +150,15 @@ class Gestion_pagos_c extends CI_Controller {
                         
                         $datos_multa=array('nudeposito'=>$this->input->post('deposito'),
                                      'fechapago'=> $this->input->post('fdeposito'),
-                                     'fecha_carga_pago'=>'now()');
+                                     'fecha_carga_pago'=>'now()',
+                                     'banco'=>$this->input->post('bancos'),
+                                     'cuenta'=>$this->input->post('cuentas'));
                         
                         $datos_interes=array('nudeposito'=>$this->input->post('depositoi'),
                                             'fecha_pago'=> $this->input->post('fdepositoi'),
-                                            'fecha_carga_pago'=>'now()');
+                                            'fecha_carga_pago'=>'now()',
+                                            'banco'=>$this->input->post('bancosi'),
+                                            'cuenta'=>$this->input->post('cuentasi'));
                         $ids=  explode(',', $partes[3]);
 //                        print_r($ids);die;
 
@@ -133,8 +168,9 @@ class Gestion_pagos_c extends CI_Controller {
           $json=  $this->gestion_pagos_m->carga_pago_sumario_culminatoria($datos_multa,$where,$datos_interes,$ids);   
             
         }
-        
-       
+        }else{
+          $json=array('resultado'=>FALSE);  
+        }
        
         
         echo json_encode($json);

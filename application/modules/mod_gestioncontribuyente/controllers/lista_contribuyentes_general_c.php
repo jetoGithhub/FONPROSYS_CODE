@@ -50,7 +50,7 @@
               $dia_registro = $fecha_registro[2];
               $datos_conusu_tcont = $this->lista_contribuyentes_general_m->busca_tipocont_conusu($datos_conusu[0]['id'],(isset($this->tipocontid_conusu) && !empty($this->tipocontid_conusu)? $this->tipocontid_conusu : ''));
             //inicio condicion si tipo contribuyente existe
-
+//            print_r($mes_registro.'---'.$anio_actual);
               if ($datos_conusu_tcont):
                   //inicio ciclo tipo contribuyente
                   foreach ($datos_conusu_tcont as $valor_tipocont):
@@ -59,7 +59,7 @@
                       $periodo_vigente = $this->funciones_complemento->define_periodo($valor_tipocont['tcontid'],$mes_actual);
                       $datos_periodos_grav = $this->lista_contribuyentes_general_m->busca_periodo_gravable($valor_tipocont['tcontid'],$anio_registro);
                       $datos_busca_declaraciones = $this->lista_contribuyentes_general_m->busca_declaraciones(0,$datos_conusu[0]['id']);
-//                      print_r($datos_busca_declaraciones);die;
+//                      print_r($datos_periodos_grav);die;
                       //inicio ciclo de periodos
                       foreach ($datos_periodos_grav as $periodos):
                           
@@ -990,6 +990,7 @@
 
                 );            
             endif;
+//            print_r($lista_anio_cal); die;
             print(json_encode($respuesta));
 
         }

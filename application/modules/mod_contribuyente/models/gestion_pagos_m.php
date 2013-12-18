@@ -192,6 +192,49 @@ class Gestion_pagos_m extends CI_Model{
 
         return $respuesta;
     }
+    
+    function bancos()
+    {
+         $this->db
+                ->from("datos.bancos")                      
+                ->where(array('bln_borrado'=>'false'));
+        
+        $query = $this->db->get();
+        if( $query->num_rows()>0 ){
+
+//      
+            foreach ($query->result() as $row):
+
+                        $data[] = array(
+                                        "id_banco"	=> $row->id,
+                                        "banco" =>$row->nombre
+                                        );
+             endforeach;
+             
+             return $data;
+        }
+    }
+     function numero_cuentas($id)
+    {
+         $this->db
+                ->from("datos.bacuenta")                      
+                ->where(array('bancoid'=>$id,'bln_borrado'=>'false'));
+        
+        $query = $this->db->get();
+        if( $query->num_rows()>0 ){
+
+//      
+            foreach ($query->result() as $row):
+
+                        $data[] = array(
+                                        "id_cuenta"	=> $row->id,
+                                        "cuenta" =>$row->num_cuenta
+                                        );
+             endforeach;
+             
+             return $data;
+        }
+    }
 }
 
 ?>

@@ -29,6 +29,12 @@ $base_url=base_url()."index.php/";
                
 
             });
+             $("#dialogo-error-conexion").dialog({       
+               autoOpen:false,
+               modal: true,
+               show: "clip",
+               hide:"clip"
+            });
         
     });        
 
@@ -52,10 +58,10 @@ carga_vista_inicio_frontend=function(){
 </script>
 <style>
 
-            .ui-accordion-content a:link {
+/*            .ui-accordion-content a:link {
                 text-decoration: none;
                 color: #2209AE;
-            }
+            }*/
             .ui-accordion-content a:hover {
                 text-decoration: none;
                 color: #E40101;
@@ -71,7 +77,7 @@ carga_vista_inicio_frontend=function(){
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
 
     </div>
-
+<div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
    <img src="<?php echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>
 <!--
     <div id="menu-baner-home" style=" width: auto; position:absolute; margin-top: -27px; margin-left: 87%; border: 0px solid">

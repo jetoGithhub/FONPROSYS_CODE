@@ -1,6 +1,7 @@
 
 <?php
 //Variable para diferenciar eventos para llamadas en multiples modulos y tabs
+//print_r($omisos);
 $diferenciador = random_string('alnum', 16);
 ?>
 <style>
@@ -83,20 +84,29 @@ endif;
                 foreach ($omisos as $valor): ?>
                     <tr>
                         <td>
-                            <?php print($valor['id']); ?>
+                            <?php print(date('d-m-Y',  strtotime($valor['fechaini']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechafin']); ?>
+                            <?php print(date('d-m-Y',  strtotime($valor['fechafin']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechalim']); ?>
+                            <?php print(date('d-m-Y',  strtotime($valor['fechalim']))); ?>
                         </td>
                         <td>
                             <?php print($valor['ano']); ?>
                         </td>
+                        <?php if($valor['tipo']!=2): ?>
                         <td>
-                            <?php print($valor['periodo']); ?>
+                            <?php
+                            if($valor['tipo']==0):
+                                print($this->funciones_complemento->devuelve_meses_text($valor['periodo']));
+                            endif;
+                            if($valor['tipo']==1):
+                                print($this->funciones_complemento->devuelve_trimestre_text($valor['periodo']));
+                            endif;
+                            ?>
                         </td>
+                        <?php endif;?>
                         <td>
                             <?php print($valor['nombre']); ?>
                         </td>                       
@@ -140,25 +150,25 @@ endif;
                 foreach ($omisos_declara as $valor): ?>
                     <tr>
                         <td>
-                            <?php print($valor['calpagodid']); ?>
+                            <?php print($valor['nudeclara']); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaelab']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaini']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaini']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechafin']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechafin']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['baseimpo']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['baseimpo'])); ?>
                         </td>
                         <td>
                             <?php print($valor['alicuota']); ?>
                         </td>   
                         <td>
-                            <?php print($valor['montopagar']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['montopagar'])); ?>
                         </td>         
                     </tr>
 
@@ -200,25 +210,25 @@ endif;
                 foreach ($pagados as $valor): ?>
                     <tr>
                         <td>
-                            <?php print($valor['calpagodid']); ?>
+                            <?php print($valor['nudeclara']); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaelab']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaini']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaini']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechafin']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechafin']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['baseimpo']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['baseimpo'])); ?>
                         </td>
                         <td>
                             <?php print($valor['alicuota']); ?>
                         </td>   
                         <td>
-                            <?php print($valor['montopagar']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['montopagar'])); ?>
                         </td>         
                     </tr>
 
@@ -260,25 +270,25 @@ endif;
                 foreach ($extemporaneos as $valor): ?>
                     <tr>
                         <td>
-                            <?php print($valor['calpagodid']); ?>
+                            <?php print($valor['nudeclara']); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaelab']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaini']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaini']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechafin']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechafin']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['baseimpo']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['baseimpo'])); ?>
                         </td>
                         <td>
                             <?php print($valor['alicuota']); ?>
                         </td>   
                         <td>
-                            <?php print($valor['montopagar']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['montopagar'])); ?>
                         </td>         
                     </tr>
 
@@ -320,25 +330,25 @@ endif;
                 foreach ($dentro_limite_pago as $valor): ?>
                     <tr>
                         <td>
-                            <?php print($valor['calpagodid']); ?>
+                            <?php print($valor['nudeclara']); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaelab']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechaini']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechaini']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['fechafin']); ?>
+                            <?php print(date('d-m-Y',strtotime($valor['fechafin']))); ?>
                         </td>
                         <td>
-                            <?php print($valor['baseimpo']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['baseimpo'])); ?>
                         </td>
                         <td>
                             <?php print($valor['alicuota']); ?>
                         </td>   
                         <td>
-                            <?php print($valor['montopagar']); ?>
+                            <?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['montopagar'])); ?>
                         </td>         
                     </tr>
 

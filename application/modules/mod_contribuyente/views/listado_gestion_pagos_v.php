@@ -1,3 +1,4 @@
+
 <script>
 $(function(){
     ayudas('#','listar-getion','bottom right','top left','fold','up'); 
@@ -45,13 +46,23 @@ $(".cargar_pago").click(function(){
             html+="<input type='text' name='deposito' id='deposito' class=' requerido ui-widget-content ui-corner-all' />";
             html+="<label>Fecha del deposito</label>";
             html+="<input type='text' name='fdeposito' id='fdeposito' class=' fecha requerido ui-widget-content ui-corner-all' />";
+            html+="<label>Nombre del Banco</label>";       
+            html+="<select id='bancos' name='bancos' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value);' ><option value='' selected='selected'>Seleccione</option></select>";
+            html+="<label>Numero de cuenta</label>";       
+            html+="<select id='cuentas' name='cuentas' class='requerido ui-corner-all ui-widget-content' ><option value='' selected='selected'>Seleccione</option></select>";
             if((tipo_pago!=1) && (tipo_pago!=2)){
                 html+="<fieldset class='secciones' style='margin-top:0px; border-top:1px solid #CDCCCB;padding:0px 0px 0px 0px '><legend class='ui-widget-content ui-corner-all'style=' color: #654B24' align= 'center' ><h4 style=''>Deposito de intereses</h4></legend><br />";
                 html+="<label>Numero del deposito</label>";
                 html+="<input type='text' name='depositoi' id='depositoi' class=' requerido ui-widget-content ui-corner-all' />";
                 html+="<label>Fecha del deposito</label>";
                 html+="<input type='text' name='fdepositoi' id='fdepositoi' class='fecha requerido ui-widget-content ui-corner-all' />";
+                html+="<label>Nombre del Banco</label>";       
+                html+="<select id='bancosi' name='bancosi' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value);' ><option value='' selected='selected'>Seleccione</option></select>";
+                html+="<label>Numero de cuenta</label>";       
+                html+="<select id='cuentasi' name='cuentasi' class='requerido ui-corner-all ui-widget-content' ><option value='' selected='selected'>Seleccione</option></select>";
+            
                 html+="</fieldset>";
+                
             }
             html+="</form>";
             html+="</fieldset>";
@@ -74,10 +85,37 @@ $(".cargar_pago").click(function(){
         dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
         monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
         showAnim: "slide",
-        navigationAsDateFormat: true
+        navigationAsDateFormat: true,
+        changeMonth: true,
+        changeYear: true
     });
+    <?php foreach ($bancos as $key => $value) { ?>
+        $("#bancos").append('<option value="<?php echo $value['id_banco']?>"><?php echo $value['banco']?></option>');
+     <?php }
+    ?>
+    if((tipo_pago!=1) && (tipo_pago!=2)){
+       <?php foreach ($bancos as $key => $value) { ?>
+        $("#bancosi").append('<option value="<?php echo $value['id_banco']?>"><?php echo $value['banco']?></option>');
+     <?php }
+    ?>  
+    }        
     validador('frm_carga_pago','<?php echo base_url()."index.php/mod_contribuyente/gestion_pagos_c/cargar_pago"?>','cargar_pago');
 });
+
+numero_cuenta=function(id){
+     $.ajax({
+         type:"post",
+         dataType:"json",
+         url:"<?php echo base_url().'index.php/mod_contribuyente/gestion_pagos_c/numero_cuentas/'?>"+id,
+         success:function(data){
+           
+                $("#cuentas").html(data.html);
+             }
+
+                  
+
+     });
+};
 </script>
 
 <div id="contenedor_cargar_pago" title="Cargar pagos" ></div>
@@ -97,8 +135,8 @@ $(".cargar_pago").click(function(){
                                <th>Numero</th>
                                <th>Fecha de la declaracion</th>
                                <th>Tipo Contribuyente</th>
-                               <th>Base imponible</th>
-                               <th>Año declarado</th>
+<!--                               <th>Base imponible</th>
+                               <th>Año declarado</th>-->
                                <th>Periodo declarado</th>
                                <th>Total a pagar</th>
                                <th>Opciones</th>
@@ -118,8 +156,8 @@ $(".cargar_pago").click(function(){
                                <td><?php ($tipo_pago==1? print($valor['numero']) : print('CNAC/FONPROCINE/GFT/AFR-'.$valor['nreparo']) ) ?></td>
                                <td><?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?></td>
                                <td><?php print($valor['contribuyente_text']); ?></td>
-                               <td><?php print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['base'])); ?></td>
-                               <td><?php print($valor['anio']); ?></td>
+                               <!--<td><?php // print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['base'])); ?></td>-->
+                               <!--<td><?php // print($valor['anio']); ?></td>-->
                                <?php if($valor['periodo_gravable']==0):?>
                                <td><?php echo $this->funciones_complemento->devuelve_meses_text($valor["periodo"]); ?></td> 
                                <?php endif;?>
@@ -154,8 +192,8 @@ $(".cargar_pago").click(function(){
                                 <th>Resolucion</th>
                                 <th>Fecha</th>
                                 <th>Tipo Contribuyente</th>
-                                <?php if($tipo_pago==3){ echo "<th>Base Imponible</th>"; }?>
-                                <th>Año</th>
+                                <?php // if($tipo_pago==3){ echo "<th>Base Imponible</th>"; }?>
+                                <!--<th>Año</th>-->
                                 <?php if($tipo_pago==3){ echo "<th>Periodo</th>"; }?>
                                 <th>Total Multa</th>
                                 <th>Total Interes</th>
@@ -176,8 +214,8 @@ $(".cargar_pago").click(function(){
                                <td><?php print($cadena.$valor['numero']); ?></td>
                                <td><?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?></td>
                                <td><?php print($valor['contribuyente_text']); ?></td>
-                               <?php if($tipo_pago==3){ echo '<td>'.$this->funciones_complemento->devuelve_cifras_unidades_mil($valor['base']).'</td>'; }?>
-                               <td><?php print($valor['anio']); ?></td>
+                               <?php // if($tipo_pago==3){ echo '<td>'.$this->funciones_complemento->devuelve_cifras_unidades_mil($valor['base']).'</td>'; }?>
+<!--                               <td><?php // print($valor['anio']); ?></td>-->
                                <?php if($tipo_pago==3){?>
                                    <?php if($valor['periodo_gravable']==0):?>
                                    <td><?php echo $this->funciones_complemento->devuelve_meses_text($valor["periodo"]); ?></td> 
@@ -284,7 +322,7 @@ espera_carga_pago();// mensage de espera
             {
                 if(data.resultado){
                     $("#espera_cargar_pago").empty();
-                    $("#espera_cargar_pago").html('<p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0px 0px 0px 0px;"></span><b>PAGO REGISTRADO CON EXITO, GRACIAS...</b></p>'); 
+                    $("#espera_cargar_pago").html('<p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0px 0px 0px 0px;"></span><b>GRACIAS POR SU PAGO, ESTA SUJETO A CONCILIACION...</b></p>'); 
                     setTimeout(function(){
                          $.unblockUI();//cierra mensaje de espera
                          $("#espera_cargar_pago").empty();
@@ -292,9 +330,35 @@ espera_carga_pago();// mensage de espera
                     },3000);
                     
                     
+                }else{
+                     var html='<p style=" margin-top: 15px; font-size:12px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe el numero de deposito ya se encuentra registrado con otro pago verifique.';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+                $.unblockUI();//cierra mensaje de espera
+                         $("#espera_cargar_pago").empty();
+               $("#dialogo-error-conexion").dialog('open');
+                    
                 }
 
-            }
+            },
+            error: function (request, status, error) {
+              var html='<p style=" margin-top: 15px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+               $.unblockUI();//cierra mensaje de espera
+               $("#espera_cargar_pago").empty();
+               $("#dialogo-error-conexion").dialog('open');
+           }
         });
 };
         

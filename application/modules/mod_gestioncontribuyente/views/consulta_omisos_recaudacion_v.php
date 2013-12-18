@@ -1,3 +1,4 @@
+<?php // print_r($respuesta)?>
 <script>
     $(function() {
     ayudas('#','form_omisos_recaudacion','bottom right','top left','fold','up');
