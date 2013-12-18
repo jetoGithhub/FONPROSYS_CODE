@@ -106,15 +106,15 @@
             $this->db
                     ->select('calpagod.*',FALSE)
                     ->select('calpago.ano',FALSE)
-                    ->select('tipegrav.nombre',FALSE)
-                    ->select('tipocont.id as tipocontid',true)
                     ->select('tipegrav.nombre, tipegrav.tipe as tipo',FALSE)
+                    ->select('tipocont.id as tipocontid',true)
+                    
                     ->from('datos.tipocont')
                     ->join('datos.tipegrav','tipegrav.id = tipocont.tipegravid')
                     ->join('datos.calpago','calpago.tipegravid = tipegrav.id')
                     ->join('datos.calpagod','calpagod.calpagoid = calpago.id')
                     ->where(array('tipocont.id'=>$id_tipocont,'calpago.ano >= '=>$anio))
-                    ->order_by('calpago.ano, calpagod.periodo','asc');
+                    ->order_by('calpago.ano, calpagod.periodo','desc');
             $query = $this->db->get();
             return ($query->num_rows()>0 ? $query->result_array() : false);
 
@@ -189,7 +189,7 @@
                     ->select("*")
                     ->from("datos.calpago")
                     ->where(array('tipegravid'=>$id))
-                    ->order_by("nombre");
+                    ->order_by("ano");
             $query = $this->db->get();
             if( $query->num_rows()>0 ):
                 $data = array();
