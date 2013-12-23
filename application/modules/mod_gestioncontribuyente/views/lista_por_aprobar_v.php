@@ -201,6 +201,8 @@ espera_aprueba_calculo=function(){
             if((valor_select=='0') || (valor_radio==false)){
 //                alert('vacio')
                 $("#respuesta_buscar").html("<p>Debe selecionar un estado y un tipo de calculo</p>");
+                $("#respuesta_buscar").addClass('ui-state-error');		                            
+	        $("#respuesta_buscar").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
                 $("#respuesta_buscar").show('slide',{ direction: "up" },500);
 
                 
@@ -285,11 +287,13 @@ espera_aprueba_calculo=function(){
                     $('#dialog_session_aprueba').html(html);
                     
                  $( "#fechasession" ).datepicker({
-                    dateFormat: "dd-mm-yy",
+                   dateFormat: 'dd-mm-yy',
                     dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
                     monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-                    showAnim: "slide",
-                    navigationAsDateFormat: true
+                    monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
+                    yearRange: "2000:<?php echo date('Y');?>",
+                    changeMonth: true,
+                    changeYear: true
                 });
                 $( "#dialog_session_aprueba" ).dialog('open');
 
@@ -299,10 +303,10 @@ espera_aprueba_calculo=function(){
   
             }else{
             
-                $('#error-reparo-activa').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>Marque al menos una para activar.</p>')
+                $('#error-reparo-activa').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>Marque al menos una para aprobar.</p>')
                 $("#error-reparo-activa").addClass('ui-state-error ui-corner-all'); 
-                $("#error-reparo-activa").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
-                $("#error-reparo-activa").show('slide',{ direction: "right" },1500);
+                $("#error-reparo-activa").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});;
+                $("#error-reparo-activa").show('slide',{ direction: "up" },1500);
                 
             }
   };
@@ -329,7 +333,15 @@ espera_aprueba_calculo=function(){
 
           },
            error: function (request, status, error) {
-
+                    var html='<p style=" margin-top: 15px">';
+                                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                                  html+='Disculpe ocurrio un problema. <br /> <b>ERROR:"'+error+'"</b>';
+                                  html+='</p><br />';
+                                  html+='<center><p>';
+                                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                                  html+='</p></center>';
+                               $("#dialogo-error-conexion").html(html);
+                               $("#dialogo-error-conexion").dialog('open');
             },
             beforeSend:function(){
 
@@ -403,7 +415,7 @@ espera_aprueba_calculo=function(){
 <div id="listar_por_calcular">
     <!--div donde se mostrar el listar dependiendo de la seleccion en el buscar-->
 </div>
-<div id="error-reparo-activa"></div>    
+<div id="error-reparo-activa" style=" width: 250px; height: auto; text-align:justify; margin-top: 2%; margin-left:200px"></div>    
 
 <?php // echo $fecha=  time() ?>
 

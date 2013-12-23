@@ -53,13 +53,16 @@ class Lista_reparo_calc_m extends CI_Model{
                                             
                                             );
                  endforeach;
-                 
-                  for($i = 0; $i < count($data); $i++)
-                {
-                    $idreparo=$data[$i]['idreparo'];;
-                    $data_limpia[$idreparo]=$data[$i];                    
+                 if($dlt_duplicado): 
+                        for($i = 0; $i < count($data); $i++)
+                      {
+                          $idreparo=$data[$i]['idreparo'];;
+                          $data_limpia[$idreparo]=$data[$i];                    
 
-                }
+                      }
+                 else:
+                    $data_limpia=$data;
+                endif;
                  //recorrido del arreglo data para determinar los registros duplicados y poder eliminarlos
                  
 //                 if(($dlt_duplicado) && (count($data)>1)):

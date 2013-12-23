@@ -35,9 +35,9 @@
             <select class="ui-widget-content ui-corner-all"  id="anio_cal_consu" name="anio_cal_consu" onchange="dispara_anio_consulta(); muestra_cuerpo_consulta(this.value);" >
                 <option value="">Seleccione</option>
 <!--                <?php 
-                for ($an=2006;$an<=2021;$an++):
-                    print("<option class='val_anio' value='$an'> $an </option>");
-                endfor;
+//                for ($an=2006;$an<=2021;$an++):
+//                    print("<option class='val_anio' value='$an'> $an </option>");
+//                endfor;
                 ?>                -->
 
             </select>&nbsp;&nbsp;<div id="img_anio" style="float: right;"></div>
@@ -110,7 +110,7 @@ $("#cuerpo_crea_consulta").empty();
                 var select_abre='<select class="ui-widget-content ui-corner-all"  id="anio_cal_consu" name="anio_cal_consu" onchange="dispara_anio_consulta(); muestra_cuerpo_consulta(this.value);">';
                 var option_vacio='<option  class="val_anio" value="">Seleccione</option>';
                 var opt_cierra = ('</option>');
-                for(var i_a=2006;i_a<=2021;i_a++){
+                for(var i_a=2000;i_a<=2021;i_a++){
                     option_vacio+='<option class="val_anio" value="'+i_a+'">'+i_a+'</option>';
                     
                 }
@@ -129,7 +129,14 @@ $("#cuerpo_crea_consulta").empty();
 //                }
 
             }else{
-                alert('error')
+                
+               var div='<div id="error_calp" style="padding: 0 .7em; width: 250px; margin-top:5px; margin-left: 220px" class="ui-corner-all ui-state-highlight" >';
+                   div=+'<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-info"></span><strong>alert: </strong>No existe calendarios cargados para este tipo de contribuyente</p>';
+                   div+="</div>";
+                   $("#cuerpo_crea_consulta").html(div);
+                   $("#error_calp").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+               
+                
             }
         },
         beforeSend:function(){    

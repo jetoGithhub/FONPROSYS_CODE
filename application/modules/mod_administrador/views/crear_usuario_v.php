@@ -1,6 +1,7 @@
  <script>
     $(function() {
         ayudas('#','form_new','bottom center','top center','slide','up');
+        ayudas_input('#','form_new');
         //funcion para la validacion
         //Parametros: id del form, url del controlador, metodo ajax para el submit del boton
         validador('form_new','<?php echo base_url()."index.php/mod_administrador/usuarios_c/insertar_usuario"; ?>','envio_form');
@@ -11,8 +12,9 @@
     
    //mascara para los numeros telefonicos
    jQuery(function($){
+       $.mask.definitions['#'] = '[VEve]';
        $("#telefofc").mask('0999-9999999');
-       $("#cedula").mask('V-999999?99');
+       $("#cedula").mask('#-999999?99');
    });
    
 </script>
@@ -36,12 +38,12 @@
                         <input name="nombre" type="text" id="nombre"  class="ui-widget-content ui-corner-all requerido" title="Ingresar Nombre"/>
                     </td>
                     <td>Cedula de Indentidad: </br> 
-                        <input name="cedula" type="text" id="cedula"  class="ui-widget-content ui-corner-all requerido" title="Ingresar Cedula de identidad"/>
+                        <input name="cedula" type="text" id="cedula"  class="ayuda-input ui-widget-content ui-corner-all requerido" title="Ingresar Cedula de identidad" txtayudai="Campo para colocar el documentos de identidad ejemplo V o E indistintamente de mayusculas y minusculas seguidas de un guion " />
                     </td>
                 </tr>
                
                 <tr><td>Correo electronico: </br> 
-                        <input name="email" type="text" id="email" condicion="email:true" class="ui-widget-content ui-corner-all requerido" title="Ingresar Correo electronico"/>
+                        <input name="email" type="text" id="email" condicion="email:true" class="ayuda-input ui-widget-content ui-corner-all requerido" title="Ingresar Correo electronico" txtayudai="Campo para agregar el correo institucional ejemplo XXXXXXX@cnac.gob.ve, Recuerde que lo que esta antes del arroba se convertira en el usuario para ingreso en el sistema."/>
                     </td>
                     <td>Telefono oficina: </br> 
                         <input name="telefofc" type="text" id="telefofc"  class="ui-widget-content ui-corner-all requerido" title="Ingresar telefono de oficina"/>

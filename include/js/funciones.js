@@ -134,8 +134,29 @@ ayudas=function(tipo,elemento,my,at,effect,direction){
          document.body.appendChild(script);
     });
     
-}              
+};
 
+ayudas_input=function(tipo,elemento){   
+    
+    
+    $(tipo+elemento).find('.ayuda-input').each(function() {
+        var script   = document.createElement("script");
+        script.type  = "text/javascript";  
+        
+        var abre_qtip='$("#'+this.id+'").qtip({';
+        var content='content:{ text:"'+$(this).attr("txtayudai")+'"},';
+        var posicion=' position: {my: "left center ",at: "right center"},';
+        var estilo='style:{classes: "ui-tooltip-youtube ui-tooltip-rounded"},';
+        var show='show: {event: "focus"},';
+        var hide='hide: {event:"unfocus"}';
+//        var show='show: {effect: function(offset) {$(this).show( "'+effect+'",{direction:"'+direction+'"}, 500 );}}';
+        var cierra_qtip='});';
+        
+         script.text  = abre_qtip+content+posicion+estilo+show+hide+cierra_qtip;             // use this for inline script
+        
+         document.body.appendChild(script);
+    });
+};
 
 //***********VALIDA EL FORMULARIO DE INGRESO DINAMICAMENTE********
 validador = function(formulario_id,url_envio,funcion){

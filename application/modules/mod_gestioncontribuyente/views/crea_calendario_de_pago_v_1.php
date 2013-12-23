@@ -34,11 +34,11 @@
         <td id="anio_cal_td" style=" border-left:  0px #000 solid;" class="ui-widget-content   ui-corner-tr ui-corner-br ">
             <select class="ui-widget-content ui-corner-all"  id="anio_cal" name="anio_cal" onchange="dispara_anio(); muestra_cuerpo(this.value);" >
                 <option value="">Seleccione</option>
-<!--                <?php 
-                for ($an=2006;$an<=2021;$an++):
-                    print("<option class='val_anio' value='$an'> $an </option>");
-                endfor;
-                ?>                -->
+               <?php 
+//                for ($an=2006;$an<=2021;$an++):
+//                    print("<option class='val_anio' value='$an'> $an </option>");
+//                endfor;
+//                ?>                
 
             </select>&nbsp;&nbsp;<div id="img_anio" style="float: right;"></div>
         </td>
@@ -142,7 +142,7 @@ $("#cuerpo_crea").empty();
                 var select_abre='<select class="ui-widget-content ui-corner-all"  id="anio_cal" name="anio_cal" onchange="dispara_anio(); muestra_cuerpo(this.value);">';
                 var option_vacio='<option  class="val_anio" value="">Seleccione</option>';
                 var opt_cierra = ('</option>');
-                for(var i_a=2006;i_a<=2021;i_a++){
+                for(var i_a=2000;i_a<=2021;i_a++){
                     option_vacio+='<option class="val_anio" value="'+i_a+'">'+i_a+'</option>';
                     
                 }
@@ -161,7 +161,19 @@ $("#cuerpo_crea").empty();
                 }
 
             }else{
-                alert('error')
+                    var muestra='';
+                    var lista = data.datos;
+                    var select_abre='<select class="ui-widget-content ui-corner-all"  id="anio_cal" name="anio_cal" onchange="dispara_anio(); muestra_cuerpo(this.value);">';
+                    var option_vacio='<option  class="val_anio" value="">Seleccione</option>';
+                    var opt_cierra = ('</option>');
+                    for(var i_a=2000;i_a<=2021;i_a++){
+                        option_vacio+='<option class="val_anio" value="'+i_a+'">'+i_a+'</option>';
+
+                    }
+                    var select_cierra='</select>&nbsp;&nbsp;<div id="img_anio" style="float: right;"></div>';
+                    muestra+=select_abre+option_vacio+select_cierra;
+    //                alert(muestra)
+                    $('#anio_cal_td').html(muestra);
             }
         },
         beforeSend:function(){    
