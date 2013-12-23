@@ -21,6 +21,7 @@ class Gestion_multas_recaudacion_c extends CI_Controller  {
 	}
         function genera_rise()
         {   
+//            print_r($this->input->get());
              $condiciones=array("proceso_multa"=>'aprobado',"detacontribcalcid"=>$this->input->get('id'));
              
              $datos=  $this->lista_extemp_calc_m->datos_rise_multas_interes($condiciones);
@@ -28,7 +29,7 @@ class Gestion_multas_recaudacion_c extends CI_Controller  {
              $data['data']=  $this->__limpia_ordena_arreglo($datos);
               
              $result=$this->lista_extemp_calc_m->datos_declaraciones_extemporaneas($this->input->get('id'));
-             
+//             print_r($result);die;
              $tipo=  $this->legal_m->perido_gravable_contribuyente($datos[0]['idtipocont']);
              
              $data['declarciones_extem']=$this->__arma_periodo_fiscalizado($tipo,$result);

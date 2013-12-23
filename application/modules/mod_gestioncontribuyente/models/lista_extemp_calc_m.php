@@ -89,13 +89,16 @@ class Lista_extemp_calc_m extends CI_Model{
                                             
                                             );
                  endforeach;
-                 
-                 for($i = 0; $i < count($data); $i++)
-                {
-                    $idcontribcalc=$data[$i]['idconcalc'];
-                    $data_limpia[$idcontribcalc]=$data[$i];                    
+                if($dlt_duplicado): 
+                        for($i = 0; $i < count($data); $i++)
+                       {
+                           $idcontribcalc=$data[$i]['idconcalc'];
+                           $data_limpia[$idcontribcalc]=$data[$i];                    
 
-                }
+                       }
+                else:
+                    $data_limpia=$data;
+                endif;
                  //recorrido del arreglo data para determinar los registros duplicados y poder eliminarlos
                  
 //                 if(($dlt_duplicado) && (count($data)>1)):
@@ -198,8 +201,10 @@ class Lista_extemp_calc_m extends CI_Model{
           $this->db
                 //seleccionasr todo de la tabla usfonpro
                    ->select("declara.*")
+                   ->select("bancos.nombre as banco")
                    ->from("datos.detalles_contrib_calc")
                    ->join('datos.declara','declara.id=detalles_contrib_calc.declaraid')
+                   ->join('datos.bancos','bancos.id=declara.banco')
                    ->where(array("detalles_contrib_calc.id"=>$id));
          $query = $this->db->get();
         if( $query->num_rows()>0 ):
@@ -209,8 +214,10 @@ class Lista_extemp_calc_m extends CI_Model{
                 "nudeposito" =>$row->nudeposito,
                 "nmontopagar" =>$row->montopagar,
                 "calpagodid" =>$row->calpagodid,
-                "fechapago"=>$row->fechapago,
-                "nudeclara"=>$row->nudeclara
+                "fechapago"=>date('d-m-Y',  strtotime($row->fechapago)),
+                "nudeclara"=>$row->nudeclara,
+                "fecha_recepcion"=>date('d-m-Y',  strtotime($row->fecha_carga_pago)),
+                "banco"=>$row->banco
                 );
         endforeach;
         return $data;
@@ -239,10 +246,11 @@ class Lista_extemp_calc_m extends CI_Model{
                 "nudeposito" =>$row->nudeposito,
                 "nmontopagar" =>$row->montopagar,
                 "calpagodid" =>$row->calpagodid,
-                "fechapago"=>$row->fechapago,
+                "fechapago"=>date('d-m-Y',  strtotime($row->fechapago)),
                 "nudeclara"=>$row->nudeclara,
                 "periodo"=>$row->periodo,
-                "anio_calpago"=>$row->anio_calpago
+                "anio_calpago"=>$row->anio_calpago,
+                "fecha_calendario"=>date('d-m-Y',  strtotime($row->fechafin))
                 );
         endforeach;
         return $data;

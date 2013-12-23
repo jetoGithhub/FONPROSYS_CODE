@@ -85,17 +85,17 @@
     <br />
     <p>
         El Centro Nacional Autónomo de Cinematografía (CNAC), de conformidad con lo establecido en los artículos 41 y 63 de la Ley de la Cinematografía Nacional (LCN) de fecha 27 de septiembre de 2005, publicada en Gaceta Oficial de la República Bolivariana de Venezuela Nº 38.281, reimpresa por error en fecha 26 de octubre de 2005, según Gaceta Oficial de la República Bolivariana de Venezuela Extraordinaria Nº 5.789, y de conformidad con el artículo 121 del Código Orgánico Tributario, publicado en Gaceta Oficial de la República Bolivariana de Venezuela Número 37.305 de fecha 17 de octubre de 2001, emite la presente Resolución al contribuyente <b><?php echo $data[$id]['contribuyente']; ?></b>,
-        identificado con el Registro de Información Fiscal <b><?php echo $data[$id]['rif']; ?></b> número de Registro de la Cinematografía Nacional <b>preguntar or esto</b>,inscrito en el Registro Mercantil <?php echo $data[$id]['oficina_registro']; ?>, con fecha <?php echo $data[$id]['fecha_registro']; ?>, inscrito Bajo el Nro <?php echo $data[$id]['numero_registro']; ?>, Tomo <b><?php echo $data[$id]['rmtomo']; ?></b>, y domiciliado en <b><?php echo $data[$id]['domicilio_fisal']; ?></b>, como consecuencia de haber realizado el pago correspondiente a la contribución especial consagrada en el Artículo 52 de la Ley de la Cinematografía Nacional fuera de la oportunidad legal  establecida para ello. 
+        identificado con el Registro de Información Fiscal <b><?php echo $data[$id]['rif']; ?></b> <?if(!empty($data[$id]['registro_cnac'])):?>número de Registro de la Cinematografía Nacional <b><?php echo $data[$id]['registro_cnac']?></b><?php endif; ?>,inscrito en el Registro Mercantil <?php echo $data[$id]['oficina_registro']; ?>, con fecha <?php echo $data[$id]['fecha_registro']; ?>, inscrito Bajo el Nro <?php echo $data[$id]['numero_registro']; ?>, Tomo <b><?php echo $data[$id]['rmtomo']; ?></b>, y domiciliado en <b><?php echo $data[$id]['domicilio_fisal']; ?></b>, como consecuencia de haber realizado el pago correspondiente a la contribución especial consagrada en el Artículo 52 de la Ley de la Cinematografía Nacional fuera de la oportunidad legal  establecida para ello. 
     </p>
     <br />
     <p style=" text-align: center;"><b>I. DE LOS HECHOS</b></p>
     <br />
     <p>
-        En fecha <b><?php echo date('d-m-Y',strtotime($data[$id]['fecha_registro_fila'])); ?></b>, el funcionario <b>reacomodar para poder obtener el nombre y la cedula  del gerente de racaudacion</b>, en su carácter de Gerente de Recaudación Tributaria (E) del Fondo de Promoción y Financiamiento del Cine (FONPROCINE), órgano adscrito al Centro Nacional Autónomo de Cinematografía (CNAC), previa verificación practicada en sede administrativa a los comprobantes y demás registros legales y administrativos que reposan en el expediente del Contribuyente <b><?php echo $data[$id]['contribuyente']; ?></b>,plenamente identificado con anterioridad, constató que de acuerdo con el artículo segundo de sus estatutos sociales, su objeto social es: <i>"<?php echo $data[$id]['objeto_empresa']; ?>; (omissis).."</i>
+        En fecha <b><?php echo date('d-m-Y',strtotime($data[$id]['fecha_registro_fila'])); ?></b>, el funcionario <b><?php echo $data[$id]['grente_reca']?></b> titular de la cedula de identidad <b><?php echo "Nº ".$data[$id]['cedula_reca']?></b>,en su carácter de Gerente de Recaudación Tributaria (E) del Fondo de Promoción y Financiamiento del Cine (FONPROCINE), órgano adscrito al Centro Nacional Autónomo de Cinematografía (CNAC), previa verificación practicada en sede administrativa a los comprobantes y demás registros legales y administrativos que reposan en el expediente del Contribuyente <b><?php echo $data[$id]['contribuyente']; ?></b>,plenamente identificado con anterioridad, constató que de acuerdo con el artículo segundo de sus estatutos sociales, su objeto social es: <i>"<?php echo $data[$id]['objeto_empresa']; ?>; (omissis).."</i>
     </p>
     <br />
     <p>
-        <b><u>De la misma  manera se constató que el ciudadano Rubén Alejandro , titular de la Cédula de Identidad Nº E-82.195.693, actuando en su condición de Presidente de la referida sociedad mercantil, consignó ante el Fondo de Promoción y Financiamiento del Cine (FONPROCINE), la Planilla de Autoliquidación y de pago en la forma y fecha que se detalla a continuación:</u></b>
+        <b><u>De la misma  manera se constató que <!--el ciudadano Rubén Alejandro , titular de la Cédula de Identidad Nº E-82.195.693, actuando en su condición de Presidente de la referida--> la antes señanla sociedad mercantil, consignó ante el Fondo de Promoción y Financiamiento del Cine (FONPROCINE), la Planilla de Autoliquidación y de pago en la forma y fecha que se detalla a continuación:</u></b>
     </p>
     <br />
     <br />
@@ -112,11 +112,11 @@
                      $total=0;
                         foreach ($declarciones_extem as $clave =>$valor):
                             echo "<tr class='tr-body'>
-                                        <td></td>
+                                        <td>".$valor['fecha_recepcion']."</td>
                                         <td>".$valor['nudeclara']."</td>
                                         <td>".$valor['nudeposito']."</td>
                                         <td>".$valor['fechapago']."</td>
-                                        <td></td>
+                                        <td>".$valor['banco']."</td>
                                         <td>".$valor['periodo']."</td>
                                         <td>".$valor['nmontopagar']."</td>
                                   </tr>";
@@ -192,7 +192,7 @@
                                 echo "<tr class='tr-body'>
                                             <td>".$value['text_periodo']."</td>
                                             <td>".$value['fechapago']."</td>
-                                            <td></td>
+                                            <td>".$value['fecha_calendario']."</td>
                                             <td>".$value['nmontopagar']."</td>
                                             <td>1 %</td>
                                             <td>".$value['total_multa']."</td>                                        
@@ -283,11 +283,12 @@
     <?php 
     foreach ($detalles_intereses as $clave => $valor): 
                  $total_interes=0;
+//    <th>Planilla<br />Nº</th>
               echo "<div class='tabla_body3'>
                         <table border='2'  >
                         <thead>
                             <tr id='head'>
-                                <th>Planilla<br />Nº</th><th>Mes de<br />pago</th><th>Fecha limite<br />de pago</th><th>Periodo Liquidado</th><th>Dias<br />Atarso</th><th>Capital</th><th>Tasa de<br/>Interes</th><th>Recargo<br />Segun Art.66<br />C.O.T</th><th>Tasa<br />Diaria</th><th>Interes del<br />Mes en BS</th>                
+                                <th>Mes de<br />pago</th><th>Fecha limite<br />de pago</th><th>Periodo Liquidado</th><th>Dias<br />Atarso</th><th>Capital</th><th>Tasa de<br/>Interes</th><th>Recargo<br />Segun Art.66<br />C.O.T</th><th>Tasa<br />Diaria</th><th>Interes del<br />Mes en BS</th>                
 
                             </tr>
                         </thead>";
@@ -297,7 +298,8 @@
                                 echo"<tr class='tr-body'>";
                                         if($key==0){
                                              $p=count($valor);
-                                            echo "<td valign='middle' rowspan='".(count($valor)-4)."'></td>
+//                                             <td valign='middle' width='10'  rowspan='".(count($valor)-4)."'>$valor[nudeclara]</td>
+                                            echo "
                                                   <td valign='middle' rowspan='".(count($valor)-4)."'>".$this->funciones_complemento->devuelve_meses_text(date('m',strtotime($valor['fechapago']))).' / '.date('Y',strtotime($valor['fechapago']))."</td>
                                                   <td valign='middle' rowspan='".(count($valor)-4)."'>$valor[fechalim]</td>
                                                   <td valign='middle' rowspan='".(count($valor)-4)."'>$clave $valor[anio]</td>
@@ -315,7 +317,7 @@
                                }
                             }
                             echo ' <tr>
-                                        <td colspan="9" style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 10px"><b>TOTAL INTERES '.$data[$id]['contribuyente'].':</b></td>
+                                        <td colspan="8" style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 10px"><b>TOTAL INTERES '.$data[$id]['contribuyente'].':</b></td>
                                            <td style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 10px"><b> '.round($total_interes,2).'</b></td> 
                                     </tr>';
                 echo "</table>
@@ -329,7 +331,7 @@
                   <br />tal como se señala supra.
              </p>
              <br />
-                <p style=" text-align: center;"><b>V. DECISIÓN</b></p>
+                <p style=" text-align: center; "><b>V. DECISIÓN</b></p>
             <br />
             <p>
                 Visto lo anteriormente señalado, El Centro Nacional Autónomo de Cinematografía (CNAC), procediendo de conformidad con la competencia atribuida en el artículo 63 de la Ley de la Cinematografía Nacional resuelve:
