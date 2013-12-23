@@ -782,9 +782,11 @@ class Funciones_complemento extends HTML2PDF {
                endif;  
    }
    
-   function select_anio($periodo,$id=null){ 
+   function select_anio($periodo,$tipegrav,$id=null){ 
    
        $anio_max=date('Y',time());
+        $this->usoci->load->model('mod_contribuyente/contribuyente_m');
+       
        if(is_null($id)){
            
        $anio_min=($anio_max-13);
@@ -803,36 +805,69 @@ class Funciones_complemento extends HTML2PDF {
        
        
        if($periodo==1):
+           $i=0;         
+       
+            $where=array('tipegravid'=>$tipegrav,'ano <'=>$anio_max);
+       
+            $anios=$this->usoci->contribuyente_m->devuelve_anios_calendario_pago($where);
            
-           $i=0; 
-                while($anio_min<$anio_max){
+            if(is_array($anios)){
+                
+                $this->option_anio.="<option value=''>Seleccione</option> \n";
+                foreach ($anios as $key => $value) {
+                   $this->option_anio.="<option value=".$value['anio'].">".$value['anio']."</option> \n"; 
+                }
+                
+            }else{
+                
+                $this->option_anio.="<option value=''>Seleccione</option> \n";
+            }
+           
+//                while($anio_min<$anio_max){
                     
-                    if($i==0):
-                       $this->option_anio.="<option value=''>Seleccione</option> \n";   
-                        $i++; 
-                     else: 
-                         
-                        $this->option_anio.="<option value=".$anio_min.">".$anio_min."</option> \n";
-                        $anio_min++;
-                       
-                    endif;
-                 }
+//                    if($i==0):
+//                       $this->option_anio.="<option value=''>Seleccione</option> \n";   
+//                        $i++; 
+//                     else: 
+//                         
+//                        $this->option_anio.="<option value=".$anio_min.">".$anio_min."</option> \n";
+//                        $anio_min++;
+//                       
+//                    endif;
+//                 }
            
            else:
+                $i=0;         
+       
+                $where=array('tipegravid'=>$tipegrav,'ano <= '=>$anio_max);
+       
+                $anios=$this->usoci->contribuyente_m->devuelve_anios_calendario_pago($where);
+
+                if(is_array($anios)){
+
+                    $this->option_anio.="<option value=''>Seleccione</option> \n";
+                    foreach ($anios as $key => $value) {
+                       $this->option_anio.="<option value=".$value['anio'].">".$value['anio']."</option> \n"; 
+                    }
+
+                }else{
+
+                    $this->option_anio.="<option value=''>Seleccione</option> \n";
+                }
                
-                $i=0; 
-                while($anio_min<=$anio_max){
-                    
-                    if($i==0):
-                       $this->option_anio.="<option value=''>Seleccione</option> \n";   
-                        $i++; 
-                     else: 
-                         
-                        $this->option_anio.="<option value=".$anio_min.">".$anio_min."</option> \n";
-                        $anio_min++;
-                       
-                    endif;
-                 }
+//                $i=0; 
+//                while($anio_min<=$anio_max){
+//                    
+//                    if($i==0):
+//                       $this->option_anio.="<option value=''>Seleccione</option> \n";   
+//                        $i++; 
+//                     else: 
+//                         
+//                        $this->option_anio.="<option value=".$anio_min.">".$anio_min."</option> \n";
+//                        $anio_min++;
+//                       
+//                    endif;
+//                 }
            
            
            

@@ -395,11 +395,13 @@ $('.btndialos-cargareparo').click(function(){
         $( "#dialog_reparo_confirmacion" ).html(frm_adjuntar_actareparo)
         $("#error_adjunto").hide();
     $( ".fecha_acta" ).datepicker({
-        dateFormat: "dd-mm-yy",
+        dateFormat: 'yy-mm-dd',
         dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
         monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-        showAnim: "slide",
-        navigationAsDateFormat: true
+        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
+        yearRange: "2000:<?php echo date('Y');?>",
+        changeMonth: true,
+        changeYear: true
     });
 //    $( "#dialog_reparo_confirmacion" ).html('<h3>Procedera a generar el acta de reparo. ¿Desea continuar?</h3>')
         $( "#dialog_reparo_confirmacion" ).dialog('open')

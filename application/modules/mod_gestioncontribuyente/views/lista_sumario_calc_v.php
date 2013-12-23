@@ -44,8 +44,8 @@
                             
                             }
                              $('#error-sum-clac').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-check"></span><strong>Aviso: </strong>Calculo realizado con exito.<br /><br /><center><i>Dirigase a calculos por aprobar si desea ver los detalles.</i></center></p>')
-                             $("#error-sum-clac").addClass('ui-state-error ui-corner-all'); 
-                             $("#eerror-sum-clac").css({background:'',border:'1px solid #CD0A0A'});
+                             $("#error-sum-clac").addClass('ui-state-highlight ui-corner-all'); 
+                             $("#eerror-sum-clac").css({background:'#FAF9EE',border:'1px solid #FEEE12'});
                              $("#error-sum-clac").show('slide',{ direction: "up" },1000);
                         }
 

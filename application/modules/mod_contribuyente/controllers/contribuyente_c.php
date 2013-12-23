@@ -707,11 +707,13 @@ class Contribuyente_c extends CI_Controller{
         
         $id=$this->input->post('tcontribuid');
         $periodo=$this->contribuyente_m->verifica_pgravable($id);
-//        print_r($periodo['periodo']);
+//        $where=array('tipegravid'=>$periodo['tgravid'],'ano <= '=>date('Y',time()));
+//        $anios=$this->contribuyente_m->devuelve_anios_calendario_pago($where);
+//        print_r($anios);
 //      die;
         if($periodo['periodo']==1):
             
-          $htmloption=$this->funciones_complemento->select_anio($periodo['periodo']); 
+          $htmloption=$this->funciones_complemento->select_anio($periodo['periodo'],$periodo['tgravid']); 
           $aniosdeclara=0;
           $estado='true';
             
@@ -720,7 +722,7 @@ class Contribuyente_c extends CI_Controller{
         if($periodo['periodo']==4 or $periodo['periodo']==12 ):
             
 //            $htmloption=$this->funciones_complemento->select_trimestre();
-            $aniosdeclara=$this->funciones_complemento->select_anio($periodo['periodo'],$id);
+            $aniosdeclara=$this->funciones_complemento->select_anio($periodo['periodo'],$periodo['tgravid'],$id);
             $htmloption=0;
             $estado='true';
              

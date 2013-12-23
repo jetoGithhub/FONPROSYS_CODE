@@ -555,7 +555,7 @@ class Contribuyente_m extends CI_Model{
     function verifica_pgravable($valor){
         $this->db  
                 ->select('tipocont.*', FALSE)
-                ->select('tipegrav.peano as periodo,tipegrav.tipe as tipo',FALSE)
+                ->select('tipegrav.peano as periodo,tipegrav.tipe as tipo, tipegrav.id as tgravid',FALSE)
                 ->from('datos.tipocont')
                 ->join('datos.tipegrav',' tipegrav.id=tipocont.tipegravid')
                 ->where(array('tipocont.id'=>$valor));
@@ -564,7 +564,7 @@ class Contribuyente_m extends CI_Model{
                 
                    $data = $query->row();
                    
-                   $datos=array('periodo'=>$data->periodo,'tipo'=>$data->tipo);
+                   $datos=array('periodo'=>$data->periodo,'tipo'=>$data->tipo,'tgravid'=>$data->tgravid);
                    
                    return $datos;
                 
@@ -572,7 +572,31 @@ class Contribuyente_m extends CI_Model{
         
         
     }
-    
+    function devuelve_anios_calendario_pago($where){
+       $this->db  
+                ->select('calpago.*', FALSE)
+                
+                ->from('datos.calpago')
+                
+                ->where($where)
+                ->order_by('calpago.ano');
+        $query = $this->db->get();
+        if ($query->num_rows()>0):
+            $data = array();
+            foreach ($query->result() as $row):
+                    $data[] = array(
+                        'anio'=> $row->ano,
+                    );
+            endforeach;
+
+            return $data;
+        else:
+                return false;
+        endif;
+        
+        
+    }
+            
     function anio_maximo_alicuota($id){
         $this->db
                   ->select_max("ano")

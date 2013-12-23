@@ -29,7 +29,7 @@ class Lista_extemp_calc_c extends CI_Controller {
         
         function calcular_extemporaneo()
         {
-            sleep(4);
+           
             $this->load->model('lista_extemp_calc_m');
             
             $opc_tipo_multa = $this->input->post('opc_tipo_multa');

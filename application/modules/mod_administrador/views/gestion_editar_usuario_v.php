@@ -61,8 +61,8 @@ actualiza_datos=function(form,url){
                                     $("#confirm-datos").dialog( "close" ); 
                                     $('#memsajerror').html('<p style="font-family: sans-serif; color:#3C3B37"><span style="float: left; margin-right: .3em;"  class="ui-icon ui-icon-info"></span><strong>Alerta: </strong>Datos Actualizados con exito.</p>')
                                     $("#memsajerror").addClass('ui-state-highlight'); 
-                                    $("#memsajerror").css({background:'#FAF9EE',border:'1px solid #FCF0A8'});
-                                    $("#memsajerror").show('drop',1000);;    
+                                    $("#memsajerror").css({background:'#FAF9EE',border:'1px solid #FEEE12'});
+                                    $("#memsajerror").show('drop',1000);   
                                     $("#"+form).reset();
                                     $("#btn-frmdatos").removeAttr('disabled') 
 
@@ -166,6 +166,6 @@ actualiza_datos=function(form,url){
     <br />
  <center><button id="btn-frmdatos" style="width:100px; height: 25px; margin-top:-10px; margin-left: 20px; position: relative" title="">Actualizar</button><br /><br /></center>
 </div>
-<div style="padding: 0 .7em; width: 450px; margin-top: 25px; margin-left: 220px" class="ui-corner-all" id="memsajerror">
+<div style="padding: 0 .7em; width: 250px; margin-top: 25px; margin-left: 250px" class="ui-corner-all" id="memsajerror">
 		
  </div>

@@ -79,9 +79,9 @@ class Presidentescnac_c extends CI_Controller {
 		//~ echo $existe_banco;
 		//~ die();
                 $array=array(                
-                            'nombres'=>  $this->input->post('nombres'),
-                            'apellidos'=>  $this->input->post('apellidos'),
-                            'cedula'=>  $this->input->post('cedula'),
+                            'nombres'=> strtoupper($this->input->post('nombres')),
+                            'apellidos'=> strtoupper($this->input->post('apellidos')),
+                            'cedula'=>  strtoupper($this->input->post('cedula')),
                             'nro_decreto'=>  $this->input->post('nro_decreto'),
                             'nro_gaceta'=>  $this->input->post('nro_gaceta'),
                             'dtm_fecha_gaceta'=>  $this->input->post('dtm_fecha_gaceta'),
