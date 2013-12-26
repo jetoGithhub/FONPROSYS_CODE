@@ -231,7 +231,7 @@
                         ->from('datos.usfonpro usfon ')
                         ->join('datos.departam as dep','dep.id=usfon.departamid')
                         ->join('datos.cargos as cargo','cargo.id=usfon.cargoid')
-                        ->where(array('cargo.codigo_cargo'=>'C-002','dep.cod_estructura'=>'G-FIS-01'));
+                        ->where(array('dep.cod_estructura'=>'G-FIS-01','usfon.bln_borrado'=>'FALSE'));
 
             $query = $this->db->get();
             return ($query->num_rows()>0 ? $query->result_array() : false);

@@ -46,7 +46,7 @@
       
     
     <p style=" text-align: left; margin-top: 1px"><b>FORMATO: <?php echo $cuerpo['nro_autorizacion'] ?></b></p>
-    <p style=" text-align: right;"><b>Caracas,</b></p>
+    <p style=" text-align: right;"><b>Caracas,&nbsp;<?php echo date('d').' de '.$this->funciones_complemento->devuelve_meses_text(date('m')).' del '.date('Y'); ?></b></p>
     <br />
                             <!-- Titulo del acta de autorizacion fiscal-->
     <p style=" text-align: center;"><b>ACTA DE RECEPCIÓN DE DOCUMENTOS</b></p>

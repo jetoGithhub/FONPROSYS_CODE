@@ -32,7 +32,7 @@
     </page_footer>
     
     <p style=" text-align: left; margin-top: 10px"><b>FORMATO: <?php echo $cuerpo['nro_autorizacion'] ?></b></p>
-    <p style=" text-align: right;"><b>Caracas,</b></p>
+    <p style=" text-align: right;"><b>Caracas,&nbsp;<?php echo date('d').' de '.$this->funciones_complemento->devuelve_meses_text(date('m')).' del '.date('Y'); ?></b></p>
     <br /><br />
                             <!-- Titulo del acta de autorizacion fiscal-->
     <p style=" text-align: center;"><b>AUTORIZACIÓN FISCAL</b></p>

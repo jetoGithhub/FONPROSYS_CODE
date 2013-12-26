@@ -100,10 +100,10 @@ class Fiscalizacion_c extends Contribuyente_c {
            $descripcion=$this->input->post('descripcion');
            $conusuid=$this->input->post('conusuid');
            
-           $base_limpia=  str_replace(",",".",str_replace(array('.',','),"", $base));
-//           print_r($base_limpia);die;        
-                  
-          
+//           $base_limpia=  str_replace(",",".",str_replace(array('.',','),"", $base));
+//                 
+            $base_limpia=str_replace(",",".",str_replace(".","", $base));      
+//            print_r($base_limpia);die;  
            $data=$this->calculoDeclaracion(1,$id,$anio,$base_limpia,$periodo);
 //          print_r($data); die;
           
@@ -205,7 +205,26 @@ class Fiscalizacion_c extends Contribuyente_c {
             
             echo json_encode($result);
        }
-       
+       /*
+        * busquedad del correlativo que sigue segun su acta
+        * 
+        * @access public
+        * @param null
+	* @return array_json  
+        *      
+        */
+       function busca_correlativo()
+       {
+         $tipo=$this->input->post('tipo'); 
+         ($tipo=='true'? $identificador='act-cfis-2' : $identificador='act-rpfis-1' );
+         $query=array('tabla'=>'datos.correlativos_actas','where'=>array('tipo'=>$identificador),'respuesta'=>array('correlativo','anio')); 
+         $result_query=$this->operaciones_bd->seleciona_BD($query);
+//         print_r($result_query);die;
+         ($result_query['variable1']==date('Y')? $return=$result_query['variable0'] : $return=1);
+         
+         if(isset($return)): echo json_encode(array('resultado'=>true,'nacta'=>$return)); else: echo json_encode(array('resultado'=>FALSE) ); endif;
+           
+       }
        /*
         * subida al servidor del acta de reparo e insert en la tabla actas_reparo
         * 
@@ -216,7 +235,7 @@ class Fiscalizacion_c extends Contribuyente_c {
         */
        function subir_acta_reparo()
        {
-            sleep(3);
+//            sleep(3);
             $this->load->library(array('upload', 'form_validation'));
             $this->load->helper(array('form', 'string'));
             
@@ -314,7 +333,7 @@ class Fiscalizacion_c extends Contribuyente_c {
        }
        
        function crea_reparo(){
-           sleep(5);
+//           sleep(5);
            $conusuid=$this->input->post('idconusu');
            $idacta=$this->input->post('idacta');
 //           echo $this->session->userdata('id'); die;
