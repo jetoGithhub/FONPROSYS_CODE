@@ -78,7 +78,7 @@
     </page_footer>                        
     
     
-    <p style=" text-align: right;"><b>Caracas,</b></p>
+                             <p style=" text-align: right;"><b>Caracas,&nbsp;<?php echo date('d').' de '.$this->funciones_complemento->devuelve_meses_text(date('m')).' del '.date('Y'); ?></b></p>
     <br /><br />
     <!-- Titulo del acta de autorizacion fiscal-->
     <p style=" text-align: center;"><b>RESOLUCIÓN <br /> IMPOSICIÓN DE SANCIÓN POR EXTEMPORANEIDAD</b></p>
@@ -118,9 +118,9 @@
                                         <td>".$valor['fechapago']."</td>
                                         <td>".$valor['banco']."</td>
                                         <td>".$valor['periodo']."</td>
-                                        <td>".$valor['nmontopagar']."</td>
+                                        <td>".$this->funciones_complemento->devuelve_cifras_unidades_mil($valor['nmontopagar'])."</td>
                                   </tr>";
-                        $total=$total+$valor['nmontopagar'];
+                        $total=$this->funciones_complemento->devuelve_cifras_unidades_mil($total+$valor['nmontopagar']);
                       endforeach;
                      ?>
                      
@@ -193,9 +193,9 @@
                                             <td>".$value['text_periodo']."</td>
                                             <td>".$value['fechapago']."</td>
                                             <td>".$value['fecha_calendario']."</td>
-                                            <td>".$value['nmontopagar']."</td>
+                                            <td>".$this->funciones_complemento->devuelve_cifras_unidades_mil($value['nmontopagar'])."</td>
                                             <td>1 %</td>
-                                            <td>".$value['total_multa']."</td>                                        
+                                            <td>".$this->funciones_complemento->devuelve_cifras_unidades_mil($value['total_multa'])."</td>                                        
                                       </tr>";
                                 $totalm=$totalm+$value['total_multa'];
                                 $totald=$totald+$value['nmontopagar'];
@@ -306,11 +306,11 @@
                                                 ";
                                         }
                                          echo"<td>$value[dias]</td>
-                                                  <td>$value[capital]</td>
+                                                  <td>".$this->funciones_complemento->devuelve_cifras_unidades_mil($value['capital'])."</td>
                                                       <td>".$value['tasa%']."</td>
                                                           <td>1,2</td>
                                                               <td>$value[tasa]</td>
-                                                                  <td>$value[intereses]</td>
+                                                                  <td>".$this->funciones_complemento->devuelve_cifras_unidades_mil($value['intereses'])."</td>
                                      </tr>";
               //                  }
                                 $total_interes=$total_interes+$value['intereses'];
@@ -318,7 +318,7 @@
                             }
                             echo ' <tr>
                                         <td colspan="8" style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 10px"><b>TOTAL INTERES '.$data[$id]['contribuyente'].':</b></td>
-                                           <td style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 10px"><b> '.round($total_interes,2).'</b></td> 
+                                           <td style=" background: #800000;color: #ffffff; text-align: center; padding-top: 2px; padding-bottom: 2px; font-size: 12px"><b> '.$this->funciones_complemento->devuelve_cifras_unidades_mil(round($total_interes,2)).'</b></td> 
                                     </tr>';
                 echo "</table>
                     </div>

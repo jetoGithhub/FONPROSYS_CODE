@@ -209,7 +209,7 @@ espera_cargando_notificacion_rise();// mensage de espera
 			<th>Numero de Rif</th>
                         <th>Razon Social</th>
                         <th>Tipo de Contribuyente</th>
-                        <th>Estado</th>
+                        <!--<th>Estado</th>-->
                         <?php if($estatus=='aprobado' or $estatus=='negado' ): 
                             echo "<th>Añio</th>
                                  <th>Periodo</th>";  
@@ -230,11 +230,19 @@ espera_cargando_notificacion_rise();// mensage de espera
                         <td>'. $con .'</td>
 			<td>'. $valor["rif"].'</td>
                         <td>'. $valor["nombre"].'</td>
-                        <td>'. $valor["nomb_tcont"].'</td>
-                        <td>'. $valor["estatus"].'</td>
-                        <td>'. $valor["ano_calpago"].'</td>
-                        <td>'. $valor["periodo"].'</td>    
-                        <td>
+                        <td>'. $valor["nomb_tcont"].'</td>';
+//                        <td>'. $valor["estatus"].'</td>
+               echo '  <td>'. $valor["ano_calpago"].'</td>';
+                        if($valor['tipo']==0):
+                            echo'<td>'. $this->funciones_complemento->devuelve_meses_text($valor["periodo"]).'</td>';
+                        endif;    
+                        if($valor['tipo']==1):
+                            echo'<td>'. $this->funciones_complemento->devuelve_trimestre_text($valor["periodo"]).'</td>';
+                        endif;
+                        if($valor['tipo']==2):
+                            echo'<td>'.$valor["ano_calpago"].'</td>';
+                        endif;
+                        echo '<td>
                             <button style="width: 25px; height: 25px;" type="button" name="carga-noti"  txtayuda="Cargar Notificacion" class=" ayuda carga-noti" id="carga-noti-'.$valor["id_deta_concalc"].'" onClick="dialog_notificacion_rise('.$valor["id_deta_concalc"].','.$valor["conusuid"].','.$valor['declaraid'].','.$valor["idconcalc"].');" ></button>
                             <button style="width: 25px; height: 25px;" txtayuda="generar RISE" class=" ayuda rise" id="'.$valor['id_deta_concalc'].'"  title=""></button>
                         </td>

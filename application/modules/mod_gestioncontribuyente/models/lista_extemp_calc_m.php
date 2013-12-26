@@ -55,13 +55,15 @@ class Lista_extemp_calc_m extends CI_Model{
                    ->select("calpago.id as id_calpago, calpago.ano as ano_calpago",FALSE)
                    ->select("tipocont.id as id_tcont, tipocont.nombre as nomb_tcont",FALSE)
                    ->select("usfonpro.nombre as nomusu,",FALSE)
-                   ->select("detalles_contrib_calc.id as id_deta_concalc") 
+                   ->select("detalles_contrib_calc.id as id_deta_concalc")
+                   ->select("tipegrav.tipe as tipo")
                    ->from("datos.contrib_calc")
                    ->join('datos.detalles_contrib_calc','detalles_contrib_calc.contrib_calcid=contrib_calc.id') 
                    ->join('datos.declara','declara.id=detalles_contrib_calc.declaraid')
                    ->join('datos.usfonpro','usfonpro.id=contrib_calc.usuarioid')
                    ->join('datos.conusu','conusu.id=contrib_calc.conusuid')                                      
                    ->join('datos.tipocont','tipocont.id=contrib_calc.tipocontid')
+                   ->join('datos.tipegrav','tipegrav.id=tipocont.tipegravid')
                    ->join('datos.calpagod','calpagod.id=declara.calpagodid')
                    ->join('datos.calpago','calpago.id=calpagod.calpagoid')
                     ->where($condicion);
@@ -85,7 +87,8 @@ class Lista_extemp_calc_m extends CI_Model{
                                             "fechaelaboracion"=>$row->fecha_registro_fila,
                                             "idconcalc"=>$row->idconcalc,
                                             "id_deta_concalc"=>$row->id_deta_concalc,
-                                            "declaraid"=>$row->id_decl
+                                            "declaraid"=>$row->id_decl,
+                                            "tipo"=>$row->tipo
                                             
                                             );
                  endforeach;
@@ -202,9 +205,12 @@ class Lista_extemp_calc_m extends CI_Model{
                 //seleccionasr todo de la tabla usfonpro
                    ->select("declara.*")
                    ->select("bancos.nombre as banco")
+                  ->select("tipegrav.tipe as tipo")
                    ->from("datos.detalles_contrib_calc")
                    ->join('datos.declara','declara.id=detalles_contrib_calc.declaraid')
                    ->join('datos.bancos','bancos.id=declara.banco')
+                   ->join('datos.tipocont','tipocont.id=declara.tipocontribuid')
+                   ->join('datos.tipegrav','tipegrav.id=tipocont.tipegravid')
                    ->where(array("detalles_contrib_calc.id"=>$id));
          $query = $this->db->get();
         if( $query->num_rows()>0 ):
@@ -217,7 +223,8 @@ class Lista_extemp_calc_m extends CI_Model{
                 "fechapago"=>date('d-m-Y',  strtotime($row->fechapago)),
                 "nudeclara"=>$row->nudeclara,
                 "fecha_recepcion"=>date('d-m-Y',  strtotime($row->fecha_carga_pago)),
-                "banco"=>$row->banco
+                "banco"=>$row->banco,
+                "tipo"=>$row->tipo
                 );
         endforeach;
         return $data;
