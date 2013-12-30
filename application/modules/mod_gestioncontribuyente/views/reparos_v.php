@@ -119,7 +119,7 @@
                         <th>Fecha elaboracion</th>
                         <th>Monto reparo</th>
                         <th>Fiscal ejecutador</th>
-                        <!--<th>Estatus</th>-->
+                        <th>Tipo</th>
                         <th >Operaciones</th>
 <!--                        <th><button txtayuda="Marcar todos" class=" ayuda" id="marcar_todos" style="width: 25px; height: 25px; border: none" value="marca" >marcar</button></th>-->
                         
@@ -141,11 +141,11 @@
                         <td><?php echo date('d-m-Y',strtotime($valor["felaboracion"])) ?></td>
                         <td><?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total"]) ?></td>
                         <td><?php echo $valor["fiscal"] ?></td>
-                        <!--<td><?php // echo $estatus ?></td>-->    
+                        <td><?php ($valor['conformida']=='f'? print('REPARO') : print('CONFORMIDA') ); ?></td>    
                         <td  id="btnoperaciones">                        
                         <a href="<?php print($valor['ruta']); ?>" txtayuda="Generar acta de reparo" class=" ayuda" id="<?php echo 'btnar-'.$valor["id"]?>" download="<?php print($valor['ruta']); ?>" ></a>
                         <button txtayuda="Muestra el detalle del reparo" class=" ayuda btndetareparo" id="<?php echo $valor["id"]?>"></button>
-                        <button txtayuda="Activar el reparo" class=" ayuda" id="activo_reparo" onClick="arma_dialog_activador('<?php echo $valor["id"].":".$valor['idconusu'] ?>')"></button>
+                        <button txtayuda="Cargar Notificacion" class=" ayuda" id="activo_reparo" onClick="arma_dialog_activador('<?php echo $valor["id"].":".$valor['idconusu'].":".$valor['conformida'] ?>')"></button>
                         </td>
 <!--                        <td>
                              <input   type="checkbox" id="<?php // echo $valor["id"] ?>" name="reparo_activo[]" value="<?php echo $valor["id"].":".$valor['idconusu'] ?>">
@@ -246,7 +246,7 @@ $('.btndetareparo').click(function(){
 
 activar_reparo=function(form,url){
 $("#dialog_activando_reparo").dialog('close');
-$("#esperando_notificaciones_reparo").html('<p><b>POR FA VOR ESPERE EL SISTEMA ESTA ACTIVANDO EL REPARO...</b></p><br /><br /><img  src="<?php print(base_url()); ?>include/imagenes/loader.gif" width="35" height="35" />');             
+$("#esperando_notificaciones_reparo").html('<p><b>POR FA VOR ESPERE EL SISTEMA ESTA CARGANDO LA NOTIFICACION...</b></p><br /><br /><img  src="<?php print(base_url()); ?>include/imagenes/loader.gif" width="35" height="35" />');             
 espera_activa_reparo();// mensage de espera
         $.ajax({  
                             type:'post',

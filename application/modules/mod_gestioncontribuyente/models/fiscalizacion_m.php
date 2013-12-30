@@ -118,7 +118,9 @@ class Fiscalizacion_m extends CI_Model{
         $data=array();
          $this->db
                  ->select('dettalles_fizcalizacion.*')
-                 ->from('datos.dettalles_fizcalizacion')
+                 ->select('asignacion_fiscales.conusuid')
+                 ->from('datos.asignacion_fiscales')
+                 ->join('datos.dettalles_fizcalizacion','dettalles_fizcalizacion.asignacionfid=asignacion_fiscales.id')
                  ->where(array('asignacionfid'=>$id,'bln_borrado'=>'false','bln_identificador'=>$bln_ident));
           $query = $this->db->get();
 
@@ -136,7 +138,8 @@ class Fiscalizacion_m extends CI_Model{
                                             "total"=> $row->total,
                                             'calpagodid'=>$row->calpagodid,
                                             'repafaltante'=>$row->bln_reparo_faltante,
-                                            'reparo_faltante'=>$row->bln_reparo_faltante
+                                            'reparo_faltante'=>$row->bln_reparo_faltante,
+                                            'conusuid'=>$row->conusuid
                                             );
                     
                 endforeach;
@@ -246,7 +249,7 @@ class Fiscalizacion_m extends CI_Model{
          $this->db
 
                 ->select("repa.*",FALSE)
-                ->select("actrep.ruta_servidor") 
+                ->select("actrep.ruta_servidor,actrep.bln_conformida") 
                 ->select("conu.rif as conurif,conu.nombre as conunom")  
                 ->select("contri.razonsocia, contri.rif",FALSE) 
                 ->select("fonp.nombre as fiscal",FALSE)  
@@ -277,7 +280,8 @@ class Fiscalizacion_m extends CI_Model{
                                         "idcontribu"=>$row->idcontribu,
                                         "bln_activo"=>$row->bln_activo,
                                         "idconusu"=>$row->conusuid,
-                                        "ruta"=>$row->ruta_servidor
+                                        "ruta"=>$row->ruta_servidor,
+                                        "conformida"=>$row->bln_conformida
                                         );
                  endforeach;
 
@@ -330,10 +334,10 @@ class Fiscalizacion_m extends CI_Model{
         
     }
     
-    function activa_reparo_contribuyente($id,$fecha,$recibido)
+    function activa_reparo_contribuyente($id,$fecha,$recibido,$tipo)
     {        
         $this->db->where('id',$id);
-        $this->db->update('datos.reparos',array('bln_activo'=>'true','fecha_notificacion'=>$fecha,'recibido_por'=>$recibido));
+        $this->db->update('datos.reparos',array('bln_activo'=>'true','fecha_notificacion'=>$fecha,'recibido_por'=>$recibido,'bln_conformida'=>$tipo));
         // verificamos si hizo el update 
         if($this->db->affected_rows()>0)
         {
@@ -490,7 +494,30 @@ class Fiscalizacion_m extends CI_Model{
     
     
     
-   
+    function elimina_periodo_cancelado_fizcalizacion($id_asignacion,$conusuid,$id_calpagod)
+    {
+       $this->db->trans_begin(); 
+           
+             $this->db->where(array('id'=>$id_asignacion));
+             $this->db->update('datos.dettalles_fizcalizacion',array('bln_borrado'=>'true'));
+             
+             $this->db->delete('datos.declara', array('conusuid' => $conusuid,'calpagodid'=>$id_calpagod)); 
+            
+             
+              
+        
+            if ($this->db->trans_status() === FALSE):
+                $this->db->trans_rollback();
+                    $respuesta=array('resultado'=>false,'mensaje'=>'Error al Actualizar los Datos');
+               
+            else:
+                $this->db->trans_commit();           
+                   $respuesta=array('resultado'=>true,'mensaje'=>'Datos Actualizados Correctamente');
+                
+                
+            endif; 
+            return $respuesta;
+    }
     
     
     

@@ -228,7 +228,7 @@ cargar_dialog_cargafis=function(url,id,asignaid,conusuid,ident,id_div){
          </table>
         <table id="botoneria-cargar" style=" width: 100%; border: 0px solid">
              <tr>                 
-                   <td><button style=" height: 25px; margin-top: 10px" class="btnvolver" id="btnvolver"  title="">volver</button></td>
+                   <td><button style=" height: 25px; margin-top: 10px; " class="btnvolver" id="btnvolver"  title="">volver</button></td>
                    <td><button  style=" height: 25px;margin-top: 10px; margin-left: 70%" class="btndialos-cargareparo" <?php if(empty($detalles)):?> disabled="disabled"<?php endif;?>  id="btndialos-cargareparo"  title="">nuevo reparo</button>
                    <button style="  height: 25px; margin-top: 10px; float: right" class="btndialos-cargafis" id="btndialos-cargafis"  title="">detalles</button></td>
             </tr>
@@ -347,57 +347,42 @@ $('.eliminadetalle').click(function(){
 
 });
 
-$('.btndialos-cargareparo').click(function(){                                  
-        $("#dialog_reparo_confirmacion").dialog(
-            {          
-                buttons: {
-                    "subir acta": function() { 
-                        
-                        $('#uploadFile').submit();
-                     
-                    },"cancelar": function() {
-                        $( this ).dialog( "close" );
-                        }
-                    }
+$('.btndialos-cargareparo').click(function(){ 
+            var frm_adjuntar_actareparo='<form class="focus-estilo form-style" action="" method="post" id="uploadFile" >';
+                frm_adjuntar_actareparo+='<input type="hidden" id="asignacionid" name="asignacionid" value="<? echo $inspeccionid?>" />';
+                frm_adjuntar_actareparo+='<label ><strong>Fecha Autorizacion Fiscal</strong></label><br/>';
+                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="fautofis" name="fautofis" /><br/>';
+                frm_adjuntar_actareparo+='<label ><strong>Fecha Acta Requerimiento</strong></label><br/>';
+                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="factareq" name="factareq" /><br/>';
+                frm_adjuntar_actareparo+='<label ><strong>Fecha Acta de Recepcion</strong></label><br/>';
+                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="factarec" name="factarec" /><br/>';
+                frm_adjuntar_actareparo+='<label><strong>Tipo de Acta</strong><label></br>';
+                frm_adjuntar_actareparo+='<select onChange="muestra_nacta(this.value)" id="tipo_reparo" name="tipo_reparo" class=" requerido ui-widget-content ui-corner-all" >';
+                frm_adjuntar_actareparo+='<option value="" >Selecione</option>';
+                frm_adjuntar_actareparo+='<option value="false" >Acta de Reparo</option>';
+                frm_adjuntar_actareparo+='<option value="true" >Acta de Conformida</option>';
+                frm_adjuntar_actareparo+='</select><br>';
+                frm_adjuntar_actareparo+='<div id="content-nacta"></div>';
+                frm_adjuntar_actareparo+='<label ><strong>Adjuntar Archivo</strong></label><br/>';
+                frm_adjuntar_actareparo+='<input class="requerido" mensaje="Debe adjuntar el archivo" type="file" id="archivo_adjunto" name="archivo_adjunto" size="14" /><br/><br/>';
+                frm_adjuntar_actareparo+='</form><div id="carga_img"></div>';
+                frm_adjuntar_actareparo+='<div style="padding: 0 .7em;" class="ui-corner-all" id="error_adjunto">';
+                frm_adjuntar_actareparo+='</div>';
+                $( "#dialog_reparo_confirmacion" ).html(frm_adjuntar_actareparo)
+                $("#error_adjunto").hide();
+            $( ".fecha_acta" ).datepicker({
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
+                yearRange: "2000:<?php echo date('Y');?>",
+                changeMonth: true,
+                changeYear: true
+            });
+        //    $( "#dialog_reparo_confirmacion" ).html('<h3>Procedera a generar el acta de reparo. ¿Desea continuar?</h3>')
+                $( "#dialog_reparo_confirmacion" ).dialog('open')
 
-         });
-        
-     
-                        var frm_adjuntar_actareparo='<form class="focus-estilo form-style" action="" method="post" id="uploadFile" >';
-                                frm_adjuntar_actareparo+='<input type="hidden" id="asignacionid" name="asignacionid" value="<? echo $inspeccionid?>" />';
-                                frm_adjuntar_actareparo+='<label ><strong>Fecha Autorizacion Fiscal</strong></label><br/>';
-                                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="fautofis" name="fautofis" /><br/>';
-                                frm_adjuntar_actareparo+='<label ><strong>Fecha Acta Requerimiento</strong></label><br/>';
-                                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="factareq" name="factareq" /><br/>';
-                                frm_adjuntar_actareparo+='<label ><strong>Fecha Acta de Recepcion</strong></label><br/>';
-                                frm_adjuntar_actareparo+='<input class="fecha_acta requerido ui-widget-content ui-corner-all" type="text" id="factarec" name="factarec" /><br/>';
-                                frm_adjuntar_actareparo+='<label><strong>Tipo de Acta</strong><label></br>';
-                                frm_adjuntar_actareparo+='<select onChange="muestra_nacta(this.value)" id="tipo_reparo" name="tipo_reparo" class=" requerido ui-widget-content ui-corner-all" >';
-                                frm_adjuntar_actareparo+='<option value="" >Selecione</option>';
-                                frm_adjuntar_actareparo+='<option value="false" >Acta de Reparo</option>';
-                                frm_adjuntar_actareparo+='<option value="true" >Acta de Conformida</option>';
-                                frm_adjuntar_actareparo+='</select><br>';
-                                frm_adjuntar_actareparo+='<div id="content-nacta"></div>';
-                                frm_adjuntar_actareparo+='<label ><strong>Adjuntar Archivo</strong></label><br/>';
-                                frm_adjuntar_actareparo+='<input class="requerido" mensaje="Debe adjuntar el archivo" type="file" id="archivo_adjunto" name="archivo_adjunto" size="14" /><br/><br/>';
-                                frm_adjuntar_actareparo+='</form><div id="carga_img"></div>';
-                                frm_adjuntar_actareparo+='<div style="padding: 0 .7em;" class="ui-corner-all" id="error_adjunto">';
-                                frm_adjuntar_actareparo+='</div>';
-                                $( "#dialog_reparo_confirmacion" ).html(frm_adjuntar_actareparo)
-                                $("#error_adjunto").hide();
-                            $( ".fecha_acta" ).datepicker({
-                                dateFormat: 'yy-mm-dd',
-                                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-                                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-                                monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ],
-                                yearRange: "2000:<?php echo date('Y');?>",
-                                changeMonth: true,
-                                changeYear: true
-                            });
-                        //    $( "#dialog_reparo_confirmacion" ).html('<h3>Procedera a generar el acta de reparo. ¿Desea continuar?</h3>')
-                                $( "#dialog_reparo_confirmacion" ).dialog('open')
-
-                                validador('uploadFile','<?php print(base_url()); ?>index.php/mod_gestioncontribuyente/fiscalizacion_c/subir_acta_reparo','sube_acta_reparo');
+                validador('uploadFile','<?php print(base_url()); ?>index.php/mod_gestioncontribuyente/fiscalizacion_c/subir_acta_reparo','sube_acta_reparo');
 
                  
     });
@@ -415,15 +400,29 @@ $.ajax({
             
                     if(val=='true'){
                         var html='<label ><strong>Indique Nº de acta</strong></label><br/>';
-                            html+='<label style="display: inline ;" >CNAC/FONPROCINE/GFT/AFC-</label><input style="margin-bottom:12px; width:10%; padding: .1em;  font-family: sans-serif, monospace; font-size: 12px" class="requerido ui-widget-content" mensaje="Debe indicar el numero del acta" type="text" name="descripcion_archivo" id="descripcion_archivo" size="20" disabled="disabled" value="'+data.nacta+'" /><label> - <?php echo date('Y');?></label><br/>';
-
+                            html+='<label style="display: inline ;" >CNAC/FONPROCINE/GFT/AFC-</label><input style="margin-bottom:12px; width:10%; padding: .1em;  font-family: sans-serif, monospace; font-size: 12px" class="requerido ui-widget-content" mensaje="Debe indicar el numero del acta" type="text" name="descripcion_archivo" id="descripcion_archivo" size="20" readonly="readonly" value="'+data.nacta+'" /><label> - <?php echo date('Y');?></label><br/>';
+                            html+='<div class="ui-corner-all  ui-state-highlight" style="padding:2px"><p style="font-family: sans-serif;color:#000;font-size:9px; text-align: justify"><span style="float: left; margin-top: .3em; padding-left:0.7em; padding-bottom:0.5em" class="ui-icon ui-icon-info"></span><strong>Aviso: </strong>Recuerde colocar en el documento que esta adjuntando el mismo numero de acta que le muestra el sistema</p></div><br/>';
                     }else{
                         
                         var html='<label ><strong>Indique Nº de acta</strong></label><br/>';
-                            html+='<label style="display: inline ;" >CNAC/FONPROCINE/GFT/AFR-</label> <input style="margin-bottom:12px; width:10%; padding: .1em;  font-family: sans-serif, monospace; font-size: 12px" class="requerido ui-widget-content" mensaje="Debe indicar el numero del acta" type="text" name="descripcion_archivo" id="descripcion_archivo" size="20" disabled="disabled" value="'+data.nacta+'"/><label> - <?php echo date('Y');?></label><br/>';
-
+                            html+='<label style="display: inline ;" >CNAC/FONPROCINE/GFT/AFR-</label> <input style="margin-bottom:12px; width:10%; padding: .1em;  font-family: sans-serif, monospace; font-size: 12px" class="requerido ui-widget-content" mensaje="Debe indicar el numero del acta" type="text" name="descripcion_archivo" id="descripcion_archivo" size="20" readonly="readonly" value="'+data.nacta+'"/><label> - <?php echo date('Y');?></label><br/>';
+                            html+='<div class="ui-corner-all  ui-state-highlight" style="padding:2px" ><p style="font-family: sans-serif;color:#000;font-size:9px; text-align: justify"><span style="float: left; margin-top: .3em; padding-left:0.7em; padding-bottom:0.5em" class="ui-icon ui-icon-info"></span><strong>Aviso: </strong>Recuerde colocar en el documento que esta adjuntando el mismo numero de acta que le muestra el sistema</p></div><br/>';
                     }
                     $("#content-nacta").html(html);
+                    $("#dialog_reparo_confirmacion").dialog(
+                    {          
+                        buttons: {
+                            "subir acta": function() { 
+
+                                $('#uploadFile').submit();
+
+                            },"cancelar": function() {
+                                $( this ).dialog( "close" );
+                                }
+                            }
+
+                    });
+                    
                 }//fin si
              },//fin succes
              error: function (request, status, error) {
@@ -466,7 +465,7 @@ $.ajax({
                 secureuri : false,
                 fileElementId :'archivo_adjunto',
                 dataType : 'json',
-                data : { title : $('#descripcion_archivo').val(),autorizacion:$("#fautofis").val(),requerimiento:$("#factareq").val(),recepcion:$("#factarec").val() },
+                data : { title : $('#descripcion_archivo').val(),autorizacion:$("#fautofis").val(),requerimiento:$("#factareq").val(),recepcion:$("#factarec").val(),tipo_reparo:$("#tipo_reparo").val() },
                 success  : function (data) {
             
 //                    alert(data.estatus);
@@ -499,7 +498,7 @@ $.ajax({
                         $('#error_adjunto').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .0em;" class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>'+data.mensaje+'</p>')
                         $("#error_adjunto").addClass('ui-state-error'); 
                         $("#error_adjunto").show('blind',{ direction: "right" },1000);
-                        $('#descripcion_archivo').val('');
+//                        $('#descripcion_archivo').val('');
                         $('#archivo_adjunto').val('');
                                       
                     }              

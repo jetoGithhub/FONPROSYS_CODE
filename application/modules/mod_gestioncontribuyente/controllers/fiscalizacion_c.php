@@ -206,6 +206,27 @@ class Fiscalizacion_c extends Contribuyente_c {
             echo json_encode($result);
        }
        /*
+        * elimina los datos cargados en la seccion de periodos cancelados en fizcalizacion
+        * 
+        * @access public
+        * @param null
+	* @return array_json  
+        *      
+        */
+       function elimina_carga_periodo_cancelado()
+       {
+           $id=  $this->input->post('id');
+           $partes=  explode(':', $id);
+           $id_dasignacion=$partes[0];
+           $id_calpagod=$partes[1];
+           $conusuid=$partes[2];
+           $this->load->model('mod_gestioncontribuyente/fiscalizacion_m');
+           $json=$this->fiscalizacion_m->elimina_periodo_cancelado_fizcalizacion($id_dasignacion,$conusuid,$id_calpagod);
+           echo json_encode($json);
+//           print_r($partes);die;
+           
+       }
+       /*
         * busquedad del correlativo que sigue segun su acta
         * 
         * @access public
@@ -238,11 +259,12 @@ class Fiscalizacion_c extends Contribuyente_c {
 //            sleep(3);
             $this->load->library(array('upload', 'form_validation'));
             $this->load->helper(array('form', 'string'));
-            
+            $tipo=  $this->input->post('tipo_reparo');
+            ($tipo=='false'? $tipo_acta='act-rpfis-1' : $tipo_acta='act-cfis-2' );
             $estatus = '';
             $background = '';
             $idacta='';
-             $query=array('tabla'=>'datos.correlativos_actas','where'=>array('tipo'=>'act-rpfis-1','anio'=>date('Y')),'respuesta'=>array('correlativo')); 
+             $query=array('tabla'=>'datos.correlativos_actas','where'=>array('tipo'=>$tipo_acta,'anio'=>date('Y')),'respuesta'=>array('correlativo')); 
              $result_query=$this->operaciones_bd->seleciona_BD($query);
              
 //             print_r($result_query);die;
@@ -284,7 +306,7 @@ class Fiscalizacion_c extends Contribuyente_c {
                 $this->upload->initialize($configuracion);
                 
                 // verificamos que exista la carpeta y si no existe se crea con permisos 777
-                if(!$this->upload->validate_upload_path()): mkdir($_SERVER['DOCUMENT_ROOT'] .'/fonprosys_code/archivos/fiscalizacion/'.date("Y").'/',0777); endif;
+                if(!$this->upload->validate_upload_path()): mkdir($_SERVER['DOCUMENT_ROOT'] .'/fonprocine_github/archivos/fiscalizacion/'.date("Y").'/',0777); endif;
 
                 //Se verifica si el archivo fue cargado al servidor
                 if (!$this->upload->do_upload($nombre_elemento_archivo)) {    
@@ -298,7 +320,9 @@ class Fiscalizacion_c extends Contribuyente_c {
                         $data_imagen = array(
                             'ruta_servidor'=>$configuracion['upload_path'].$data['file_name'],
                             'usuarioid'=>$this->session->userdata('id'),
-                            'ip'=>$this->input->ip_address());
+                            'ip'=>$this->input->ip_address(),
+                            'bln_conformida'=>$tipo
+                                );
 //
 //                        //Se guarda los datos del archivo en BD
                         $this->load->model('mod_gestioncontribuyente/fiscalizacion_m');
@@ -331,7 +355,7 @@ class Fiscalizacion_c extends Contribuyente_c {
  
           
        }
-       
+      
        function crea_reparo(){
 //           sleep(5);
            $conusuid=$this->input->post('idconusu');
@@ -517,7 +541,7 @@ class Fiscalizacion_c extends Contribuyente_c {
                                                               'total'=>$total_limpio,
                                                               'asignacionfid'=>$idasigna,
                                                               'calpagodid'=>$fechas['id'],
-                                                                'bln_identificador'=>'false');
+                                                              'bln_identificador'=>'false');
             //                                     $tabla='datos.dettalles_fizcalizacion';
 
 

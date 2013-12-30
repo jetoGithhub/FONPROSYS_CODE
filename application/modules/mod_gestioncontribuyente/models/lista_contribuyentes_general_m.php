@@ -129,7 +129,8 @@
                     ->join('datos.tdeclara','declara.tdeclaraid = tdeclara.id left')
                     ->join('datos.calpagod','declara.calpagodid = calpagod.id left')
                     ->join('datos.calpago','calpagod.calpagoid= calpago.id')
-                    ->where(array('tdeclara.tipo'=>$tipo,'declara.conusuid'=>$idconusu));
+//                    ->where(array('tdeclara.tipo'=>$tipo,'declara.conusuid'=>$idconusu));
+                    ->where(array('declara.conusuid'=>$idconusu));
             $query = $this->db->get();
             return ($query->num_rows()>0 ? $query->result_array() : false);
         }

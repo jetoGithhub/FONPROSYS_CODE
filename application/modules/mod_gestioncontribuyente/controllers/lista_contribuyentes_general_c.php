@@ -59,7 +59,7 @@
                       $periodo_vigente = $this->funciones_complemento->define_periodo($valor_tipocont['tcontid'],$mes_actual);
                       $datos_periodos_grav = $this->lista_contribuyentes_general_m->busca_periodo_gravable($valor_tipocont['tcontid'],$anio_registro);
                       $datos_busca_declaraciones = $this->lista_contribuyentes_general_m->busca_declaraciones(0,$datos_conusu[0]['id']);
-//                      print_r($datos_busca_declaraciones);die;
+//                      print_r($datos_busca_declaraciones);
                       //inicio ciclo de periodos
                       foreach ($datos_periodos_grav as $periodos):
                           
@@ -1062,6 +1062,7 @@
             
             $filtro_detalles = $this->input->post('filtro_detalles');
             $ArregloOpciones = str_split($this->zerofill(decbin($filtro_detalles), 5));
+//            print_r($ArregloOpciones);die;
             $parametros_info=array(
                'id'=>$this->input->post('id'),
                'modo'=>1,

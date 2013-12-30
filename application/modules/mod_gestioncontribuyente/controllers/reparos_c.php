@@ -28,7 +28,7 @@ class Reparos_c extends CI_Controller  {
         
         function activa_reparo_contribuyente()
         {
-            sleep(3);
+//            sleep(3);
             $string=$this->input->post('ids');
             $fecha=$this->input->post('fnreparo');
             $recibido=  $this->input->post('recibidopor');
@@ -36,12 +36,13 @@ class Reparos_c extends CI_Controller  {
                 $datos_eval = explode(':', $string);                    
                 $id_reparo=$datos_eval[0]; 
                 $id_conusu=$datos_eval[1];
-
+                $tipo_reparo=$datos_eval[2];
+//                print_r($datos_eval);die;
             
             $this->load->model('mod_gestioncontribuyente/fiscalizacion_m');
-            $data=  $this->fiscalizacion_m->activa_reparo_contribuyente($id_reparo,$fecha,$recibido);
+            $data=  $this->fiscalizacion_m->activa_reparo_contribuyente($id_reparo,$fecha,$recibido,$tipo_reparo);
             
-            if($data['resultado']):
+            if(($data['resultado']) && ($tipo_reparo=='f')):
                 
                 $this->load->model('mod_gestioncontribuyente/lista_contribuyentes_general_m');
                         

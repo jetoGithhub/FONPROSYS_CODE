@@ -170,7 +170,7 @@ cargar_dialog_cargapcancelados=function(url,id,asignaid,conusuid,ident,id_div){
                         <td>'. $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total"]).'</td>                    
 			
                         
-                       <td> <button class="eliminadetallepcancelados" id="'.$valor["id"].'" style=" width: 30px; height: 25px;"  title=""></button></td>    
+                       <td> <button class="eliminadetallepcancelados" id="'.$valor["id"].":".$valor["calpagodid"].":".$valor["conusuid"].'" style=" width: 30px; height: 25px;"  title=""></button></td>    
                          
                     </tr>';
             else:
@@ -182,7 +182,7 @@ cargar_dialog_cargapcancelados=function(url,id,asignaid,conusuid,ident,id_div){
                         <td>'. $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total"]).'</td>                    
 			
                         
-                       <td> <button class="eliminadetallepcancelados" id="'.$valor["id"].'" style=" width: 30px; height: 25px;"  title=""></button></td>    
+                       <td> <button class="eliminadetallepcancelados" id="'.$valor["id"].":".$valor["calpagodid"].":".$valor["conusuid"].'" style=" width: 30px; height: 25px;"  title=""></button></td>    
                 </tr>';
                 
             endif;
@@ -248,11 +248,12 @@ $('.btndialos-detpcancelados').click(function(){
 });
 
 $('.eliminadetallepcancelados').click(function(){
-   $.ajax({
+//  alert(this.id)
+     $.ajax({
         type:"post",
         data:{ id:this.id},
         dataType:"json",
-        url:'<?php echo base_url()."index.php/mod_gestioncontribuyente/fiscalizacion_c/elimina_detalles_fiscalizacion"?>',
+        url:'<?php echo base_url()."index.php/mod_gestioncontribuyente/fiscalizacion_c/elimina_carga_periodo_cancelado"?>',
         success:function(data){
 //             alert(data.vista);
             if (data.resultado){
