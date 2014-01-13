@@ -12,7 +12,7 @@ class Reportes_recaudacion_c extends CI_Controller {
 	
         function __construct() {
             parent::__construct();
-//            $this->load->model('mod_reportes/reportes_recaudacion_m');
+            $this->load->model('mod_reportes/reportes_recaudacion_m');
         }
 
         /*
@@ -25,8 +25,8 @@ class Reportes_recaudacion_c extends CI_Controller {
          */
         public function index($vista)
         {
-            
-            $this->load->view($vista);
+            $data['tipo_contribu']=  $this->reportes_recaudacion_m->devuelve_tipo_contribuyente();
+            $this->load->view($vista,$data);
         }
     /*
          * funcion para mostrar los datos del reporte de rises de recaudacion
@@ -36,13 +36,38 @@ class Reportes_recaudacion_c extends CI_Controller {
          * @return json
          * 
          */
-        public function reporte_rise_recaudacion()
+        public function reporte_rise_recaudacion($tipo)
 	{
             
-//            $data=$this->reportes_recaudacion_m->datos_rise($where=array());
-            
-	    $this->load->view('gestion_editar_usuario_v',$data);
+            switch ($tipo) {
+                case 0://busquedda simple
+                        $tipo_rise=  $this->input->post('tipo_rise');
+                        $anio=  $this->input->post('anio_rise');
+                        switch ($tipo_rise) {
+                            case 0:
+                                    $where=array('anio'=>$anio);
+                                break;
+                            case 1:
+                                $where=array('notificada'=>'SI','anio'=>$anio);
+                                break;
+                            case 2:
+                                $where=array('notificada'=>'NO','anio'=>$anio);
+                                break;
+                            case 3:
+                                $where=array('cobrada'=>'SI','anio'=>$anio);
+                                break;
+                        }                   
+                    break;
 
+                case 1://busqueda avanzada
+                    
+                    
+                    break;
+            }
+            
+            $data=$this->reportes_recaudacion_m->datos_reporte_rise($where);
+//            print_r($data);die;
+            
         }
         
       

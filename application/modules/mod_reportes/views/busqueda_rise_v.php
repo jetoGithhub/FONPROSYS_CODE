@@ -39,7 +39,9 @@
                 onClose: function( selectedDate ) {
                 $( "#fecha-desde" ).datepicker( "option", "maxDate", selectedDate );
                 }
-        });    
+        });
+        
+        
     });
     
 </script>
@@ -66,6 +68,18 @@
         margin-top: 10px
             
     }
+    #tblresul-busqueda-rise{
+        width: 100%;
+        border: 1px solid #000;
+        border-collapse: collapse;
+        /*border-spacing: 0px*/
+        
+    }
+    #tblresul-busqueda-rise thead{
+        background: #800000;
+        color:#fff;
+    }
+    
 </style>
 <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Reportes de Resoluciòn de Multas por Extemporaneida (RISE) </div>
     <center>
@@ -115,7 +129,7 @@
                   </td>
                   <td clospan='2'>
                       <label ></label><br />
-                      <button class='btnbuscar-rise' ></button>
+                      <button class='btnbuscar-rise' id='btn-buscar-simple' type='button' ></button>
                   </td>
               </tr>
           </table></center>
@@ -125,7 +139,7 @@
               <tr>
                   <td>
                       <label ><b>Indique el Tipo</b></label><br />
-                       <select onChange='opciones_busqueda_avanzada(this.value)' id="tipo_rise" name="tipo_rise" class=' ui-widget-content ui-corner-all' >
+                       <select onChange='opciones_busqueda_avanzada(this.value)' id="tipo_filtro" name="tipo_filtro" class=' ui-widget-content ui-corner-all' >
                                 <option selected='selected' value="0">Rif</option>
                                 <option value="1" >Contribuyentes</option>
                                 <option value="2" >Fechas</option>
@@ -153,8 +167,13 @@
                   </td>
                   <td id='td-tipo' style=' display: none'>
                      <label ><b>Tipo de contribuyente</b></label><br />
-                       <select id="tipo_rise" name="tipo_rise" style=' width: 150px'class=' ui-widget-content ui-corner-all' >                               
-                                
+                       <select id="tipo_contribu" name="tipo_contribu" style=' width: 150px'class=' ui-widget-content ui-corner-all' >                               
+                        <option value='' selected >Seleccione</option> 
+                        <?php
+                            foreach ($tipo_contribu as $key => $value) {
+                                echo "<option value='$value[id]'>$value[nombre]</option>";
+                            }
+                         ?>       
                        </select> 
                   </td>
                   <td class='td-fechas' style=' display: none'>
@@ -169,7 +188,7 @@
                  
                   <td clospan='2'>
                       <label ></label><br />
-                      <button class='btnbuscar-rise' type='button' ></button>
+                      <button class='btnbuscar-rise' type='button' id='btn-buscar-avanzada' ></button>
                   </td>
               </tr>
           </table></center>  
@@ -178,8 +197,19 @@
 
      
 </form>
-<div class="bavanz-respuesta"id="respuesta_consulta<?php // print($diferenciador_funciones); ?>"></div>
-<div style="float:left;" id="revisa_asigna_omisos_fiscalizacion"></div>
+<div id="respuesta_consulta_rise" style=' margin-top: 10px'>
+    <table id='tblresul-busqueda-rise'>
+        <thead>
+            <th>
+                <td>Fecha Not.</td> <td>Mes de Noti</td> <td>Resolucion Nº</td> <td>CONTRIBUYENTE</td> <td>Tipo Contribuyente</td> <td>Monto Multa</td> <td>Monto Interes</td> <td>Cobrada</td> <td>Notificada</td>
+            </th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
+
 
 <script>
 opciones_busqueda_avanzada=function(valor){
@@ -217,6 +247,32 @@ muestra_contenedor_busqueda=function(valor){
              break;
     }
 };
+$(".btnbuscar-rise").click(function(){
+    var tipo;
+    $("#table-busqueda-rise input[type=radio]").each(function(i) { 
+        if($(this).is(':checked')){
+             tipo=$(this).val();
+       }
+
+    });   
+    $.ajax({
+           type:"post",
+            data:$('#busca_rise').serialize(),
+            dataType:"json",
+            url:'<?php print(base_url().'index.php/mod_reportes/reportes_recaudacion_c/reporte_rise_recaudacion/'); ?>'+tipo,
+            success:function(data){
+                
+            },
+            error:function(o,estado,excepcion){
+                if(excepcion=='Not Found'){
+
+                }else{
+
+                }
+            }
+        });
+});
+
 
 
 
