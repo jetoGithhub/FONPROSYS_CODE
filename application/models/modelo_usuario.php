@@ -56,7 +56,7 @@ class Modelo_usuario extends CI_Model{
                 ->select("*")
                 ->from("seg.view_modulo_usuario_permiso")
                 ->where(array("id"=>$id_usuario, "int_permiso >"=>"0"))
-                ->order_by("int_orden");
+                ->order_by("orden_menu");
         $query = $this->db->get();
         if( $query->num_rows()>0 ):
             $data = array();
