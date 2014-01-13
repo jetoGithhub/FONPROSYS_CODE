@@ -1734,11 +1734,5 @@ class Funciones_complemento extends HTML2PDF {
                 }
                 return $multas;
         }
-        
-        
-        function generar_excel_basico()
-        {
-            
-        }
    
 }
