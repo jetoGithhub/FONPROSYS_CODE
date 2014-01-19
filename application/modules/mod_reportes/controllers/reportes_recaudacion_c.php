@@ -13,6 +13,7 @@ class Reportes_recaudacion_c extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->load->model('mod_reportes/reportes_recaudacion_m');
+            $this->load->libray('reportes_excel');
         }
 
         /*
@@ -27,6 +28,7 @@ class Reportes_recaudacion_c extends CI_Controller {
         {
             $data['tipo_contribu']=  $this->reportes_recaudacion_m->devuelve_tipo_contribuyente();
             $this->load->view($vista,$data);
+            
         }
     /*
          * funcion para mostrar los datos del reporte de rises de recaudacion
@@ -92,7 +94,7 @@ class Reportes_recaudacion_c extends CI_Controller {
                           'H'=>'Cobrada',
                           'I'=>'Notificada',
                           );
-          $this->funciones_complemento->genera_excel_basico($titulo,$text_encabezado,$cabecera);
+          $this->reportes_excel->genera_excel_basico($titulo,$text_encabezado,$cabecera);
             
         }
         

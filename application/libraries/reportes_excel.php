@@ -25,8 +25,7 @@ class Reportes_excel {
         $this->usoci =& get_instance();
         
     }
-    
-    function genera_excel_basico($titulo,$text_encabezado,$cabecera,$cuerpo=array(),$forma=array())
+    function genera_excel_basico()
     {
       $estilo_encabezado=array(
                 'font' => array(
@@ -118,9 +117,9 @@ class Reportes_excel {
         header('Cache-Control: max-age=0');
         $objWriter = PHPExcel_IOFactory::createWriter($objecto_excel, 'Excel2007');
         $objWriter->save('php://output');
-        exit;
+        exit;  
+    }
    
-    } 
    
 }
 
