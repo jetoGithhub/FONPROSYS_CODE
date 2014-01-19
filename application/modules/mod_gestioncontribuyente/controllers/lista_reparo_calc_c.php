@@ -42,7 +42,7 @@ class Lista_reparo_calc_c extends CI_Controller {
         
         function calcular_culminatoria_fiscalizcion()
         {
-            sleep(4);
+//            sleep(4);
             $this->load->model('lista_reparo_calc_m');
             
             $opc_tipo_multa = $this->input->post('opc_tipo_multa');

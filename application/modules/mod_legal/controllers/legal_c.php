@@ -24,7 +24,7 @@ class Legal_c extends CI_Controller {
     }
         
     public function envia_finanzas(){
-        sleep(2);
+//        sleep(2);
         $valor=$this->input->post('id');
 
         $partes=  explode('-', $valor);
@@ -45,7 +45,7 @@ class Legal_c extends CI_Controller {
     }
         
     public function descargos(){
-        sleep(2);
+//        sleep(2);
         $partes=  explode('-', $this->input->post('id_reparo'));
         $datos=array(
                'fecha'          => $this->input->post('fech_comp'),
@@ -69,7 +69,7 @@ class Legal_c extends CI_Controller {
     }
     
     public function envia_finanzas_descargos(){
-        sleep(2);
+//        sleep(2);
         $valor=$this->input->post('id');
 
         $partes=  explode('-', $valor);
@@ -91,7 +91,7 @@ class Legal_c extends CI_Controller {
     }
     
     public function cerrar_descargos(){
-        sleep(2);
+//        sleep(2);
         $valor=$this->input->post('id');
 
         $partes=  explode('-', $valor);
