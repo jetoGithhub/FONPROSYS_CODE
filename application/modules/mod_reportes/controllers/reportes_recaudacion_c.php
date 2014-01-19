@@ -65,16 +65,34 @@ class Reportes_recaudacion_c extends CI_Controller {
                     break;
             }
             
-            $data=$this->reportes_recaudacion_m->datos_reporte_rise($where);
-            if(!empty($data)):
+            $data['datos']=$this->reportes_recaudacion_m->datos_reporte_rise($where);
+            $html=$this->load->view('mod_reportes/reportes_rise_v',$data,true);          
                 
-                $json=array('resultado'=>TRUE,'datos'=>$data);
-            else:
-                
-                $json=array('resultado'=>FALSE);
-            endif;
+            $json=array('resultado'=>TRUE,'html'=>$html);
+            
             echo json_encode($json);
 //            print_r($data);die;
+            
+        }
+        
+        function generar_reporte_rise()
+        {
+          $titulo='Reportes de RISE';
+          $text_encabezado=array('Gerencia de Recaudación Tributaria',
+                                  'Fondo de Promoción y Financiamiento del Cine (FONPROCINE)',
+                                  'Centro Nacional Autónomo de Cinematografía (CNAC)',
+                                  'Resolución de Imposición de Sanción por Extemporaneidad (RISE)');
+          $cabecera=array('A'=>'Fecha Not.',
+                          'B'=>'Mes de Notificación',
+                          'C'=>'Resolución Nº',
+                          'D'=> 'Contribuyente',
+                          'E'=>'Tipo Contribuyente',
+                          'F'=>'Monto Multa',
+                          'G'=>'Monto Interés',
+                          'H'=>'Cobrada',
+                          'I'=>'Notificada',
+                          );
+          $this->funciones_complemento->genera_excel_basico($titulo,$text_encabezado,$cabecera);
             
         }
         

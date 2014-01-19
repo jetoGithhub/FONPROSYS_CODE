@@ -63,8 +63,8 @@
     }
     #busca_rise div{
         padding: 5px;
-        width: 550px;
-        margin-left: 11%;
+        width: 80%;
+        margin-left: 70px;
         margin-top: 10px
             
     }
@@ -197,18 +197,7 @@
 
      
 </form>
-<div id="respuesta_consulta_rise" style=' margin-top: 10px'>
-    <table id='tblresul-busqueda-rise'>
-        <thead>
-            <th>
-                <td>Fecha Not.</td><td>Resolucion Nº</td> <td>CONTRIBUYENTE</td> <td>Tipo Contribuyente</td> <td>Monto Multa</td> <td>Monto Interes</td> <td>Cobrada</td> <td>Notificada</td>
-            </th>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
-</div>
+<div id="respuesta_consulta_rise" style=' margin-top: 20px'></div>
 
 
 <script>
@@ -261,7 +250,12 @@ $(".btnbuscar-rise").click(function(){
             dataType:"json",
             url:'<?php print(base_url().'index.php/mod_reportes/reportes_recaudacion_c/reporte_rise_recaudacion/'); ?>'+tipo,
             success:function(data){
-                
+              if(data.resultado){
+                 
+                 $("#respuesta_consulta_rise").html(data.html);
+              }
+                      
+                      
             },
             error:function(o,estado,excepcion){
                 if(excepcion=='Not Found'){
