@@ -13,7 +13,8 @@ class Reportes_recaudacion_c extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->load->model('mod_reportes/reportes_recaudacion_m');
-            $this->load->libray('reportes_excel');
+            $this->load->library('reportes_excel');
+            
         }
 
         /*
@@ -62,14 +63,27 @@ class Reportes_recaudacion_c extends CI_Controller {
                     break;
 
                 case 1://busqueda avanzada
-                    
+                    $tipo_filtro=  $this->input->post('tipo_filtro');
+                    $anio=  $this->input->post('anio_rise2');
+                    switch ($tipo_filtro) {
+                            case 0:
+                                    $where=array('anio'=>$anio,'rif'=>$this->input->post('rif'));
+                                break;
+                            case 1:
+                                $where=array('tipo_contribu'=>$this->input->post('tipo_contribu'),'anio'=>$anio);
+                                break;
+                            case 2:
+                                $where=array('anio'=>$anio,'fecha_multa >='=>$this->input->post('fecha-desde'),'fecha_multa <='=>$this->input->post('fecha-hasta'));
+                                break;
+                            
+                        }   
                     
                     break;
             }
             
             $data['datos']=$this->reportes_recaudacion_m->datos_reporte_rise($where);
             $html=$this->load->view('mod_reportes/reportes_rise_v',$data,true);          
-                
+//            print_r(array_values($data['datos'][0]));die;    
             $json=array('resultado'=>TRUE,'html'=>$html);
             
             echo json_encode($json);
@@ -79,11 +93,60 @@ class Reportes_recaudacion_c extends CI_Controller {
         
         function generar_reporte_rise()
         {
+         $tipo=$this->input->get('tipo'); 
+         switch ($tipo) {
+                case 0://busquedda simple
+                        $tipo_rise=  $this->input->get('tipo_rise');
+                        $anio=  $this->input->get('anio_rise');
+                        switch ($tipo_rise) {
+                            case 0:
+                                    $where=array('anio'=>$anio);
+                                break;
+                            case 1:
+                                $where=array('notificada'=>'SI','anio'=>$anio);
+                                break;
+                            case 2:
+                                $where=array('notificada'=>'NO','anio'=>$anio);
+                                break;
+                            case 3:
+                                $where=array('cobrada'=>'SI','anio'=>$anio);
+                                break;
+                        }                   
+                    break;
+
+                case 1://busqueda avanzada
+                    $tipo_filtro=  $this->input->get('tipo_filtro');
+                    $anio=  $this->input->get('anio_rise2');
+                    switch ($tipo_filtro) {
+                            case 0:
+                                    $where=array('anio'=>$anio,'rif'=>$this->input->get('rif'));
+                                break;
+                            case 1:
+                                $where=array('tipo_contribu'=>$this->input->get('tipo_contribu'),'anio'=>$anio);
+                                break;
+                            case 2:
+                                $where=array('anio'=>$anio,'fecha_multa >='=>$this->input->get('fecha-desde'),'fecha_multa <='=>$this->input->get('fecha-hasta'));
+                                break;
+                            
+                        }    
+                    
+                    break;
+            }
+            
+          $cuerpo=$this->reportes_recaudacion_m->datos_reporte_rise($where);
+          foreach($cuerpo as $value){
+              
+              $array[]=array_values($value);
+              
+          }
+//          print_r($array);die;
           $titulo='Reportes de RISE';
+          
           $text_encabezado=array('Gerencia de Recaudación Tributaria',
                                   'Fondo de Promoción y Financiamiento del Cine (FONPROCINE)',
                                   'Centro Nacional Autónomo de Cinematografía (CNAC)',
                                   'Resolución de Imposición de Sanción por Extemporaneidad (RISE)');
+          
           $cabecera=array('A'=>'Fecha Not.',
                           'B'=>'Mes de Notificación',
                           'C'=>'Resolución Nº',
@@ -94,7 +157,7 @@ class Reportes_recaudacion_c extends CI_Controller {
                           'H'=>'Cobrada',
                           'I'=>'Notificada',
                           );
-          $this->reportes_excel->genera_excel_basico($titulo,$text_encabezado,$cabecera);
+          $this->reportes_excel->genera_excel_basico($titulo,$text_encabezado,$cabecera,$array);
             
         }
         

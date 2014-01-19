@@ -46,6 +46,9 @@
  
 </script>
  <!--botones generar excel y pdf--> 
+ <?php 
+ if(!empty($datos)):
+ ?>
 <div class="botonera_reportes" style="float: right">
 <!--    <button id="btn_pdf" class="btn_reportes">
         <img src="<? // echo base_url().'include/imagenes/iconos/ic_pdf.png'?>" width="14px" height="12px"/>
@@ -56,6 +59,7 @@
         <b>Generar Excel</b>
     </button>
 </div>
+<?php endif;?> 
 <table cellpadding="0" cellspacing="0" border="0" class="" id="reportes-rise" width="100%">
 	<thead>
             <tr>
@@ -113,8 +117,16 @@
 <script>
 
 $("#btn_excel_rise").click(function(){
-   alert($("#busca_rise").serialize());
-   window.location='<?php echo base_url()."index.php/mod_reportes/reportes_recaudacion_c/generar_reporte_rise"?>';
+   
+    var tipo;
+    $("#table-busqueda-rise input[type=radio]").each(function(i) { 
+        if($(this).is(':checked')){
+             tipo=$(this).val();
+       }
+
+    });
+//    alert($("#busca_rise").serialize()+'&tipo='+tipo);
+   window.location='<?php echo base_url()."index.php/mod_reportes/reportes_recaudacion_c/generar_reporte_rise?"?>'+$("#busca_rise").serialize()+'&tipo='+tipo;
 });
 
 

@@ -40,7 +40,10 @@
                 $( "#fecha-desde" ).datepicker( "option", "maxDate", selectedDate );
                 }
         });
-        
+        jQuery(function($){
+            $.mask.definitions['#'] = '[JVE]';
+            $("#rif").mask('#999999?999');
+        });
         
     });
     
@@ -129,8 +132,9 @@
                   </td>
                   <td clospan='2'>
                       <label ></label><br />
-                      <button class='btnbuscar-rise' id='btn-buscar-simple' type='button' ></button>
+                      <button class='btnbuscar-rise' id='btn-buscar-simple' type='button' ></button>&nbsp;&nbsp;&nbsp;<span class="cargando-brise"></span>
                   </td>
+                  
               </tr>
           </table></center>
       </div>
@@ -163,7 +167,7 @@
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td id='td-rif'>
                       <label ><b>Indique el Rif</b></label><br />
-                     <input type='text' name='rif' id='rif' class=' ui-widget-content ui-corner-all'> 
+                     <input type='text' name='rif' id='rif' class=' ui-widget-content ui-corner-all' placeholder="VJE000000000"> 
                   </td>
                   <td id='td-tipo' style=' display: none'>
                      <label ><b>Tipo de contribuyente</b></label><br />
@@ -188,7 +192,7 @@
                  
                   <td clospan='2'>
                       <label ></label><br />
-                      <button class='btnbuscar-rise' type='button' id='btn-buscar-avanzada' ></button>
+                      <button class='btnbuscar-rise' type='button' id='btn-buscar-avanzada' ></button>&nbsp;&nbsp;&nbsp;<span class="cargando-brise"></span>
                   </td>
               </tr>
           </table></center>  
@@ -237,6 +241,7 @@ muestra_contenedor_busqueda=function(valor){
     }
 };
 $(".btnbuscar-rise").click(function(){
+    $(".cargando-brise").html('<img src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" width="18px" heigth="18px"/>');
     var tipo;
     $("#table-busqueda-rise input[type=radio]").each(function(i) { 
         if($(this).is(':checked')){
@@ -253,6 +258,7 @@ $(".btnbuscar-rise").click(function(){
               if(data.resultado){
                  
                  $("#respuesta_consulta_rise").html(data.html);
+                 $(".cargando-brise").empty();
               }
                       
                       
@@ -264,6 +270,7 @@ $(".btnbuscar-rise").click(function(){
 
                 }
             }
+            
         });
 });
 
