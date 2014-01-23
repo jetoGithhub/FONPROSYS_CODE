@@ -1,6 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No esta permitido el acceso directo');
 $base_url=base_url()."index.php/";
+echo 'quede en la hoja 17 de las correciones';
 ?>
 <script type="text/javascript" >
     $(function() {
