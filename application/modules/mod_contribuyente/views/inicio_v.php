@@ -20,7 +20,7 @@ $base_url=base_url()."index.php/";
         <img src="<?php echo base_url()."/include/imagenes/iconos/icono_advertencia.png"; ?>" width="25px" height="23px"/> 
        
         <span style=" color:#888888; font-size: 12px">
-            <b>INFORMACIÓN:</b>
+            <b>Informaci&oacute;n:</b>
         </span>
         
         <p>&nbsp;</p>

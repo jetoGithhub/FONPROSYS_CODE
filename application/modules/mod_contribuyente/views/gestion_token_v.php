@@ -36,7 +36,7 @@ switch($estatus){
              
 </script>
 
-<div id="dialogo_token" title="Validacion del de Registro de Contribuyente">
+<div id="dialogo_token" title="Validaciòn del Registro de Contribuyente">
 <img id="captcha_registra" src="<?php print(base_url()); ?>include/imagenes/<?php print($imagen); ?>.png" />
 <!--token_caducado-->
 <!--token_invalido-->
@@ -45,7 +45,7 @@ switch($estatus){
 
 <span style="float: right;margin-top: 10%; font-weight: bold; color: red;"><?php print($mensaje); ?></span><br/>
 <center><div style="display:<?php print($display); ?>">
-    <button id="btn_ir_inicio_sesion" class="btn">Inicio de Sesion</button>
+        <button id="btn_ir_inicio_sesion" class="btn">Inicio de Sesi&oacute;n</button>
 </div>
 </center>
 </div>

@@ -139,13 +139,13 @@ envia_formulario_restaura = function(form,url){
 </script>
 
 <!-- Estructura -->
-<div id="dialogo_ingreso" title="Inicio Sesion Contribuyentes">
+<div id="dialogo_ingreso" title="Inicio de Sesiòn de Contribuyentes">
     <form id="form_ingreso" class=" focus-estilo form-style">
         <label for="usuario">Usuario:</label>
         <input  type="text" name="usuario" id="usuario" class="requerido  ui-widget-content ui-corner-all"  />
         
         <br/>
-        <label for="clave">Clave de acceso:</label>
+        <label for="clave">Clave de Acceso:</label>
 	<input type="password" name="clave" id="clave" class="requerido  ui-widget-content ui-corner-all" />
 	
         <br/>
@@ -157,9 +157,9 @@ envia_formulario_restaura = function(form,url){
         <input id="Field3" type="text" name="codigo" id="codigo" class="requerido ui-widget-content ui-corner-bottom" />
     </form>
     <div class="ui-widget ui-helper-clearfix"></div>
-    <button id="btn_olvida_cont" class="btn"> ¿Olvido su contraseña?</button>
-    <button id="btn_inicia_cont" class="btn">Iniciar Sesion</button>
-    <button id="btn_registro_cont" class="btn">Registro Nuevos Usuarios</button>
+    <button id="btn_olvida_cont" class="btn"> Olvid&oacute; su Contraseña?</button>
+    <button id="btn_inicia_cont" class="btn">Iniciar Sesi&oacute;n</button>
+    <button id="btn_registro_cont" class="btn">Registro de Usuarios Nuevos</button>
 
 </div>
 <div id="dialog-alert" title="Mensaje">

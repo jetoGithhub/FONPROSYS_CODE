@@ -42,11 +42,11 @@ class Contribuyente_c extends CI_Controller{
         //sleep(5);
         $rif=$this->input->get('rif');
         $response_json=array('code_result'=>'','response'=>false);
-        $msj['-1'] = "no hay soporte a curl";
-        $msj['0'] = "no hay conexion a internet";
-        $msj['1'] = "existe rif consultado";
-        $msj['450'] = "formato de rif invalido";
-        $msj['452'] = "rif no existe";
+        $msj['-1'] = "No Hay Soporte a Curl";
+        $msj['0'] = "No Hay Conexiòn a Internet";
+        $msj['1'] = "Existe RIF Consultado";
+        $msj['450'] = "Formato de RIF Invalido";
+        $msj['452'] = "RIF no Existe";
         if(!empty($rif)):
         if(function_exists('curl_init')){// Comprobamos si hay soporte para cURL
             $url="http://contribuyente.seniat.gob.ve/getContribuyente/getrif?rif=$rif";
@@ -87,7 +87,7 @@ class Contribuyente_c extends CI_Controller{
         endif;
         $response_json['mensaje'] = $msj[$response_json['code_result']];
         else:
-          $response_json['mensaje'] ='Debe verificar el Rif';  
+          $response_json['mensaje'] ='Debe Verificar el RIF';  
         endif;
         echo json_encode($response_json);
     }
@@ -143,11 +143,11 @@ class Contribuyente_c extends CI_Controller{
                         if($this->funciones_complemento->envio_correo($recibe["nombre"],$asunto,$cuerpoCorreoHTML,$cuerpoCorreoTEXT,'fonprocine@gmail.com',$recibe["correo"])):
                             $respuesta = array(
                                 'respuesta' => true,
-                                'mensaje'=>'Registro exitoso! Se ha enviado un mensaje de validacion a su correo!');
+                                'mensaje'=>'Registro exitoso, Se ha enviado un mensaje de validaciòn a su correo');
                         else:
                             $respuesta = array(
                                 'respuesta' => false,
-                                'mensaje'=>'Registro fallido y Correo no enviado');                          
+                                'mensaje'=>'Registro fallido y Correo no Enviado');                          
                         endif;
                 else:
                     $respuesta = array(
@@ -157,7 +157,7 @@ class Contribuyente_c extends CI_Controller{
             else:
                 $respuesta = array(
                     'respuesta' => false,
-                    'mensaje'=>'Ya existe un usuario Registrado con este correo electronico y Rif'
+                    'mensaje'=>'Ya existe un usuario Registrado con este correo electronico y RIF'
                 );
             endif;
                         
@@ -237,10 +237,10 @@ class Contribuyente_c extends CI_Controller{
                     
                 else:
                     if($this->contribuyente_m->verificaToken($datos[0]['token'],2)):
-                        $datosVistaToken['mensaje'] = 'Cuenta Validada!';
-                        $datosVistaToken['estatus'] = 'activo';                                 
+                        $datosVistaToken['mensaje'] = 'Cuenta Validada';
+                        $datosVistaToken['estatus'] = 'Activo';                                 
                     else:
-                        print('Nose actualizo');
+                        print('No se Actualizo');
                     endif;
                 endif;
             else:

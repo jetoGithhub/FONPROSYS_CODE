@@ -39,7 +39,7 @@ $base_url=base_url()."index.php/";
                      $('#'+divimg).addClass('ui-state-highlight');                     
                      $('#'+divimg).empty();
                      $('#'+divimg).show();
-                     $('#'+divimg).html('Verificando Seniat <img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" />');
+                     $('#'+divimg).html('Verificando RIF <img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" />');
                      $("#btn_envio").attr('disabled','disabled');}
                 ,complete: function(){
                     $('#carga').hide();
@@ -61,10 +61,10 @@ $base_url=base_url()."index.php/";
                 stack: true,
                 position: ["center","center"],
                 buttons: {
-                    "enviar": function() { 
+                    "Enviar": function() { 
                         $("#form_registra").submit(); 
                     },
-                    "volver": function() { 
+                    "Volver": function() { 
                         $('#dialogo_registra').dialog('close').toggle( "blind", {}, 150 );                    
                         //$('div#dialogo_registra').dialog('open');
                         setTimeout("window.location='<?php print(base_url()); ?>index.php/mod_contribuyente/inicio_c';", 300);}
@@ -119,7 +119,7 @@ $base_url=base_url()."index.php/";
                  },beforeSend:function(){
                      $("#carga").empty();
                      $('#carga').show();
-                     $('#carga').html('Espere procesando envio...<img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" />');
+                     $('#carga').html('Espere procesando Envio...<img  src="<?php print(base_url()); ?>include/imagenes/ajax-loader.gif" />');
                      $("#btn_envio").attr('disabled','disabled');}
                 ,complete: function(){
                     $('#carga').hide();
@@ -164,11 +164,11 @@ $base_url=base_url()."index.php/";
 
 
 <!-- Estructura -->
-<div id="dialogo_registra" title="Pre-Registro" style="height:auto">   
+<div id="dialogo_registra" title="Pre - Registro" style="height:auto">   
     <form id="form_registra" style="" class=" focus-estilo form-style "> 
          
-         <label style=" margin-right:43%" for="rif">Rif:</label>
-        <label for="correo">Correo Electronico:</label><br />
+         <label style=" margin-right:43%" for="rif">RIF:</label>
+         <label for="correo">Correo Electr&Oacute;nico:</label><br />
             <input  type="text" onblur="verificarif('form_registra','<?php print($base_url); ?>mod_contribuyente/contribuyente_c/verificaRif','<?php print(base_url()); ?>include/imagenes/ajax-loader.gif','cargarif');" name="rif" id="rif" class=" tamaño requerido  ui-widget-content ui-corner-all" />
             <input  condicion="email: true" type="text" name="correo" id="correo" class="tamaño requerido  ui-widget-content ui-corner-all"  />
         
@@ -177,7 +177,7 @@ $base_url=base_url()."index.php/";
             <input style=" width: 98%" readonly name="nombre" id="nombre" class="requerido  ui-widget-content ui-corner-all" />
         <br /><br />
         <label style=" margin-right:28%" for="clave_1">Contraseña:</label>            
-        <label for="clave_2"  style="">Repita contraseña:</label><br />        
+        <label for="clave_2"  style="">Repetir Contraseña:</label><br />        
             <input condicion="minlength:6" type="password" name="clave_1" id="clave_1" class=" tamaño requerido  ui-widget-content ui-corner-all"  />
             <input style=""  condicion='minlength: 6, equalTo: "#clave_1"' type="password" name="clave_2" id="clave_2" class=" tamaño requerido  ui-widget-content ui-corner-all"  />
         <br /><br />
@@ -202,7 +202,7 @@ $base_url=base_url()."index.php/";
             <div id="captcha_registra_container" class="captcha_container ui-widget-content ui-corner-top" align="center" >
                 <img id="captcha_registra" src="<?php print(base_url()); ?>include/librerias/securimage/captcha.php" width="99%" height="60" />
             </div><br />
-             <label for="codigo_registra">Código de confirmación:</label><br />
+            <label for="codigo_registra">C&oacute;digo de Confirmaci&oacute;n:</label><br />
         <input id="Field3_r" style=" width: 98%" type="text" name="codigo_registra" id="codigo_registra" class="requerido ui-widget-content ui-corner-bottom" />
     </form>
     <div  class="ui-widget ui-helper-clearfix"></div>

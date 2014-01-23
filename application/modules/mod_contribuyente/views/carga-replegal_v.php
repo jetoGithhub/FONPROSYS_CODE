@@ -18,17 +18,17 @@
     
 </style>
 <div id='rep-legalay'>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-top: 30px; margin-bottom: 10px; width: 80%; margin-left: 10%">Gestion de representante legal de la empresa</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-top: 30px; margin-bottom: 10px; width: 80%; margin-left: 10%">Carga del Representante Legal</div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display " id="listar-replegal" width="">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>cedula</th>
-                        <th>nombre</th>	
-                        <th>domicilio fiscal</th>	
-                        <th>telefono</th>	
-                        <th>Operaciones</th>
+                        <th>C&eacute;dula</th>
+                        <th>Nombre</th>	
+                        <th>Domicilio Fiscal</th>	
+                        <th>Tel&eacute;fono</th>	
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>
@@ -60,7 +60,7 @@
              
              <tr>
                  <td>
-                    <button txtayuda='Cargar rep. legal' class='ayuda' id="btncreareplegal"  style="width:30px; height:30px; float: right" onclick="cargar_vista_replegal('<?php echo base_url().'index.php/mod_contribuyente/contribuyente_c/carga_vista_dialog';?>',this.id,'vista-replegal','frmreplegal','form_registra_replegal');"></button>
+                    <button txtayuda='Cargar rep. legal' class='ayuda' id="btncreareplegal"  style="width:110px; height:30px; float: right" onclick="cargar_vista_replegal('<?php echo base_url().'index.php/mod_contribuyente/contribuyente_c/carga_vista_dialog';?>',this.id,'vista-replegal','frmreplegal','form_registra_replegal');">Cargar Datos</button>
  
                  </td>
              </tr>
@@ -119,7 +119,7 @@
                                         {
                                             primary: "ui-icon-person"
                                         },
-                                    text: false
+                                    text: true
                                 });
                                 
                                 
@@ -141,7 +141,7 @@ $( "#"+div ).empty();
                         resizable: false,
                         width: 550,
                         height:380,
-                        title: "Carga de representante legal" ,
+                        title: "Carga de Datos del Representante Legal" ,
                         show:"clip",
                         modal: true,
                         buttons: {  //propiedad de dialogo, agregar botones

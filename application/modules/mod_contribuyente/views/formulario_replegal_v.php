@@ -45,8 +45,8 @@
     
 });
     jQuery(function($){
-//        $.mask.definitions['#'] = '[JVGEjvge]';
-        $("#ci").mask("V-999999?99");
+        $.mask.definitions['#'] = '[VEve]';
+        $("#ci").mask("#-999999?99");
         $("#telefono_hab").mask('0999-9999999');
         $("#telefono_ofi").mask('0999-9999999');
         $("#telefono3").mask('0999-9999999');
@@ -65,7 +65,7 @@
     <table border="0">
             <tr>
                 <td colspan="">
-                    <label ><strong>C&eacute;dula de identidad:</strong></label><br /> 
+                    <label ><strong>C&eacute;dula:</strong></label><br /> 
                 <input  type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all requerido" name="ci" id="ci" />
                 </td>
                 <td colspan="">
@@ -131,11 +131,11 @@
             </tr>
             <tr>
                 <td>
-                     <label ><strong>Telefono de hab:</strong></label><br />
+                    <label ><strong>Tel&eacute;fono de Habitaci&oacute;n:</strong></label><br />
                     <input  type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all" name="telefono1" id="telefono_hab2"  />
                 </td>
                 <td>
-                   <label ><strong>Telefono de oficina:</strong></label><br />
+                    <label ><strong>T&eacute;lefono de Oficina:</strong></label><br />
                     <input   type="text" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all requerido" name="telefono2" id="telefono_ofi2" />
                 </td>            
                 <td>
