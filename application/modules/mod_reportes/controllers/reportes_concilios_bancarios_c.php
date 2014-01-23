@@ -115,7 +115,7 @@ class Reportes_concilios_bancarios_c extends CI_Controller {
                                     
                                 }
                                $tipo=$tipo_pago;
-                               $devuelve=array('rif','contribuyente','nombre_tcon','tipe','periodo','cobrada');  
+                               $devuelve=array('rif','contribuyente','nombre_tcon','tipe','periodo','cobrada','banco','cuenta');  
                                 
                                 
                             
@@ -133,6 +133,125 @@ class Reportes_concilios_bancarios_c extends CI_Controller {
             echo json_encode($json);
 //            print_r($data);die;
             
+        }
+        
+        function generar_excel_concilio()
+        {
+//            print_r($this->input->get());die;
+            $tipo=$this->input->get('tipo');
+            switch ($tipo) {
+                case 0://busquedda simple
+                        $tipo_estado=$this->input->get('tipo_estado');
+                        $tipo_pago=$this->input->get('tipo_pago');
+                        $anio=$this->input->get('anio_concilio');
+                        if($tipo_pago==0):
+                            
+                                switch ($tipo_estado) {
+                                    case 0:
+                                            $where=array('anio_calendario'=>$anio);
+                                        break;
+                                    case 1:
+                                        $where=array('cobrada'=>'SI','anio_calendario'=>$anio);
+                                        break;
+                                    case 2:
+                                        $where=array('cobrada'=>'NO','anio_calendario'=>$anio);
+                                        break;
+                                    
+                                }
+                                $t=$tipo_pago;
+                                $devuelve=array('rif','contribuyente','nombre_tcon','periodo','anio_calendario','banco','cuenta','fechapago','cobrada','tipe');  
+                            else:
+                               switch ($tipo_estado) {
+                                    case 0:
+                                            $where=array('anio_calendario'=>$anio,'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    case 1:
+                                        $where=array('cobrada'=>'SI','anio_calendario'=>$anio,'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    case 2:
+                                        $where=array('cobrada'=>'NO','anio_calendario'=>$anio,'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    
+                                }
+                               $t=$tipo_pago;
+                               $devuelve=array('rif','contribuyente','nombre_tcon','periodo','anio_calendario','banco','cuenta','fechapago','cobrada','tipe');  
+                                                     
+                                
+                            
+                        endif;
+                    break;
+
+                case 1://busqueda avanzada
+                        $tipo_filtro=  $this->input->get('tipo_filtro');
+                        $tipo_pago=$this->input->get('tipo_pago2');
+                        $anio=  $this->input->get('anio_concilio2');
+                        if($tipo_pago==0):
+                            
+                                switch ($tipo_filtro) {
+                                    case 0:
+                                            $where=array('anio_calendario'=>$anio,'rif'=>  $this->input->get('rif'));
+                                        break;
+                                    case 1:
+                                        $where=array('tipocontid'=>  $this->input->get('tipo_contribu'),'anio_calendario'=>$anio);
+                                        break;
+                                    case 2:
+                                        $where=array('inicio_calendario >='=>$this->input->get('fecha-desde'),'fin_calendario <='=>$this->input->get('fecha-hasta'));
+                                        break;
+                                    
+                                }
+                               $t=$tipo_pago;
+                                $devuelve=array('rif','contribuyente','nombre_tcon','periodo','anio_calendario','banco','cuenta','fechapago','cobrada','tipe');  
+                            else:
+                              switch ($tipo_filtro) {
+                                    case 0:
+                                            $where=array('anio_calendario'=>$anio,'rif'=>  $this->input->get('rif'),'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    case 1:
+                                        $where=array('tipocontid'=>  $this->input->get('tipo_contribu'),'anio_calendario'=>$anio,'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    case 2:
+                                        $where=array('fechaelaboracion >='=>$this->input->get('fecha-desde'),'fechaelaboracion <='=>$this->input->get('fecha-hasta'),'tipo_multa'=>$tipo_pago);
+                                        break;
+                                    
+                                }
+                               $t=$tipo_pago;
+                               $devuelve=array('rif','contribuyente','nombre_tcon','periodo','anio_calendario','banco','cuenta','fechapago','cobrada','tipe');  
+                                
+                                
+                            
+                        endif;  
+                    
+                    break;
+            }
+//            print_r($where);die;
+//            $data['datos']=$this->reportes_concilios_bancarios_m->datos_busqueda_concilio($t,$where,$devuelve);
+//            print_r($data);die;
+            $cuerpo=$this->reportes_concilios_bancarios_m->datos_busqueda_concilio($t,$where,$devuelve);
+             foreach($cuerpo as $value){
+              
+              $array[]=array_values($value);
+              
+             }
+//            print_r($cuerpo);die; 
+          $titulo='Reportes de Conciliaciones Bancarias';
+          
+          $text_encabezado=array('Gerencia de Recaudación Impuesto FONPROCINE',
+                                  'Fondo de Promoción y Financiamiento del Cine (FONPROCINE)',
+                                  'Centro Nacional Autónomo de Cinematografía (CNAC)',
+                                  'Conciliaciones Bancarias');
+          
+          $cabecera=array('A'=>'RIF.',
+                          'B'=>'Contribuyente',
+                          'C'=>'Tipo Contribuyente',
+                          'D'=> 'Periodo',
+                          'E'=>'Año',
+                          'F'=>'Banco',
+                          'G'=>'Cuenta Bancaria',
+                          'H'=>'Fecha del Pago',
+                          'I'=>'Cobrada',
+                          );
+                          
+          $this->reportes_excel->genera_excel_basico($titulo,$text_encabezado,$cabecera,$array);
         }
     
 }

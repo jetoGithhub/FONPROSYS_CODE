@@ -33,7 +33,7 @@ class Reportes_excel {
      
         $objecto_excel= new PHPExcel();   
         $objecto_excel->getActiveSheet()->getHeaderFooter()->setOddHeader('&L&G');           
-        $objecto_excel->getActiveSheet()->setTitle('RISE');
+//        $objecto_excel->getActiveSheet()->setTitle('RISE');
 
         // Establecer propiedades
         $objecto_excel->getProperties()
