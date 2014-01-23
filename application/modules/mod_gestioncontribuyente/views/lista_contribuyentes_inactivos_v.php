@@ -126,7 +126,7 @@
     </script>
             
 	</head>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">listado de contribuyentes en espera de activacion de registro</div>
+        <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Contribuyentes en Espera de Activaci&oacute;n</div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar" width="100%">
 	<thead>
@@ -134,7 +134,7 @@
 			<th>#</th>
 			<th>Numero de Rif</th>
             <th>Razon Social</th>			
-            <th>Operaciones</th>
+            <th>Opciones</th>
         </tr>
 	</thead>
 	<tbody>

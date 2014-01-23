@@ -59,14 +59,14 @@
       });
 
   </script>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Operaciones para la manipulacion de el calendario de pago</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Carga del Calendario de Pagos</div>
 
 <div id="barra_cal" class=" ">
     <!--<span id="botonera_cal">-->
     <center>
         <input type="radio" id="consulta_cal" class="btn_cal" name="boton_cal" checked="checked" /><label style=" margin-right: 20px" for="consulta_cal">CONSULTAR</label>
         <input type="radio" id="crea_cal" class="btn_cal" name="boton_cal"  /><label style=" margin-right: 20px" for="crea_cal">CREAR</label>
-        <input type="radio" id="gestiona_cal" class="btn_cal" name="boton_cal" /><label for="gestiona_cal">GESTION</label>
+        <!--<input type="radio" id="gestiona_cal" class="btn_cal" name="boton_cal" /><label for="gestiona_cal">GESTION</label>-->
     </center>
         <!--</span>-->
 </div>

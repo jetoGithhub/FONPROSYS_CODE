@@ -5,9 +5,9 @@ $(document).ready(function() {
  $('#btn-diagperfil').button({
                             icons: 
                                 {
-                                    primary: "ui-icon-person"
+                                    primary: "ui-icon-gear"
                                 },
-                            text: false
+                            text: true
                         });
  $( "#dialog-perfiles" ).dialog(
                             {
@@ -221,8 +221,8 @@ dialog_elimina_perfil=function(url,id){
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Nombre del perfil</th>
-                        <th>Descripcion del peril</th>			
+			<th>Nombre del Perfil</th>
+                        <th>Descripci&oacute;n del Perfil</th>			
                         <th>Opciones</th> 
                 </tr>
 	</thead>
@@ -259,7 +259,7 @@ dialog_elimina_perfil=function(url,id){
 		<tr>
                     <td align="right">
 
-                        <button txtayuda="Crear nuevo perfil del sistema" class="ayuda" id="btn-diagperfil" title="Agregar Nuevo perfil" style="width:30px; height:30px;" onclick="cargar_dialog_perfil('<?php echo base_url().'index.php/mod_administrador/roles_c/cargar_vista';?>','dialog-perfiles');"></button>
+                        <button txtayuda="Crear nuevo perfil del sistema" class="ayuda" id="btn-diagperfil" title="Agregar Nuevo perfil" style="width:100px; height:25px;" onclick="cargar_dialog_perfil('<?php echo base_url().'index.php/mod_administrador/roles_c/cargar_vista';?>','dialog-perfiles');">Crear Perfil</button>
                                      
                     </td>
 		</tr>
