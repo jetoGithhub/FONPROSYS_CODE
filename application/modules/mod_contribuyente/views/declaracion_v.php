@@ -327,8 +327,8 @@ jQuery(function($){
  </script>
 <style>
       #contenedor-frmdeclara{
-      width: 75%;
-      left:15%;
+      width:600px;
+      left:10%;
       margin-top:50px;
       position: relative;
       /*background:#CFCFCF;*/
@@ -382,10 +382,10 @@ jQuery(function($){
 <div id="contenedor-frmdeclara"  class="ui-widget-content ui-corner-all"  >
   
 <form id="frmdeclara">    
-    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>FORMULARIO PARA DECLARACIONES</h4></legend><br />
+    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24; font-size: 10px" align="center"><h4>FORMULARIO PARA DECLARACIONES</h4></legend><br />
 
         
-        <table id="tdeclara" style=" border-top: 2px solid; border-top-color: darkgray; width: 60%; margin-left:5%" class="ui-corner-top">
+        <table id="tdeclara" style=" border-top: 2px solid; border-top-color: darkgray; width: 67%; margin-left:5%" class="ui-corner-top">
             <tr >
                 <td class="linea-right">
                  <label><strong>Tipo de contribuyente:</strong></label><br />   

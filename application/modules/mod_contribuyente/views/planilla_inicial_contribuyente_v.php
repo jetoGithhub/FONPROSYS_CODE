@@ -101,7 +101,7 @@ function bloqueaInputs(form,tipo)
            $( "#confirma-planilla" ).dialog({                
                 autoOpen: false, 
                 resizable: false,
-
+                title:'Mensaje',
                 modal: true,
                 buttons: {
                     "SI": function() {
@@ -114,7 +114,7 @@ function bloqueaInputs(form,tipo)
                         $( this ).dialog( "close" );
                         }
                     }
-                }).html('<h3>Procedera a registrar sus Datos. ¿Desea continuar?</h3>');
+                }).html('<center><p style="font-size:10px; text-aling:center; font-weight:bold" >Procedera a Registrar sus Datos.<br /><br /> ¿Desea continuar?</p></center>');
       validador('form_registra_planilla','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/registro_planilla_inicial"; ?>','registra_planilla');
       
         registra_planilla = function(form,url){
@@ -139,17 +139,17 @@ function bloqueaInputs(form,tipo)
                     success:function(data){
 
                     if (data.success){
-                          var htmlerror="<p style =' line-height:1.5; font-size:12px;text-align: justify '>"; 
-                                htmlerror+="<span class='ui-icon ui-icon-check' style='float: left; margin: 10px 10px 0px 0;'></span>";
-                                htmlerror+="<strong>INFO: </strong>"+data.message;                            
+                          var htmlerror="<p style =' line-height:1.5; font-size:10px;text-align: justify;font-weight:bold '>"; 
+                                htmlerror+="<span class='ui-icon ui-icon-check' style='float: left; margin: 0px 0px 0px 0;'></span>"+data.message;
+//                                htmlerror+="<span></strong>";                            
                                 htmlerror+="</p>";       
                         $('#dialog-alert').html(htmlerror);
                         refresca_d('refresca','<?php print(base_url().'index.php/mod_contribuyente/contribuyente_c/planilla_inicial/');?>');
                         setTimeout("$('#dialog-alert').dialog({show: 'blind', position: ['center','center']}).dialog('open');" , 1000);               
                     }else{
-                                var htmlerror="<p style =' line-height:1.5; font-size:14px;text-align: justify '>"; 
-                                htmlerror+="<span class='ui-icon ui-icon-alert' style='float: left; margin: 10px 10px 0px 0;'></span>";
-                                htmlerror+="<strong>ALERTA: </strong>"+data.message;                            
+                                var htmlerror="<p style =' line-height:1.5; font-size:10px;text-align: justify;font-weight:bold '>"; 
+                                htmlerror+="<center><span class='ui-icon ui-icon-alert' style='float: left; margin: 0px 0px 0px 0;'></span>"+data.message+"</center>";
+//                                htmlerror+="<strong>ALERTA: </strong>"+data.message;                            
                                 htmlerror+="</p>";
                         $("#dialog-alert")
                         .dialog("open")
@@ -164,7 +164,7 @@ function bloqueaInputs(form,tipo)
                     }});
                 }else{
 
-                    alert('debe seleccionar un tipo de contribuyente')
+                    alert('Debe seleccionar un tipo de contribuyente')
                 }
             }else{
             
@@ -176,17 +176,17 @@ function bloqueaInputs(form,tipo)
                 success:function(data){
 
                 if (data.success){
-                    var htmlerror="<p style =' line-height:1.5; font-size:14px;text-align: justify '>"; 
-                                htmlerror+="<span class='ui-icon ui-icon-check' style='float: left; margin: 10px 10px 0px 0;'></span>";
-                                htmlerror+="<strong>INFO: </strong>"+data.message;                            
+                    var htmlerror="<p style =' line-height:1.5; font-size:10px;text-align: justify;font-weight:bold '>"; 
+                                htmlerror+="<span class='ui-icon ui-icon-check' style='float: left; margin: 0px 0px 0px 0;'></span>"+data.message;
+//                                htmlerror+="<strong>INFO: </strong>";                            
                                 htmlerror+="</p>";
                     $('#dialog-alert').html(htmlerror);
                     refresca_d('refresca','<?php print(base_url().'index.php/mod_contribuyente/contribuyente_c/planilla_inicial/');?>');
                     setTimeout("$('#dialog-alert').dialog({show: 'blind', position: ['center','center']}).dialog('open');" , 1000);               
                 }else{
-                    var htmlerror="<p style =' line-height:1.5; font-size:14px;text-align: justify '>"; 
-                                htmlerror+="<span class='ui-icon ui-icon-alert' style='float: left; margin: 10px 10px 0px 0;'></span>";
-                                htmlerror+="<strong>ALERTA: </strong>"+data.message;                            
+                    var htmlerror="<p style =' line-height:1.5; font-size:10px;text-align: justify;font-weight:bold '>"; 
+                                htmlerror+="<center><span class='ui-icon ui-icon-alert' style='float: left; margin: 0px 0px 0px 0;'></span>"+data.message+"</center>";
+//                                htmlerror+="<strong>ALERTA: </strong>";                            
                                 htmlerror+="</p>";
                     $("#dialog-alert")
                     .dialog("open")
@@ -465,16 +465,16 @@ position: relative;
     </style>
       <div id="refresca" style="width:100%">
     <!--<button id="btn-frmbuscarcontri2" style="width:30px; height: 25px; margin-top:-25px; margin-left: 220px; position: absolute" title=" Buscar planilla"></button>-->
-    <p style="color:#86000A;"><span><b>Planilla de Datos del Contribuyente:<b/></span></p>
+    <!--<p style="color:#86000A;"><span><b>Planilla de Datos del Contribuyente:<b/></span></p>-->
     
     <div id="confirma-planilla" ></div>
 
 
 
     <center>
-        <?php if(empty($infoplanilla['id_contribu'])): ?> 
+        <?php if(!empty($infoplanilla['id_contribu'])): ?> 
         
-            <div style="margin-left: 5% ;"><marquee scrollamount="5" width="40"><span class="ui-icon ui-icon-triangle-1-w"></span></marquee><b id="msjmarque" style=" font-family: monospace; font-size: 12px">IMPORTANTE: Para llenar la planilla debe cargar el representante legal y el registro mercantil primero.<br /> Dirigase a las pestañas carga de documentos y carga de rep. legal<br /> antes de llenar esta planilla </b><marquee scrollamount="5" direction="right" width="40"><span class="ui-icon ui-icon-triangle-1-e"></span></marquee></div>
+            <div style="margin-left: 5% ;"><marquee scrollamount="5" width="40"><span class="ui-icon ui-icon-triangle-1-w"></span></marquee><b id="msjmarque" style=" font-family: monospace; font-size: 10px;color:#86000A;">IMPORTANTE: PARA LLENAR ESTA PLANILLA DEBE HABER COMPLETADO LA CARGA DE<br />REPRESENTANTE LEGAL Y LA CARGA DE DOCUMENTOS</b><marquee scrollamount="5" direction="right" width="40"><span class="ui-icon ui-icon-triangle-1-e"></span></marquee></div>
         
         <?php endif; ?>
    <div  id="planilla_contribu" style="padding: 0 .7em; width: 80%; margin-left: 5% ; ">
@@ -495,20 +495,20 @@ position: relative;
     <table border="0">
             <tr>
                 <td colspan="2">
-                <label ><strong>1). Razon Social:</strong></label>
+                    <label ><strong>1). Raz&oacute;n Social:</strong></label>
                 <input value="<?php echo  $infoplanilla['razonsocial']; ?>" type="text" class=" requerido "  style=" width: 96%; float:left;" name="rsocial" id="rsocial" /><strong class="rojo">*</strong>
                 </td>
                 <td colspan="">
-                <label><strong>2). Denominacion Comercial:</strong></label>
+                    <label><strong>2). Denominaci&oacute;n Comercial:</strong></label>
                 <input value="<?php echo  $infoplanilla['denominacionc']; ?>"type="text" class="requerido " style=" width: 86%; float:left;" name="dcomercial" id="dcomercial" /><strong class="rojo">*</strong>
                 </td>
             </tr>
             <tr>
                 <td colspan="">
-                    <label ><strong>3). Actividad Economica:</strong></label>
+                    <label ><strong>3). Actividad Econ&oacute;mica:</strong></label>
 
                     <select style=" width: 200px" id="aecono" name="aecono" class="requerido  ui-widget-content ui-corner-all input_sin_borde " >
-                        <option value="">Seleccione su Actividad Economica</option>
+                        <option value="">Seleccione su Actividad Econ&oacute;mica</option>
                             <?php
                             if (sizeof($actividad_economica)>0):
                                 $seleccionaActividad = '';
@@ -532,11 +532,11 @@ position: relative;
                     
                 </td>
                 <td>
-                    <label style="margin-right:120px"><strong>4). N de rif:</strong></label>
+                    <label style="margin-right:120px"><strong>4)RIF:</strong></label>
                     <input readonly="readonly" value="<?php echo  $infoplanilla['rif']; ?>" type="text" class="requerido input_sin_borde" name="nrif" id="nrif" /><strong class="rojo">*</strong>
                 </td>
                 <td>
-                    <label><strong>5).Registro Cinematografico:</strong></label>     
+                    <label><strong>5).Registro Cinematogr&aacute;fico:</strong></label>     
                     <input  value="<?php echo  $infoplanilla['registrocine']; ?>" type="text" class=" " name="nrcinema" style=" width: 86%; float:left;" id="nrcinama" condicion="number:true"/>
                 </td>    
             </tr>
@@ -577,7 +577,7 @@ position: relative;
                       
                 </td>               
                 <td colspan="">
-                    <label ><strong>8). Municipio donde reside:</strong></label>
+                    <label ><strong>8). Municipio:</strong></label>
                     <div id="muestra_ciudad">
                        
                     <select id="ciudad" name="ciudad" class="requerido  ui-widget-content ui-corner-all floatl"  >
@@ -595,21 +595,21 @@ position: relative;
                 </td>
  
                 <td>
-                    <label><strong>9).zona postal:</strong></label>
+                    <label><strong>9).Zona Postal:</strong></label>
                     <input value="<?php echo  $infoplanilla['zonapostal']; ?>" type="text"   name="zpostal" id="zpostal" class="input_sin_borde floatl" /><strong class="rojo">*</strong>
                 </td>    
             </tr>
             <tr>
                 <td>
-                     <label ><strong>10). Telefono1:</strong></label>
+                    <label ><strong>10). Tel&eacute;fono1:</strong></label>
                     <input value="<?php echo  $infoplanilla['telef1']; ?>"  type="text" class=" requerido floatl" name="telefono1" id="telefono1"  /><img class="floatr" src="<?php echo base_url(); ?>include/imagenes/iconos/iconos_tlf.gif"  />
                 </td>
                 <td>
-                   <label ><strong>11). Telefono2:</strong></label>
+                    <label ><strong>11). Tel&eacute;fono2:</strong></label>
                     <input value="<?php echo  $infoplanilla['telef2']; ?>"  type="text" class=" floatl" name="telefono2" id="telefono2" />
                 </td>            
                 <td>
-                     <label><strong>12). Telefono3:</strong></label>
+                    <label><strong>12). Tel&eacute;fono3:</strong></label>
                     <input value="<?php echo  $infoplanilla['telef3']; ?>"  type="text" class=" floatl" name="telefono3" id="telefono3"/><br />
                    
                 </td>    
@@ -631,7 +631,7 @@ position: relative;
             </tr>
             <tr>
                 <td>
-                   <label ><strong>16). PINBB:</strong></label>
+                   <label ><strong>16). pin BB:</strong></label>
                     <input value="<?php echo  $infoplanilla['pinbb']; ?>" type="text" maxlength="8" class="floatl" name="pinbb" size="10px" id="pinbb" /><img class="floatr" src="<?php echo base_url(); ?>include/imagenes/iconos/BBM_Logo_Redux.png"  />
                 </td>
                 <td>
@@ -639,7 +639,7 @@ position: relative;
                     <input value="<?php echo  $infoplanilla['skype']; ?>" style='width:75%;' type="text" class="floatl" name="skype" id="skype" /><img class="floatr" src="<?php echo base_url(); ?>include/imagenes/iconos/logo-sksype2.png"  width='35' style="margin-top:-3%;margin-left: -2%;"/>
                 </td>
                 <td>
-                    <label ><strong>18). twitter:</strong></label>
+                    <label ><strong>18). Twitter:</strong></label>
                     <input value="<?php echo  $infoplanilla['twitter']; ?>" type="text" class=" floatl" name="twiter" id="twiter" /><img class="floatr" src="<?php echo base_url(); ?>include/imagenes/iconos/icono-twitter.thumbnail.gif"  />
                 </td>
                
@@ -654,15 +654,15 @@ position: relative;
           </table><br />  
            </fieldset>
 <!--      <div  class="encabezado ui-widget-header">A). Datos de las Acciones </div><br />-->
-    <fieldset class='secciones'><legend class="ui-widget-content ui-corner-all" align= "center" ><h3>Datos de las Acciones </h3></legend> 
+    <fieldset class='secciones'><legend class="ui-widget-content ui-corner-all" align= "center" ><h3>Datos de los Accionistas </h3></legend> 
       <table border="0">
              <tr>
                  <td >
-                     <label ><strong>20). Numero de acciones:</strong></label>
+                     <label ><strong>20). N&uacute;mero de Acciones:</strong></label>
                      <input readonly="readonly" value="<?php echo  $infoplanilla['nuacciones']; ?>" type="text" class="requerido input_sin_borde" name="nacciones" id="nacciones" condicion="number:true"/><strong class="rojo">*</strong>
                  </td>
                  <td>
-                   <label colspan="2"><strong>21).valor de las acciones:</strong></label> 
+                   <label colspan="2"><strong>21).Valor de las Acciones:</strong></label> 
                     <input value="<?php echo  $infoplanilla['valaccion']; ?>" type="text" class="requerido input_sin_borde" name="vacciones" id="vacciones" condicion=" number:true "/><strong class="rojo">*</strong>
                  </td>            
             </tr>
@@ -678,55 +678,55 @@ position: relative;
 <!--       <div class="encabezado ui-widget-header">A). Datos del registro mercatil </div><br />-->
 <fieldset class='secciones'>
     <legend class="ui-widget-content ui-corner-all" align= "center" >
-        <h3>Datos del registro mercatil </h3>
+        <h3>Datos del Registro Mercatil </h3>
     </legend> 
           <table border="0">
               <tr>
                   <td>
-                      <label ><strong>22). Capital suscrito:</strong></label>
+                      <label ><strong>22). Capital Suscrito:</strong></label>
                       <input value="<?php echo  $infoplanilla['capitalsus']; ?>"  type="text" class="requerido input_sin_borde" name="csuscrito" condicion="number:true" id="csuscrito" /><strong class="rojo">*</strong>
                    </td>
                   <td>
-                      <label style=" margin-right: "><strong>23). Capital pagado:</strong></label>
+                      <label style=" margin-right: "><strong>23). Capital Pagado:</strong></label>
                       <input value="<?php echo  $infoplanilla['capitalpag']; ?>" type="text" class="requerido input_sin_borde" condicion="number:true" name="cpagado" condicion=" digits:true " id="cpagado"/><strong class="rojo">*</strong>
                    </td>
                    <td>
-                       <label style=" margin-right: "><strong>24). Oficina registradora:</strong></label>
+                       <label style=" margin-right: "><strong>24). Oficina Registradora:</strong></label>
                        <input value="<?php echo  $infoplanilla['regmerofc']; ?>" type="text" class="requerido input_sin_borde" name="oregistradora" id="oregistradora" /><strong class="rojo">*</strong>
                    </td>
               </tr>
               <tr>
                   <td>
-                      <label ><strong>25).N Registro mercantil:</strong></label>
+                      <label ><strong>25).N&uacute;mero del Registro mercantil:</strong></label>
                       <input value="<?php echo  $infoplanilla['rmnumero']; ?>"  type="text" class="requerido input_sin_borde" name="nrmercantil" id="nrmercantil" /><strong class="rojo">*</strong>
                   </td>
                   <td>
-                      <label ><strong>26).Numero del folio:</strong></label>
+                      <label ><strong>26).N&uacute;mero de Folios:</strong></label>
                       <input value="<?php echo  $infoplanilla['rmfolio']; ?>"  type="text" class=" requerido input_sin_borde" name="nfolio" id="nfolio"  /><strong class="rojo">*</strong>
                   </td>
                   <td>
-                      <label ><strong>27). Numero del tomo:</strong></label>
+                      <label ><strong>27). N&uacute;mero de Tomo:</strong></label>
                        <input value="<?php echo  $infoplanilla['rmtomo']; ?>"  type="text" class="requerido input_sin_borde" name="ntomo" id="ntomo" /><br /><strong class="rojo">*</strong>
                   </td>
                   
              </tr>
              <tr>
                  <td>
-                     <label ><strong>28).Fecha del registro:</strong></label>
-                     <input value="<?php echo  $infoplanilla['rmfechapro']; ?>" type="text" class="requerido input_sin_borde" name="fregistro" condicion="date:true" id="fregistro" /></textarea><strong class="rojo">*</strong>
+                     <label ><strong>28).Fecha de Registro:</strong></label>
+                     <input value="<?php echo  date('d/m/Y',strtotime($infoplanilla['rmfechapro'])); ?>" type="text" class="requerido input_sin_borde" name="fregistro" condicion="date:true" id="fregistro" /></textarea><strong class="rojo">*</strong>
                  </td>
                   <td>
-                     <label ><strong>29). Numero de control:</strong></label>
+                      <label ><strong>29). N&uacute;mero de control:</strong></label>
                      <input value="<?php echo  $infoplanilla['rmncontrol']; ?>" type="text" class="requerido input_sin_borde" name="ncontrol" id="ncontrol" /><strong class="rojo">*</strong>
                  </td>
                   <td>
-                     <label ><strong>30). Objeto de la empresa:</strong></label>
+                     <label ><strong>30). Objeto de la Empresa:</strong></label>
                      <input value="<?php echo  $infoplanilla['rmobjeto']; ?>"  type="text" class="requerido input_sin_borde" name="objempresa" id="objempresa" /></textarea><strong class="rojo">*</strong>
                  </td>
              </tr>
             <tr>
                 <td colspan="3">
-                    <label><strong>32).Domicilio comercial:</strong></label>
+                    <label><strong>32).Domicilio Comercial:</strong></label>
                     <textarea type="text" class="input_sin_borde" style=" width: 95%; float:left;" name="domcomer" id="domcomer"><?php echo  $infoplanilla['domcomer']; ?></textarea>
                 </td>
             </tr>
@@ -736,7 +736,7 @@ position: relative;
 </fieldset>
 <fieldset class='secciones'>
     <legend class="ui-widget-content ui-corner-all" align= "center" >
-        <h3>Indique el tipo de contribuyente</h3>
+        <h3>Tipo de Contribuyente</h3>
     </legend> 
           <table border="0">
               <tr>
@@ -747,13 +747,13 @@ position: relative;
                      <input  type="checkbox" id="tcontribu1" name="tcontribu[]" value="1">
                    </td>
                   <td>
-                      <label ><strong>33).TV señal abierta:</strong></label>
+                      <label ><strong>33).TV Señal Abierta:</strong></label>
                   </td>
                   <td>
                      <input  type="checkbox" id="tcontribu2" name="tcontribu[]" value="2">
                    </td>
                    <td>
-                      <label ><strong>33).TV suscripcion:</strong></label>
+                       <label ><strong>33).TV Suscripci&oacute;n:</strong></label>
                   </td>
                   <td>
                      <input  type="checkbox" id="tcontribu3" name="tcontribu[]" value="3">
@@ -761,19 +761,19 @@ position: relative;
               </tr>
               <tr>
                   <td>
-                      <label ><strong>33).Distribuidores:</strong></label>
+                      <label ><strong>33).Distribuidor:</strong></label>
                   </td>
                   <td>
                      <input  type="checkbox" id="tcontribu4" name="tcontribu[]" value="4">
                    </td>
                   <td>
-                      <label ><strong>33).Venta y alquiler:</strong></label>
+                      <label ><strong>33).Venta y Alquiler:</strong></label>
                   </td>
                   <td>
                      <input  type="checkbox" id="tcontribu5" name="tcontribu[]" value="5">
                    </td>
                   <td>
-                      <label ><strong>33).Servicios para la produccion :</strong></label>
+                      <label ><strong>33).Servicios para la Producci&oacute;n :</strong></label>
                   </td>
                   <td>
                      <input  type="checkbox" id="tcontribu6" name="tcontribu[]" value="6">
@@ -785,11 +785,11 @@ position: relative;
 </fieldset>
     </form><br/>
          <center>
-             <button id="btn_registro_planilla" class="btn">Guardar</button>
+             <button id="btn_registro_planilla" class="btn">Registar Datos</button>
                  <?php
                  if(!empty($infoplanilla['id_contribu'])): 
                      ?>
-                    <button id="btn_imprime_planilla" class="btn">Imprimir</button>
+                    <!--<button id="btn_imprime_planilla" class="btn">Imprimir</button>-->
                          <?php 
                  else:
                      

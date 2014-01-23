@@ -78,18 +78,18 @@ guarda_accionista=function(form,url) {
             <tr>
                 
                 <td colspan="2"> -->
-                    <label><strong>Domicilio fiscal</strong></label><br/>
+                    <label><strong>Domicilio Fiscal</strong></label><br/>
                     <textarea name="dfiscal" id="dfiscal" size="25"  class=" ui-state-highlight ui-corner-all requerido" ></textarea><br />
 <!--                </td>
                   
             </tr>
             <tr>
                 <td>                -->
-                     <label><strong>Cedula de identidad</strong></label>
+                <label><strong>C&eacute;dula</strong></label>
                     <input name="cedula" type="text" id="cedula" size="25" style=" height: 20px; " class=" ui-state-highlight ui-corner-all requerido"/><br /> 
 <!--                </td>
                 <td>-->
-                    <label><strong>Numero de acciones</strong></label>
+                <label><strong>N&uacute;mero de Acciones</strong></label>
                     <input name="nacciones" type="text" id="nacciones" size="25" style=" height: 20px;" class=" ui-state-highlight ui-corner-all requerido" /><br />
                     
 <!--                </td>

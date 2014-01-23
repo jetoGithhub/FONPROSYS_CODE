@@ -35,7 +35,7 @@
 					<td>&nbsp;</td>
 					<td>
 						<table border="0" style="margin-left:320px; font-size: 9px;" cellspacing="0">
-								<tr>
+<!--								<tr>
 									<td>
 										<b>Periodo Grabable:&nbsp;</b>
 									</td>
@@ -57,8 +57,11 @@
 											</tr>
 										</table>
 									</td>
-								</tr>
+								</tr>-->
 								<tr>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									<td>
 										<p><b>Tipo de documento:&nbsp;&nbsp;</b></p>
 									</td>

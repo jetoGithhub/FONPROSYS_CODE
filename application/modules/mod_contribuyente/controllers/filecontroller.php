@@ -73,7 +73,7 @@ class Filecontroller extends CI_Controller {
                     
                     if ($subir) {  // Archivo agregado correctamente a la BD
                         $estatus = true;
-                        $mensaje = 'Archivo subido correctamente';
+                        $mensaje = 'Documento cargado correctamente';
                         
                     
                     } else {    // Si no fue agregado

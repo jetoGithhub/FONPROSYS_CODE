@@ -335,7 +335,7 @@ class Contribuyente_c extends CI_Controller{
                     {
                         $response = array(
                             "success"	=> true,
-                            "message"	=> "Registro Exitoso. En los proximos dias estaremos enviandole un correo electronico para verificar la activacion de su registro."
+                            "message"	=> "Registro Exitoso<br /> En los próximos días estaremos enviándole un correo electronico para verificar la activación de su registro."
                             );
                     }
                     else

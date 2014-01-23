@@ -21,11 +21,11 @@
 	<thead>
 		<tr>
 			<th><input mensaje="Debe cargar el/los accionista(s) de la empresa."style="float:left;width:0px;height:0px;" id="accionagrega" name="accionagrega" type="text" class="requerido"  />#</th>
-			<th>cedula</th>
-                        <th>nombre</th>	
-                        <th>domicilio fiscal</th>	
-                        <th>numero de acciones</th>	
-                        <th>Operaciones</th>
+                        <th>C&eacute;dula</th>
+                        <th>Nombre</th>	
+                        <th>Domicilio Fiscal</th>	
+                        <th>N&uacute;mero de Acciones</th>	
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>
@@ -44,7 +44,7 @@
                         <td>'. $valor["nacciones"].'</td>');
                ?>
                <td>
-                   <button type="button" class="btnveraccionista" id="<?php print($valor["id"]); ?>" title=""></button>
+                   <center><button type="button" class="btnveraccionista" id="<?php print($valor["id"]); ?>" title=""></button></center>
                </td>
                <?php print('</tr>');
                      
@@ -202,7 +202,7 @@ $(".btnveraccionista").click(function(){
 
 //$("#listar-accionista_filter").hide();
 $("#listar-accionista_filter").css('width','100%')
-$("#listar-accionista_filter").html('<div class="" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 100%; ">listado de accionistas activos en la empresa</div>')
+$("#listar-accionista_filter").html('<div class="" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 100%; ">Listado de Accionista de la Empresa</div>')
  
                                 
                                

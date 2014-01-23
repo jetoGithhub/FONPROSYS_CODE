@@ -101,17 +101,17 @@
     }
 </style>
 <br/><br/>
-<fieldset id="sec" class=' ui-widget-content ui-corner-all' style="width: 77%; margin-left: 10%;border:1px solid #654b24;"><legend class="ui-widget-content ui-corner-all"  ><h3>Documentos Complementarios</h3></legend>
+<fieldset id="sec" class=' ui-widget-content ui-corner-all' style="width: 77%; margin-left: 10%;border:1px solid #654b24;"><legend class="ui-widget-content ui-corner-all"  ><h3>Documentos Requeridos</h3></legend>
     
         <table border="0" width="100%">
             <tr>
                 <td width="50%"> 
                     <form action="" method="post" id="uploadFile" >
-                        <label ><strong>Descripcion</strong></label><br/>
+                        <label ><strong>Descripci&oacute;n</strong></label><br/>
                         <input class="requerido" mensaje="Debe especificar la descripcion del archivo" type="text" name="descripcion_archivo" id="descripcion_archivo" size="20"/><br/>
                          <label ><strong>Adjuntar Archivo</strong></label><br/>
-                        <input class="requerido" mensaje="Debe adjuntar el archivo" type="file" id="archivo_adjunto" name="archivo_adjunto" size="14" /><br/><br/>
-                        <button type="button" class="btn_sube" > Cargar Archivo </button>
+                        <input class="requerido" mensaje="Debe Adjuntar el Archivo" type="file" id="archivo_adjunto" name="archivo_adjunto" size="14" /><br/><br/>
+                        <button type="button" class="btn_sube" > Cargar Documento </button>
                         
                     </form>
                                         

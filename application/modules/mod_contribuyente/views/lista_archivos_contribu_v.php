@@ -7,7 +7,7 @@
 </style>
 
     
-    <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Lista de archivos cargados</div>
+    <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Lista de Documentos</div>
     <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar-archivos" width="">
 	<thead>
 		<tr>
@@ -16,7 +16,7 @@
                         <th>Descripción</th>	
                         <th>Fecha</th>	
                         
-                        <th>Accion</th>
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>
@@ -32,7 +32,7 @@
                         <td><img  src="<?php print(base_url().$text_ruta); ?>" /> </td>
                         <td><?php print($valor["descripcion"]); ?></td>
                         
-                        <td><?php print($valor["fecha"]); ?></td>
+                        <td><?php print(date('d/m/Y',strtotime($valor["fecha"]))); ?></td>
                         <td>
                             <a  title="Descargar" href="<?php print($descarga_ruta); ?>" class="btn_descarga_archivo" download="<?php print($descarga_ruta); ?>"></a>
                             <button title="Eliminar" id="<?php print($valor["id"]); ?>" class="btn_elimina_archivo" onclick="elimina_archivo_img(this.id,'<?php print(base_url()); ?>index.php/mod_contribuyente/filecontroller/archivo_elimina/')"></button>

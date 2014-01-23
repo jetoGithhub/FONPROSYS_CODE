@@ -36,8 +36,8 @@
  </script>
 <style>
       #contenedor-frmdeclara{
-      width: 700px;
-      left:10%;
+      width: 500px;
+      left:20%;
       margin-top:50px;
       position: relative;
       /*background:#CFCFCF;*/
@@ -92,10 +92,10 @@
 <div id="contenedor-frmdeclara"  class="ui-widget-content ui-corner-all"  >
   
 <!--<form id="frmdeclara">-->    
-    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>FORMULARIO PARA DECLARACIONES</h4></legend><br />
+    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24; font-size: 10px" align="center"><h4>FORMULARIO PARA DECLARACIONES</h4></legend><br />
 
         
-        <table id="tdeclara" style=" border-top: 2px solid; border-top-color: darkgray; width: 60%; margin-left: 20%" class="ui-corner-top">
+        <table id="tdeclara" style=" border-top: 2px solid; border-top-color: darkgray; width:300px; margin-left: 20%" class="ui-corner-top">
             <tr >
                 <td class="linea-right">
                     <label><strong>N&deg; de declaracion:</strong></label><br />   
@@ -126,12 +126,12 @@
                 </td>
                 
             </tr>
-            <tr id="anio-declara">
+<!--            <tr id="anio-declara">
                 <td class="linea-right">
                     <label><strong>Inicio periodo gravable:</strong></label><br />
                 </td>
                 <td>
-                   <strong><?php echo $fechaini ?></strong>  
+                   <strong><?php // echo $fechaini ?></strong>  
                 </td>
             
             </tr>
@@ -140,10 +140,10 @@
                      <label><strong>Fin periodo gravable:</strong></label><br />
                 </td>
                 <td class="">
-                     <strong><?php echo $fechafin ?></strong>
+                     <strong><?php // echo $fechafin ?></strong>
                 </td>
                 
-            </tr>
+            </tr>-->
             <tr>
                 <td class="linea-right">
                      <label><strong>Base imponible:</strong></label><br />
