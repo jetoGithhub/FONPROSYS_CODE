@@ -95,5 +95,11 @@
                                             "sSearch": "Buscar:"
 
                                             }
-                        });    
+                        });
+                        
+ $("#btn_excel_recau_principal").click(function(){
+   
+    //    alert($("#busca_rise").serialize()+'&tipo='+tipo);
+   window.location='<?php echo base_url()."index.php/mod_reportes/reportes_recaudacion_c/genera_excel_reporte_recaudacion?&anio="?>'+$("#anio_recau").val();
+})                       
 </script>

@@ -245,6 +245,34 @@ class Reportes_recaudacion_c extends CI_Controller {
             echo json_encode(array('resultado'=>true,'html'=>$html));
             
         }
+        
+        function genera_excel_reporte_recaudacion(){
+             $anio=$this->input->get('anio');
+             $cabecera=array('A'=>'MES',
+                            'B'=>'META AÑO'.$anio,
+                            'C'=>'EXHIBIDORES',
+                            'D'=> 'SEÑAL ABIERTA',
+                            'E'=>'TV SUSCRIPCION',
+                            'F'=>'DISTRIBUIDORES',
+                            'G'=>'VENTA Y ALQUILER DE VIDEOGRAMAS',
+                            'H'=>'PRODUCTORES',
+                            'I'=>'RECAUDADO MENSUAL Bs F',
+                            'J'=>'INTERES MORATORIO RISE',
+                            'K'=>'INTERES FINANCIAMIENTO',
+                            'L'=>'INTERES MORATORIOS RC',
+                            'M'=>'INTERES EN CUENTA',
+                            'N'=>'REPAROS FISCALES A.F.',
+                            'O'=>'REPAROS FISCALES R.C.',
+                            'P'=>'DEPOSITOS SIN IDENTIFICAR',
+                            'Q'=>'DEPOSITOS IDENTIFICADOS',
+                            'R'=>'EGRESO POR COMISIONES BANCARIAS',
+                            'S'=>'RECAUDACION',
+                            'T'=>'% CUMPLIMIENTO MENSUAL',
+                          );
+            $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>  $anio));
+            $datos=  $this->ordena_datos_reporte_principal($data);
+             $this->reportes_excel->genera_excel_recaudacion($datos,$cabecera);
+        }
       
         
 }
