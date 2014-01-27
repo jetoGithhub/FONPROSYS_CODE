@@ -28,6 +28,16 @@ class Reportes_recaudacion_m extends CI_Model{
             return ($query->num_rows()>0 ? $query->result_array() : array());
         
     }
+    function datos_reporte_principal_recaudacion($where)
+    {
+        $this->db
+                   ->select("*")                
+                    ->from("datos.vista_reporte_principal_recaudacion")
+                   ->where($where);        
+           
+            $query = $this->db->get();
+            return ($query->num_rows()>0 ? $query->result_array() : array());
+    }
 
     
 }

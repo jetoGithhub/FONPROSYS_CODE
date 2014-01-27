@@ -161,6 +161,118 @@ class Reportes_recaudacion_c extends CI_Controller {
             
         }
         
+        function reporte_principal_recaudacion()
+        {
+            $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>date('Y')));
+            $datos['data']=  $this->ordena_datos_reporte_principal($data);
+            $table['table']=$this->load->view('busqueda_reporte_pricipal_recau_v',$datos,true);
+//            print_r($datos);die;
+            $this->load->view('reporte_principal_recaudacion_v',$table);
+            
+        }
+        
+        private function ordena_datos_reporte_principal($array)
+        {
+            $meses=array('01','02','03','04','05','06','07','08','09','10','11','12');
+            $data=array();
+            if((!empty($array)) && (is_array($array))):
+                // limpio el arreglo dejando solo los mese con sus valores
+                    foreach ($array as $key => $value) {
+
+                        $data[$value['mes']]=array(
+                                                    'exhibidores'=>(empty($value['tot_1'])? 0 : $value['tot_1']),
+                                                    'tvAbierta'=>(empty($value['tot_2'])? 0 : $value['tot_2']),
+                                                    'tvSuscrip'=>(empty($value['tot_3'])? 0 : $value['tot_3']),
+                                                    'distribuidores'=>(empty($value['tot_4'])? 0 : $value['tot_4']),
+                                                    'ventaAlquiler'=>(empty($value['tot_5'])? 0 : $value['tot_5']),
+                                                    'servProduccion'=>(empty($value['tot_6'])? 0 : $value['tot_6']),
+                                                    'total_autoli'=>(empty($value['tot_anio'])? 0 : $value['tot_anio']),
+                                                    'interise'=>(empty($value['interes_rise'])? 0 : $value['interes_rise']),
+                                                    'interesrc'=>(empty($value['interes_rc'])? 0 : $value['interes_rc']),
+                                                    'reparosaf'=>(empty($value['total_af'])? 0 : $value['total_af']),
+                                                    'reparosrc'=>(empty($value['reparos_rc'])? 0 : $value['reparos_rc']),
+                                                    );
+
+                    }
+                    //obtengo las claves de los valores del arreglo meses que existen en el arreglo data 
+                    foreach ($data as $key => $value) {
+
+                        foreach ($meses as $key2=>$mes) {
+                            if($key==$mes):
+                                $claves[]=$key2;
+                            endif;
+                        }
+
+                    }
+                    //elimino los meses del arreglo meses que existen en el arreglo data
+                    foreach ($claves as $remove) {
+                        unset($meses[$remove]);
+
+                    }
+                    // con los mese que quedaron despues de la eliminacion armo los valores por defecto para los demas meses
+                    if(!empty($meses)):
+                        foreach ($meses as $key => $value) {
+                            $data[$value]=array(
+                                                    'exhibidores'=>0,
+                                                    'tvAbierta'=>0,
+                                                    'tvSuscrip'=>0,
+                                                    'distribuidores'=>0,
+                                                    'ventaAlquiler'=>0,
+                                                    'servProduccion'=>0,
+                                                    'total_autoli'=>0,
+                                                    'interise'=>0,
+                                                    'interesrc'=>0,
+                                                    'reparosaf'=>0,
+                                                    'reparosrc'=>0,
+                                                    ); 
+                        } 
+                        
+                        
+                    endif;
+                    
+                  
+               endif;
+               // ordeno el arreglo por sus claves de menor a mayor antes de retornarlo
+               ksort($data);
+            return $data;
+            
+        }
+        function buscar_reporte_recaudacion()
+        {
+             $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>  $this->input->post('anio')));
+            $datos['data']=  $this->ordena_datos_reporte_principal($data);
+            $html=$this->load->view('busqueda_reporte_pricipal_recau_v',$datos,true);
+            echo json_encode(array('resultado'=>true,'html'=>$html));
+            
+        }
+        
+        function genera_excel_reporte_recaudacion(){
+             $anio=$this->input->get('anio');
+             $cabecera=array('A'=>'MES',
+                            'B'=>'META AÑO'.$anio,
+                            'C'=>'EXHIBIDORES',
+                            'D'=> 'SEÑAL ABIERTA',
+                            'E'=>'TV SUSCRIPCION',
+                            'F'=>'DISTRIBUIDORES',
+                            'G'=>'VENTA Y ALQUILER DE VIDEOGRAMAS',
+                            'H'=>'PRODUCTORES',
+                            'I'=>'RECAUDADO MENSUAL Bs F',
+                            'J'=>'INTERES MORATORIO RISE',
+                            'K'=>'INTERES FINANCIAMIENTO',
+                            'L'=>'INTERES MORATORIOS RC',
+                            'M'=>'INTERES EN CUENTA',
+                            'N'=>'REPAROS FISCALES A.F.',
+                            'O'=>'REPAROS FISCALES R.C.',
+                            'P'=>'DEPOSITOS SIN IDENTIFICAR',
+                            'Q'=>'DEPOSITOS IDENTIFICADOS',
+                            'R'=>'EGRESO POR COMISIONES BANCARIAS',
+                            'S'=>'RECAUDACION',
+                            'T'=>'% CUMPLIMIENTO MENSUAL',
+                          );
+            $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>  $anio));
+            $datos=  $this->ordena_datos_reporte_principal($data);
+             $this->reportes_excel->genera_excel_recaudacion($datos,$cabecera);
+        }
       
         
 }

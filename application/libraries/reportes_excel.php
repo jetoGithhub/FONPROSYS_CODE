@@ -158,6 +158,109 @@ class Reportes_excel {
                 );
         return $estilo_cabecera;
     }
+    
+    function genera_excel_recaudacion($array,$cabecera)
+    {
+       $estilo1=$this->estilo_encabezado();   
+        $estilo2=$this->estilo_cabecera();
+     
+        $objecto_excel= new PHPExcel();   
+        $objecto_excel->getActiveSheet()->getHeaderFooter()->setOddHeader('&L&G');           
+//        $objecto_excel->getActiveSheet()->setTitle('RISE');
+
+        // Establecer propiedades
+        $objecto_excel->getProperties()
+         ->setCreator("Fonprocine")
+         ->setLastModifiedBy("Fonprocine")
+         ->setTitle('Recaudacion en el año')
+         ->setSubject('Recaudacion en el año')
+         ->setKeywords("Excel Office 2007 openxml php")
+         ->setCategory('Recaudacion en el año'); 
+       // datos del encabezado titulo
+        $objecto_excel->setActiveSheetIndex(0)->setCellValue('A2','Gerencia de Recaudación Tributaria');
+        $objecto_excel->setActiveSheetIndex(0)->setCellValue('A3','Fondo de Promoción y Financiamiento del Cine (FONPROCINE)');
+        $objecto_excel->setActiveSheetIndex(0)->setCellValue('A4','Centro Nacional Autónomo de Cinematografía (CNAC)');
+        $objecto_excel->setActiveSheetIndex(0)->setCellValue('A5','Recaudación');
+        
+        //unimos las celdas necesarias 
+         $objecto_excel->getActiveSheet()->mergeCells('A2'.':F2');
+         $objecto_excel->getActiveSheet()->mergeCells('A3'.':F3');
+         $objecto_excel->getActiveSheet()->mergeCells('A4'.':F4');
+         $objecto_excel->getActiveSheet()->mergeCells('A5'.':F5');
+            
+            $objecto_excel->getActiveSheet()->mergeCells('A2:F2');
+            $objecto_excel->getActiveSheet()->mergeCells('A3:F3');
+            $objecto_excel->getActiveSheet()->mergeCells('A4:F4');
+            $objecto_excel->getActiveSheet()->mergeCells('A5:F5');
+            
+        // le aplicamos el estilo a las celda A
+         $objecto_excel->getActiveSheet()->getStyle('A2')->applyFromArray($estilo1);
+         $objecto_excel->getActiveSheet()->getStyle('A3')->applyFromArray($estilo1);
+         $objecto_excel->getActiveSheet()->getStyle('A4')->applyFromArray($estilo1);
+         $objecto_excel->getActiveSheet()->getStyle('A5')->applyFromArray($estilo1);
+         // aramamos Encabezado de los datos     
+            foreach ($cabecera as $key=>$value)
+            {
+
+              $objecto_excel->setActiveSheetIndex(0)->setCellValue($key.'7',$value);
+
+              $objecto_excel->getActiveSheet()->getStyle($key.'7')->applyFromArray($estilo2);
+
+    //          $objecto_excel->getActiveSheet()->getColumnDimension($key)->setAutoSize(true);
+              $objecto_excel->getActiveSheet()->getColumnDimension($key)->setWidth(15);
+            }
+            // colocamos el ancho de la fila de cabecera
+             $objecto_excel->getActiveSheet()->getRowDimension(7)->setRowHeight(30);
+             $objecto_excel->setActiveSheetIndex(0);
+             
+             //cuerpo
+             $estilo_cuerpo=array(
+               'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_DASHDOT,
+                       ),
+                    )  
+             );
+             $fila=8;
+             foreach ($array as $key => $value) {
+                       
+                 $objecto_excel->setActiveSheetIndex(0)->setCellValue('A'.$fila,$this->usoci->funciones_complemento->devuelve_meses_text($key,2));
+                 $objecto_excel->setActiveSheetIndex(0)->setCellValue('C'.$fila,($value['exhibidores']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['exhibidores'])));
+                  $objecto_excel->setActiveSheetIndex(0)->setCellValue('D'.$fila,($value['tvAbierta']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['tvAbierta'])));
+                   $objecto_excel->setActiveSheetIndex(0)->setCellValue('E'.$fila,($value['tvSuscrip']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['tvSuscrip'])));
+                    $objecto_excel->setActiveSheetIndex(0)->setCellValue('F'.$fila,($value['distribuidores']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['distribuidores'])));
+                     $objecto_excel->setActiveSheetIndex(0)->setCellValue('G'.$fila,($value['ventaAlquiler']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['ventaAlquiler'])));
+                      $objecto_excel->setActiveSheetIndex(0)->setCellValue('H'.$fila,($value['servProduccion']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['servProduccion'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('I'.$fila,($value['total_autoli']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['total_autoli'])));
+                  
+                 $objecto_excel->getActiveSheet()->getRowDimension($fila)->setRowHeight(15);
+                 $objecto_excel->getActiveSheet()->getStyle('A'.$fila.':T'.$fila)->applyFromArray($estilo_cuerpo);
+                 $fila++;
+                
+//                 echo"<tr>
+//                                <td id='meses'>".$this->funciones_complemento->devuelve_meses_text($key,2)."</td>
+//                                <td class='montos' >".($value['exhibidores']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['exhibidores']))."</td>
+//                                <td class='montos' >".($value['tvAbierta']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['tvAbierta']))."</td>
+//                                <td class='montos' >".($value['tvSuscrip']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['tvSuscrip']))."</td>
+//                                <td class='montos' >".($value['distribuidores']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['distribuidores']))."</td>
+//                                <td class='montos' >".($value['ventaAlquiler']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['ventaAlquiler']))."</td>
+//                                <td class='montos' >".($value['servProduccion']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['servProduccion']))."</td>
+//                                <td class='montos' >".($value['total_autoli']==0? '0,00':$this->funciones_complemento->devuelve_cifras_unidades_mil($value['total_autoli']))."</td>   
+//                                   
+//                            </tr>";
+             }
+             
+             
+             
+       
+          // Se modifican los encabezados del HTTP para indicar que se envia un archivo de Excel.
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="reportes de resolucion de multa por extemporaneidad.xlsx"');
+            header('Cache-Control: max-age=0');
+            $objWriter = PHPExcel_IOFactory::createWriter($objecto_excel, 'Excel2007');
+            $objWriter->save('php://output');
+        exit;  
+    }
    
    
    
