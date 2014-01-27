@@ -47,7 +47,7 @@ $(".cargar_pago").click(function(){
             html+="<label>Fecha del deposito</label>";
             html+="<input type='text' name='fdeposito' id='fdeposito' class=' fecha requerido ui-widget-content ui-corner-all' />";
             html+="<label>Nombre del Banco</label>";       
-            html+="<select id='bancos' name='bancos' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value);' ><option value='' selected='selected'>Seleccione</option></select>";
+            html+="<select id='bancos' name='bancos' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value,1);' ><option value='' selected='selected'>Seleccione</option></select>";
             html+="<label>Numero de cuenta</label>";       
             html+="<select id='cuentas' name='cuentas' class='requerido ui-corner-all ui-widget-content' ><option value='' selected='selected'>Seleccione</option></select>";
             if((tipo_pago!=1) && (tipo_pago!=2)){
@@ -57,7 +57,7 @@ $(".cargar_pago").click(function(){
                 html+="<label>Fecha del deposito</label>";
                 html+="<input type='text' name='fdepositoi' id='fdepositoi' class='fecha requerido ui-widget-content ui-corner-all' />";
                 html+="<label>Nombre del Banco</label>";       
-                html+="<select id='bancosi' name='bancosi' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value);' ><option value='' selected='selected'>Seleccione</option></select>";
+                html+="<select id='bancosi' name='bancosi' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value,2);' ><option value='' selected='selected'>Seleccione</option></select>";
                 html+="<label>Numero de cuenta</label>";       
                 html+="<select id='cuentasi' name='cuentasi' class='requerido ui-corner-all ui-widget-content' ><option value='' selected='selected'>Seleccione</option></select>";
             
@@ -102,14 +102,18 @@ $(".cargar_pago").click(function(){
     validador('frm_carga_pago','<?php echo base_url()."index.php/mod_contribuyente/gestion_pagos_c/cargar_pago"?>','cargar_pago');
 });
 
-numero_cuenta=function(id){
+numero_cuenta=function(id,iden){
      $.ajax({
          type:"post",
          dataType:"json",
          url:"<?php echo base_url().'index.php/mod_contribuyente/gestion_pagos_c/numero_cuentas/'?>"+id,
          success:function(data){
-           
+                if(iden==1){
                 $("#cuentas").html(data.html);
+                }else{
+                    
+                    $("#cuentasi").html(data.html);
+                }
              }
 
                   
