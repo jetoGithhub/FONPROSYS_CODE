@@ -144,14 +144,14 @@
 $("#btn_excel_conciliados").click(function(){
    
     var tipo;
-    $("#table-busqueda-rise input[type=radio]").each(function(i) { 
+    $("#table-busqueda-concilio input[type=radio]").each(function(i) { 
         if($(this).is(':checked')){
              tipo=$(this).val();
        }
 
     });
 //    alert($("#busca_rise").serialize()+'&tipo='+tipo);
-   window.location='<?php echo base_url()."index.php/mod_reportes/reportes_recaudacion_c/generar_reporte_rise?"?>'+$("#busca_rise").serialize()+'&tipo='+tipo;
+   window.location='<?php echo base_url()."index.php/mod_reportes/reportes_concilios_bancarios_c/generar_excel_concilio?"?>'+$("#busca_concilio").serialize()+'&tipo='+tipo;
 });
 
 
