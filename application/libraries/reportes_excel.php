@@ -96,7 +96,7 @@ class Reportes_excel {
              
                 $fila ++; 
              }
-              
+             
                  
              
              
@@ -128,10 +128,11 @@ class Reportes_excel {
     {
         $estilo_cabecera=array(
                 'font' => array(
-                    'bold' => false,
+                    'bold' => TRUE,
                     'color'=>array('rgb'=>'FFFFFF'),
-                    'size'	  => '10',
+                    'size'	  => '9',
                     'name'	  => 'Arial',
+                    
                     ),
                 
                 //borde delgado
@@ -142,7 +143,7 @@ class Reportes_excel {
                     ),
                 'alignment' => array(
                     'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_JUSTIFY,
                     ),
                 'fill' => array(
                     'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
@@ -151,7 +152,7 @@ class Reportes_excel {
                         'argb' => '800000',
                         ),
                     'endcolor' => array(
-                        'argb' => '000000',
+                        'argb' => '800000',
                         ),
                     ),
                    
@@ -159,7 +160,7 @@ class Reportes_excel {
         return $estilo_cabecera;
     }
     
-    function genera_excel_recaudacion($array,$cabecera)
+    function genera_excel_recaudacion($array,$cabecera,$anio,$recau_poranio)
     {
        $estilo1=$this->estilo_encabezado();   
         $estilo2=$this->estilo_cabecera();
@@ -206,24 +207,51 @@ class Reportes_excel {
 
               $objecto_excel->getActiveSheet()->getStyle($key.'7')->applyFromArray($estilo2);
 
-    //          $objecto_excel->getActiveSheet()->getColumnDimension($key)->setAutoSize(true);
-              $objecto_excel->getActiveSheet()->getColumnDimension($key)->setWidth(15);
+//              $objecto_excel->getActiveSheet()->getColumnDimension($key)->setAutoSize(true);
+//              $objecto_excel->getActiveSheet()->getColumnDimension($key)->setWidth(10);
             }
+            $objecto_excel->getActiveSheet()->getColumnDimension('A')->setWidth(19);
+            $objecto_excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('G')->setWidth(12);
+            $objecto_excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('L')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('M')->setWidth(8);
+            $objecto_excel->getActiveSheet()->getColumnDimension('N')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('O')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('P')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('Q')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('R')->setWidth(10);
+            $objecto_excel->getActiveSheet()->getColumnDimension('S')->setWidth(15);
+            $objecto_excel->getActiveSheet()->getColumnDimension('T')->setWidth(12);
+
+            
             // colocamos el ancho de la fila de cabecera
-             $objecto_excel->getActiveSheet()->getRowDimension(7)->setRowHeight(30);
+             $objecto_excel->getActiveSheet()->getRowDimension(7)->setRowHeight(35);
              $objecto_excel->setActiveSheetIndex(0);
              
              //cuerpo
              $estilo_cuerpo=array(
                'borders' => array(
                     'allborders' => array(
-                        'style' => PHPExcel_Style_Border::BORDER_DASHDOT,
+                        'style' => PHPExcel_Style_Border::BORDER_HAIR,
                        ),
                     )  
              );
+             $estilo_filaA=array(
+                'font' => array(
+                    'bold' => true)
+                 );
              $fila=8;
+             
              foreach ($array as $key => $value) {
-                       
+                      
                  $objecto_excel->setActiveSheetIndex(0)->setCellValue('A'.$fila,$this->usoci->funciones_complemento->devuelve_meses_text($key,2));
                  $objecto_excel->setActiveSheetIndex(0)->setCellValue('C'.$fila,($value['exhibidores']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['exhibidores'])));
                   $objecto_excel->setActiveSheetIndex(0)->setCellValue('D'.$fila,($value['tvAbierta']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['tvAbierta'])));
@@ -235,6 +263,7 @@ class Reportes_excel {
                   
                  $objecto_excel->getActiveSheet()->getRowDimension($fila)->setRowHeight(15);
                  $objecto_excel->getActiveSheet()->getStyle('A'.$fila.':T'.$fila)->applyFromArray($estilo_cuerpo);
+                 $objecto_excel->getActiveSheet()->getStyle('A8:A19')->applyFromArray($estilo_filaA);
                  $fila++;
                 
 //                 echo"<tr>
@@ -249,7 +278,195 @@ class Reportes_excel {
 //                                   
 //                            </tr>";
              }
+             //LEYENDA
+             $estilo_total=array(
+                            'font' => array(
+                                'bold' => true),
+                            'alignment' => array(
+                               'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                               'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                               )
+                        );
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A20','TOTAL');
+             $objecto_excel->getActiveSheet()->getStyle('A20')->applyFromArray($estilo_total);
              
+             $estilo_leyenda=array('font' => array(
+                    'bold' => FALSE,
+                    'size'	  => '8',
+                    'name'	  => 'Arial',)
+                 );
+             
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A22','LEYENDA');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A23','RISE');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B23','Resolución de Imposición de Sanción por Extemporaneidad (RISE)');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A24','RC');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B24','Resolución Culminatoria');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A25','A.F.');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B25','Acta Fiscal');
+             $objecto_excel->getActiveSheet()->getStyle('A22:A25')->applyFromArray($estilo_leyenda);
+             $objecto_excel->getActiveSheet()->getStyle('B22:B25')->applyFromArray($estilo_leyenda);
+             
+             //cuadro de metas
+             $estilo_metas=array(
+                 'font' => array(
+                    'bold' => true,
+                    'size'	  => '10',
+                    'name'	  => 'Arial'
+                     ),
+                 'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_HAIR,
+                       ),
+                    ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_JUSTIFY,
+                    ),
+             );
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A27','Plan de la Cinematografía Nacional Año '.$anio);
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B27','');
+             $objecto_excel->getActiveSheet()->getRowDimension(27)->setRowHeight(40);
+             
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A28','Ingresos acumulados Año '.$anio);
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B28','');
+             $objecto_excel->getActiveSheet()->getRowDimension(28)->setRowHeight(25);
+             
+             $objecto_excel->getActiveSheet()->getStyle('A29:B29')->applyFromArray($estilo2);
+             
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A30','Cumplimiento en %');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B30','');
+             
+             $objecto_excel->getActiveSheet()->getStyle('A27:A30')->applyFromArray($estilo_metas);
+             $objecto_excel->getActiveSheet()->getStyle('B27:B30')->applyFromArray($estilo_metas);
+             
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A32','EXCEDENTE');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('B32','');
+             
+             $objecto_excel->getActiveSheet()->getStyle('A32:B32')->applyFromArray($estilo_metas);
+             
+             // totalizacion por años
+                //enxcabezado tabla con los meses
+             $estilo4=array(
+                'font' => array(
+                    'bold' => TRUE,
+                    'color'=>array('rgb'=>'FFFFFF'),
+                    'size'	  => '6',
+                    'name'	  => 'Arial',
+                    
+                    ),
+                
+                //borde delgado
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_HAIR,
+                       ),
+                    ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_JUSTIFY,
+                    ),
+                'fill' => array(
+                    'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+                    'rotation' => 90,
+                    'startcolor' => array(
+                        'argb' => '800000',
+                        ),
+                    'endcolor' => array(
+                        'argb' => '800000',
+                        ),
+                    ),
+                   
+                );
+             $columnas = array('A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q','R','S','T','U','V','w','x','Y','Z');
+             
+             $fila2=36;
+             $fila3=37;
+             $col=1;
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A36','MES');
+             $objecto_excel->getActiveSheet()->getStyle('A36')->applyFromArray($estilo4);
+             for($i=2006;$i<=date('Y');$i++){
+                
+                 $objecto_excel->setActiveSheetIndex(0)->setCellValue($columnas[$col].$fila2,'RECAUDACION'.$i);
+                 $objecto_excel->getActiveSheet()->getStyle($columnas[$col].$fila2)->applyFromArray($estilo4);
+                 $col++;
+                 $colum_final=$columnas[$col];
+             }
+             //CUERPO TABLE CON LOS MESES RECAUDADO POR AÑO
+             $estilo5=array(
+                 'font' => array(
+                    'bold' => true,
+                    'size'	  => '6',
+                    'name'	  => 'Arial'
+                     ),
+                 'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_HAIR,
+                       ),
+                    ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_JUSTIFY,
+                    ),
+             );
+             $estiloMes=array(
+                 'font' => array(
+                    'bold' => true,
+                    'size'	  => '6',
+                    'name'	  => 'Arial'
+                     ),
+                 'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_HAIR,
+                       ),
+                    ),
+                 'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_JUSTIFY,
+                    ),
+                 );
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A37','ENERO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A38','FEBRERO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A39','MARZO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A40','ABRIL');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A41','MAYO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A42','JUNIO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A43','JULIO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A44','AGOSTO');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A45','SEPTIEMBRE');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A46','OCTUBRE');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A47','NOVIEMBRE');
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A48','DICIEMBRE');
+             $objecto_excel->getActiveSheet()->getStyle('A37:A48')->applyFromArray($estiloMes);
+             $objecto_excel->getActiveSheet()->getStyle('B37:'.$colum_final.'48')->applyFromArray($estilo5);
+            
+             // lleno los montos por cada mes y cada anio
+             $meses=array('37'=>'01','38'=>'02',"39"=>'03',"40"=>'04',"41"=>'05',"42"=>'06',"43"=>'07',"44"=>'08',"45"=>'09',"46"=>'10',"47"=>'11',"48"=>'12');
+             for($i=2006;$i<=date('Y');$i++){
+                 
+                 foreach ($recau_poranio as $key => $value) {
+                 if($key==$i):
+                     foreach ($value as $key2 => $value2) {
+                         foreach ($meses as  $key3=>$mes) {
+                             
+                             if($mes==$key2):
+                               $objecto_excel->setActiveSheetIndex(0)->setCellValue('B38',$value2[0].'--'.$columnas[$col]); 
+                            
+                             endif;
+                             
+                         }
+                         
+                     }
+                 endif; 
+                     
+               
+                 } 
+                 $col++;
+                
+             }
+            
+             
+             
+             $objecto_excel->getActiveSheet()->setTitle('RECAUDACION'); 
              
              
        

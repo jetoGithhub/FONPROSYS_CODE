@@ -38,6 +38,14 @@ class Reportes_recaudacion_m extends CI_Model{
             $query = $this->db->get();
             return ($query->num_rows()>0 ? $query->result_array() : array());
     }
-
+    function total_recaudacion_poranio()
+    {
+        $this->db
+                   ->select("*")                
+                    ->from("datos.vista_total_recaudacion_poranio");
+           
+            $query = $this->db->get();
+            return ($query->num_rows()>0 ? $query->result_array() : array());
+    }
     
 }

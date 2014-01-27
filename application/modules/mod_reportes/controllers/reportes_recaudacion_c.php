@@ -166,7 +166,7 @@ class Reportes_recaudacion_c extends CI_Controller {
             $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>date('Y')));
             $datos['data']=  $this->ordena_datos_reporte_principal($data);
             $table['table']=$this->load->view('busqueda_reporte_pricipal_recau_v',$datos,true);
-//            print_r($datos);die;
+            
             $this->load->view('reporte_principal_recaudacion_v',$table);
             
         }
@@ -256,7 +256,7 @@ class Reportes_recaudacion_c extends CI_Controller {
                             'F'=>'DISTRIBUIDORES',
                             'G'=>'VENTA Y ALQUILER DE VIDEOGRAMAS',
                             'H'=>'PRODUCTORES',
-                            'I'=>'RECAUDADO MENSUAL Bs F',
+                            'I'=>'RECAUDADO MENSUAL EN Bs F',
                             'J'=>'INTERES MORATORIO RISE',
                             'K'=>'INTERES FINANCIAMIENTO',
                             'L'=>'INTERES MORATORIOS RC',
@@ -271,7 +271,29 @@ class Reportes_recaudacion_c extends CI_Controller {
                           );
             $data=  $this->reportes_recaudacion_m->datos_reporte_principal_recaudacion(array('anio'=>  $anio));
             $datos=  $this->ordena_datos_reporte_principal($data);
-             $this->reportes_excel->genera_excel_recaudacion($datos,$cabecera);
+            $total_anio=  $this->reportes_recaudacion_m->total_recaudacion_poranio();
+            $total_sumado=  $this->ordena_tatales_poranio($total_anio);
+             $this->reportes_excel->genera_excel_recaudacion($datos,$cabecera,$anio,$total_sumado);
+        }
+        
+        private function ordena_tatales_poranio($array)
+        {
+            
+            if( (!empty($array)) && (is_array($array)) ):
+                
+                foreach ($array as $key => $anios) {
+                 
+                   $data[$anios['anio']][$anios['mes']]=array(($anios['total_declara']+$anios['total_multas']+$anios['total_interes']));
+                }
+                 
+                
+                
+                else:
+                
+                $data=array();
+            endif;
+                
+            return $data;     
         }
       
         
