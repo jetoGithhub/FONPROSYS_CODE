@@ -132,10 +132,10 @@
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Numero de Rif</th>
-            <th>Razon Social</th>			
-            <th>Opciones</th>
-        </tr>
+			<th>RIF</th>
+                        <th>Raz&oacute;n Social</th>			
+                        <th>Opciones</th>
+                </tr>
 	</thead>
 	<tbody>
            <?

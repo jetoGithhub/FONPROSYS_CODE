@@ -34,18 +34,18 @@
 };
  </script>
 <div id="espera_repa_culmi"></div>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Listado de reparos con escritos de desacargos</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Listado de Reparos con Escritos de Descargos</div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display usuario" id="listar-descrepa" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-                        <th>Rif</th>
-			<th>Razon social</th>
-                        <th>Tipo de contribuyente</th>
-			<th>Fecha de reparo</th>
-			<th>Notificacion del reparo</th>
-                        <th>Fecha de descargos</th>
+                        <th>RIF</th>
+                        <th>Raz&oacute;n social</th>
+                        <th>Tipo de Contribuyente</th>
+			<th>Fecha de Reparo</th>
+			<th>Notificaci&oacute;n del Reparo</th>
+                        <th>Fecha de Descargos</th>
                         <th>Compareciente</th>
                         <th>Opciones</th> 
                 </tr>

@@ -198,7 +198,7 @@ espera_cargando_notificacion_rise();// mensage de espera
     <button id="btn_excel" style=" width: auto; height: 25px; border: none">Hoja calculo</button>
 
 </div>       -->
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 70%; margin-left: 12%;">Listado de Multas por Pagos Extemporaneos</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 70%; margin-left: 12%;">Listado de Multas por Pagos Extemporáneos</div>
 
    
 <div id="listado_multas_recaudacion">
@@ -206,19 +206,19 @@ espera_cargando_notificacion_rise();// mensage de espera
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Numero de Rif</th>
-                        <th>Razon Social</th>
-                        <th>Tipo de Contribuyente</th>
+			<th>RIF</th>
+                        <th>Razón Social </th>
+                        <th>Tipo de Contribuyente </th>
                         <!--<th>Estado</th>-->
                         <?php if($estatus=='aprobado' or $estatus=='negado' ): 
-                            echo "<th>Añio</th>
-                                 <th>Periodo</th>";  
+                            echo "<th>A&ntilde;o</th>
+                                 <th>Per&iacute;odo</th>";  
                         endif;
                         if($estatus=='enviado'):
                             echo "<th>Fecha envio</th>";
                         endif;
                         ?>
-                        <th>Operaciones</th>
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>

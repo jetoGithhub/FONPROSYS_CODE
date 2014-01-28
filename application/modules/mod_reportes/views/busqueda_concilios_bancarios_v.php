@@ -83,17 +83,17 @@
 </style>
 <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Reportes de Conciliacion Bancaria </div>
     <center>
-        <div><center><p><b>Indique el tipo de busquedad</b></p></center></div>
+        <div><center><p><b>Indique el T&iacute;po de B&uacute;squeda</b></p></center></div>
         <table id="table-busqueda-concilio"  class="form-style">
                <tr>
                    <td>
                         <div class="radio" id="content-busqueda-simple">
-                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='0' id="busqueda-simple" name="busqueda" /><label for="busqueda-simple"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>Busqueda Simple</label>
+                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='0' id="busqueda-simple" name="busqueda" /><label for="busqueda-simple"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>B&uacute;squeda Simple</label>
                        </div>
                    </td>
                    <td>
                         <div class="radio" id="content-busqueda-avanzada">
-                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='1' id="busqueda-avanzada" name="busqueda" /><label for="busqueda-avanzada"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>Busqueda Avanzada</label>
+                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='1' id="busqueda-avanzada" name="busqueda" /><label for="busqueda-avanzada"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>B&uacute;squeda Avanzada</label>
                        </div>
                    </td>
 
@@ -115,7 +115,7 @@
                        </select> 
                   </td>
                   <td>
-                      <label ><b>Tipo de pago</b></label><br />
+                      <label ><b>T&iacute;po de Pago</b></label><br />
                        <select id="tipo_pago" name="tipo_pago" style=' width: 150px' class=' ui-widget-content ui-corner-all'>
                                 <option selected='selected' value="0">Autoliquidaciones</option>
                                 <option value="4" >Rise</option>
@@ -125,7 +125,7 @@
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>
-                      <label ><b>A&ncaron;o</b></label><br />
+                      <label ><b>A&ntilde;o</b></label><br />
                        <select id="anio_concilio" name="anio_concilio" style=' width: 100px' class=' ui-widget-content ui-corner-all'>
                            <?php
                            for($i=2000;$i<=date('Y');$i++){

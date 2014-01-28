@@ -103,13 +103,13 @@ genera_resolucion_sumario=function(idreparo,multasid){
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Rif</th>
-                        <th>Razon Social</th>
-                        <th>Periodo Fiscalizado</th>
+			<th>RIF</th>
+                        <th>Raz&oacute;n Social</th>
+                        <th>Per&iacute;odo Fiscalizado</th>
                         <th>Fiscal</th>
-                        <th>Monto Multa</th>
-                        <th>Monto Interes</th>
-                        <th >Operaciones</th>
+                        <th>Monto de la Multa</th>
+                        <th>Monto del Inter&eacute;s</th>
+                        <th >Opciones</th>
                 </tr>
 	</thead>
 	<tbody>
@@ -126,11 +126,11 @@ genera_resolucion_sumario=function(idreparo,multasid){
                             <td><?php echo $valor["contribuyente"] ?></td>
                            <td><?php echo $valor["periodo_afiscalizar"] ?></td>    
                             <td><?php echo $valor["fiscal_ejecutor"] ?></td>
-                            <td><?php echo $valor["multa_pagar"] ?></td>
-                            <td><?php echo $valor["interes_pagar"] ?></td>
+                            <td><?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["multa_pagar"]) ?></td>
+                            <td><?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["interes_pagar"]) ?></td>
                             <td  id="btnoperaciones_sumario">                        
-                            <button txtayuda="Generar Resolucion " class=" ayuda resolucion-sum" id="acts-<?php echo $valor["idreparo"]?>" onClick="genera_resolucion_sumario(<?php echo $valor["idreparo"]?>,'<?php echo $valor['multaids']?>')" ></button>
-                            <button txtayuda="Cargar notificacion" class=" ayuda carga-notificacion-sum" id="nos-<?php echo $valor["idreparo"]?>" onclick="dialog_notificacion_sumario(this.id,'<?php echo $valor['multaids']?>',<?php echo $valor['idconusu']?>);"  ></button>
+                            <button txtayuda="Generar Resolución " class=" ayuda resolucion-sum" id="acts-<?php echo $valor["idreparo"]?>" onClick="genera_resolucion_sumario(<?php echo $valor["idreparo"]?>,'<?php echo $valor['multaids']?>')" ></button>
+                            <button txtayuda="Cargar Notificación" class=" ayuda carga-notificacion-sum" id="nos-<?php echo $valor["idreparo"]?>" onclick="dialog_notificacion_sumario(this.id,'<?php echo $valor['multaids']?>',<?php echo $valor['idconusu']?>);"  ></button>
                             </td>
 
                     </tr>

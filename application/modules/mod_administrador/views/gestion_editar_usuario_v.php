@@ -135,7 +135,7 @@ actualiza_datos=function(form,url){
 <div id="contenedor-frmdatos"  class="ui-widget-content ui-corner-all"  >
   
 <form class="focus-estilo" id="frmdatos">    
-    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Formulario actualizar datos usuario</h4></legend><br />
+    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Formulario para Actualizar los Datos del Usuario</h4></legend><br />
         
             <label><strong>Usuario:</strong></label><br /> 
                 <input name="login" type="text" id="login" size="35" class="requerido  ui-corner-all ui-state-highlight" title="Ingresar Usuario o Login" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;" value="<?php echo $login;?>" disabled="disabled"/>
@@ -145,15 +145,15 @@ actualiza_datos=function(form,url){
                 <input name="nombre" type="text" id="nombre" size="35" class="requerido  ui-corner-all ui-state-highlight" title="Ingresar Nombre" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;" value="<?php echo $nombre;?>"/>
             <br /><br />
             
-            <label><strong>Cedula de Indentidad:</strong></label><br /> 
+            <label><strong>C&eacute;dula de Indentidad:</strong></label><br /> 
                 <input name="cedula" type="text" id="cedula" size="35" class="requerido  ui-corner-all ui-state-highlight" title="Ingresar cedula de identidad" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;" value="<?php echo $cedula;?>" disabled="disabled"/>
             <br /><br />
             
-            <label><strong>Correo electronico:</strong></label><br /> 
+            <label><strong>Correo Electr&oacute;nico:</strong></label><br /> 
                 <input name="email" type="text" id="email" size="35" class="requerido  ui-corner-all ui-state-highlight" title="Ingresar correo electronico" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;" value="<?php echo $email;?>"/>
             <br /><br />
             
-            <label><strong>Telefono oficina:</strong></label><br /> 
+            <label><strong>Tel&eacute;fono de Oficina:</strong></label><br /> 
                 <input name="telefofc" type="text" id="telefofc" size="35" class="requerido  ui-corner-all ui-state-highlight" title="Ingresar telefono de oficina" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;" value="<?php echo $telefono;?>"/>
             <br /><br />
             

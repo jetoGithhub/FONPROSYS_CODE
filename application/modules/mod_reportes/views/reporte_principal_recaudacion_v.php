@@ -80,7 +80,7 @@ $("#btn-buscarrecau").click(function(){
           <center><table>
               <tr>
                   <td>
-                      <label ><b>Año a Consultar</b></label><br />
+                      <label ><b>A&ntilde;o a Consultar</b></label><br />
                       <select id="anio_recau" name="anio_recau" style=' width: 100px' class=' ui-widget-content ui-corner-all'>
                            <?php
                            for($i=2000;$i<=date('Y');$i++){

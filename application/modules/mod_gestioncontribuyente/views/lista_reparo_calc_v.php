@@ -123,17 +123,17 @@
 </div>-->
 <? // } ?>
         <!--<p>&nbsp;</p>-->
- <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; margin-top: 20px; width: 80%; margin-left: 10%">Listado de culminatorias de fiscalizacion para calcular</div>
+ <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; margin-top: 20px; width: 80%; margin-left: 10%">Listado de Culminatorias de Fiscalizaci&oacute;n para calcular</div>
         
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar_reparo" width="100%">
 	<thead>
 		<tr>
                     
 			<th># </th>
-			<th>Numero de rif</th>
-                        <th>Razon social</th>
+			<th>RIF</th>
+                        <th>Raz&oacute;n social</th>
                         <th>Tipo Contribuyente</th>
-                        <th>Operaciones</th>
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>

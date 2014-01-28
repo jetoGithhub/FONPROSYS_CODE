@@ -148,15 +148,15 @@
             </script>
             
 	</head>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de contribuyentes activados</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Contribuyentes Pendientes por Documentos</div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Numero de Rif</th>
-			<th>Razon Social</th>			
-			<th>Operaciones</th>
+			<th>RIF</th>
+			<th>Razón Social</th>			
+			<th>Opciones</th>
 	</tr>
 	</thead>
 	<tbody>

@@ -107,20 +107,20 @@
 
  </script>
 <div id="reparos-show"> 
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de reparos en espera de aprobacion</div>
+    <div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Listado de Reparos en espera de aprobaci&oacute;n</div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar-reparos" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Rif</th>
-                        <th>Razon Social</th>
+			<th>RIF</th>
+                        <th>Raz&oacute;n Social</th>
                         <th>Tipo contribuyente</th>
-                        <th>Fecha elaboracion</th>
-                        <th>Monto reparo</th>
-                        <th>Fiscal ejecutador</th>
+                        <th>Fecha de Elaboraci&oacute;n</th>
+                        <th>Monto del Reparo</th>
+                        <th>Fiscal Ejecutante</th>
                         <th>Tipo</th>
-                        <th >Operaciones</th>
+                        <th >Opciones</th>
 <!--                        <th><button txtayuda="Marcar todos" class=" ayuda" id="marcar_todos" style="width: 25px; height: 25px; border: none" value="marca" >marcar</button></th>-->
                         
                 </tr>
@@ -138,7 +138,7 @@
 			<td><?php echo $valor["rif"] ?></td>
                         <td><?php echo $valor["nombre"] ?></td>
                         <td><?php echo $valor["tcontribuyente"] ?></td>    
-                        <td><?php echo date('d-m-Y',strtotime($valor["felaboracion"])) ?></td>
+                        <td><?php echo date('d/m/Y',strtotime($valor["felaboracion"])) ?></td>
                         <td><?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total"]) ?></td>
                         <td><?php echo $valor["fiscal"] ?></td>
                         <td><?php ($valor['conformida']=='f'? print('REPARO') : print('CONFORMIDA') ); ?></td>    

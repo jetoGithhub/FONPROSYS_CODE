@@ -124,7 +124,7 @@ actualiza_preg_secr=function(form,url){
 <div id="contenedor-frmpregsecr"  class="ui-widget-content ui-corner-all"  >
   
 <form class="focus-estilo" id="frmpregsecr">    
-    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Actualizar contrase&ntilde;a usuario</h4></legend><br />
+    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Actualizar Pregunta Secreta del usuario</h4></legend><br />
         <center><label><strong><?php echo $preactual[0]['nombre']; ?></strong></label><br /><br /></center>
             
          <label><strong>Indique la Respuesta Actual</strong></label><br />             

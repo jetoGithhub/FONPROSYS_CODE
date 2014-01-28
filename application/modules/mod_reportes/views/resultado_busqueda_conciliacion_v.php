@@ -67,9 +67,9 @@
 	<thead>
             <tr>
                <th>#</th>
-               <th>Rif</th>
+               <th>RIF</th>
                 <th>Contribuyente</th> 
-                <th>Tipo Contribuyente</th> 
+                <th>Tipo de Contribuyente</th> 
                 <th>Periodo</th> 
                 <!--<td>Estado</td>-->
                 <th>Cobrada</th>

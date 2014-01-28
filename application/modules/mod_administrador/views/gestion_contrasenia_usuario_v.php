@@ -127,7 +127,7 @@ actualiza_contras=function(form,url){
 <div id="contenedor-frmcontras"  class="ui-widget-content ui-corner-all"  >
   
 <form class="focus-estilo " id="frmcontras">    
-    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Actualizar contrase&ntilde;a usuario</h4></legend><br />
+    <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24" align="center"><h4>Actualizar contrase&ntilde;a de usuario</h4></legend><br />
         
             <label><strong>Ingrese la Contrase&ntilde;a Actual</strong></label><br />   
             <input type="password" id="clvactual" name="clvactual" class="requerido  ui-corner-all ui-state-highlight" style=" padding-left: 10px; padding-right: 10px; width:50%; height:20px ;font-size:12px;"  />

@@ -365,13 +365,13 @@ espera_aprueba_calculo=function(){
 <table class="por-aprobar"  style="font-size: 11px; margin-bottom: 10px; width: 100%;">
     <tr>
         <td>
-            <b>Consultas cálculos por aprobar:</b>
+            <b>Consultar C&aacute;lculos por Aprobar:</b>
             <p>
                 <select style="margin-bottom:0px; width:18%; padding: .2em; font-family: sans-serif, monospace;  font-size: 12px" name="filtro_basico" onchange="mostrarOpcion(this)" id="filtro_basico">
                     <option value="0">Seleccione</option>
                     <option value="todos">Todos</option>
                     <option value="reciente">Recientes</option>
-                    <option value="rif">Rif</option>
+                    <option value="rif">RIF</option>
                     <option value="fecha">Fecha</option>
 
                </select>
@@ -391,16 +391,16 @@ espera_aprueba_calculo=function(){
 <!--con el estilo que coloca una imagen en el boton                    
 <button id="btn_consulta" onclick="boton_buscar(true)" class="btn_buscar_img" disabled="disabled">-->
                         <!--<img src="<?php // echo base_url()."/include/imagenes/iconos/ic_buscar_a.png"; ?>" width="28px" height="28px" />-->
-                    <button txtayuda='Buscar los calculos realizados' class='ayuda' id="btn_consulta" onclick="boton_buscar(true)" style="width: 30px; height: 25px" ></button>    
+                    <button txtayuda='Buscar los cálculos realizados' class='ayuda' id="btn_consulta" onclick="boton_buscar(true)" style="width: 30px; height: 25px" ></button>    
 
                 </span>
                 
             </p>
             <div id="radio" style="margin-bottom:12px;">
-                <b>Tipo de calculo:</b><br />
-                <input type="radio" id="radio1" name="radio" value="1" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio1">Extemporaneos</label>
-                <input type="radio" id="radio2" name="radio" value="2" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio2">Culm. fiscalizacion</label>
-                <input type="radio" id="radio3" name="radio" value="3" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio3">Culm. sumario</label>
+                <b>Tipo de C&aacute;lculo:</b><br />
+                <input type="radio" id="radio1" name="radio" value="1" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio1">Extempor&aacute;neos</label>
+                <input type="radio" id="radio2" name="radio" value="2" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio2">Culminatoria de Fiscalizaci&oacute;n</label>
+                <input type="radio" id="radio3" name="radio" value="3" onChange="javascript:$('#listar_por_calcular').empty();" /><label for="radio3">Culminatoria de Sumario</label>
             </div>
             
         </td>

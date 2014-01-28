@@ -658,7 +658,7 @@
             
             
             //Vista y filtro #1
-            $descripcion[1]  = 'Consulta Avanzada de Contribuyentes <font color="red">Extemporaneos</font>';
+            $descripcion[1]  = 'Consulta Avanzada de Contribuyentes <font color="red">Extemporáneos</font>';
             $filtro[1] = 3;
             $filtro_extemporaneo[1] = 0;
             $vista[1]  = 'mod_gestioncontribuyente/consulta_extemporaneos_recaudacion_v';

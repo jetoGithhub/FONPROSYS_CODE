@@ -64,10 +64,10 @@
 	<thead>
             <tr>
                <td>#</td>
-                <td>Razon Social</td> 
-                <td>Tipo Contribuyente</td> 
-                <td>Monto Multa</td> 
-                <td>Monto Interes</td>
+               <td>Raz&oacute;n Social</td> 
+               <td>T&iacute;po Contribuyente</td> 
+                <td>Monto de la Multa</td> 
+                <td>Monto del Interes</td>
                 <td>Cobrada</td>
 
             </tr>
@@ -82,8 +82,8 @@
                           <td class="numero" >'. $con.'</td>
                                 <td>'. $valor["contribuyente"].'</td>
                                     <td>'. $valor["tipo_cont"].'</td>
-                                        <td>'. $valor["total_multa"].'</td>
-                                            <td>'. $valor["total_interes"].'</td>
+                                        <td>'. $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total_multa"]).'</td>
+                                            <td>'. $this->funciones_complemento->devuelve_cifras_unidades_mil($valor["total_interes"]).'</td>
                                                 <td>'. $valor["cobrada"].'</td>
                                                         
 

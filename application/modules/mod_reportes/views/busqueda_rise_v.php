@@ -84,19 +84,19 @@
     }
     
 </style>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Reportes de Resoluciòn de Multas por Extemporaneida (RISE) </div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Reportes de Resoluci&oacute;n de Multas por Extempor&aacute;neida (RISE) </div>
     <center>
-        <div><center><p><b>Indique el tipo de busquedad</b></p></center></div>
+        <div><center><p><b>Indique el T&iacute;po de B&uacute;squeda</b></p></center></div>
         <table id="table-busqueda-rise"  class="form-style">
                <tr>
                    <td>
                         <div class="radio" id="content-busqueda-simple">
-                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='0' id="busqueda-simple" name="busqueda" /><label for="busqueda-simple"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>Busqueda Simple</label>
+                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='0' id="busqueda-simple" name="busqueda" /><label for="busqueda-simple"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>B&uacute;squeda Simple</label>
                        </div>
                    </td>
                    <td>
                         <div class="radio" id="content-busqueda-avanzada">
-                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='1' id="busqueda-avanzada" name="busqueda" /><label for="busqueda-avanzada"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>Busqueda Avanzada</label>
+                            <input onchange='muestra_contenedor_busqueda(this.value)' type="radio" value='1' id="busqueda-avanzada" name="busqueda" /><label for="busqueda-avanzada"><span class=" ui-icon ui-icon-search" style=" float: left" ></span>B&uacute;squeda Avanzada</label>
                        </div>
                    </td>
 
@@ -119,7 +119,7 @@
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>
-                      <label ><b>A&ncaron;o</b></label><br />
+                      <label ><b>A&ntilde;o</b></label><br />
                        <select id="anio_rise" name="anio_rise" style=' width: 100px' class=' ui-widget-content ui-corner-all'>
                            <?php
                            for($i=2000;$i<=date('Y');$i++){
@@ -142,9 +142,9 @@
          <center><table>
               <tr>
                   <td>
-                      <label ><b>Indique el Tipo</b></label><br />
+                      <label ><b>Indique el T&iacute;po</b></label><br />
                        <select onChange='opciones_busqueda_avanzada(this.value)' id="tipo_filtro" name="tipo_filtro" class=' ui-widget-content ui-corner-all' >
-                                <option selected='selected' value="0">Rif</option>
+                                <option selected='selected' value="0">RIF</option>
                                 <option value="1" >Contribuyentes</option>
                                 <option value="2" >Fechas</option>
                                 
@@ -153,7 +153,7 @@
                   
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>
-                      <label ><b>A&ncaron;o</b></label><br />
+                      <label ><b>A&ntilde;o</b></label><br />
                        <select id="anio_rise2" name="anio_rise2" style=' width: 50px' class=' ui-widget-content ui-corner-all'>
                            <?php
                            for($i=2000;$i<=date('Y');$i++){
@@ -166,11 +166,11 @@
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td id='td-rif'>
-                      <label ><b>Indique el Rif</b></label><br />
+                      <label ><b>Indique el RIF</b></label><br />
                      <input type='text' name='rif' id='rif' class=' ui-widget-content ui-corner-all' placeholder="VJE000000000"> 
                   </td>
                   <td id='td-tipo' style=' display: none'>
-                     <label ><b>Tipo de contribuyente</b></label><br />
+                      <label ><b>T&iacute;po de Contribuyente</b></label><br />
                        <select id="tipo_contribu" name="tipo_contribu" style=' width: 150px'class=' ui-widget-content ui-corner-all' >                               
                         <option value='' selected >Seleccione</option> 
                         <?php

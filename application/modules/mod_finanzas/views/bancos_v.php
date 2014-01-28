@@ -232,7 +232,7 @@
                echo '<tr >
                         <td>'. $con .'</td>    
 						<td>'. $valor["nombre"].'</td>
-						<td>'. $valor["fecha_registro"].'</td>
+						<td>'. date('d/m/Y',strtotime($valor["fecha_registro"])).'</td>
 						<td>
                             <button txtayuda="Eliminar Banco" class="ayuda" id="b'.$valor["id_bancos"].'" onclick="cargar_alert_dialog('."'".$baseurl.'index.php/mod_finanzas/bancos_c/eliminar_bancos'."'".','.$valor["id_bancos"].',1,'."'frm_bancos'".')" title="Eliminar Bancos"></button>
                         </td>

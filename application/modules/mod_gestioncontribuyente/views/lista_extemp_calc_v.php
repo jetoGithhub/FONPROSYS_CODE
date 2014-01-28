@@ -124,17 +124,17 @@
 </div>-->
 <? } ?>
         <!--<p>&nbsp;</p>-->
- <div class="ui-widget-header " style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; margin-top: 20px; width: 80%; margin-left: 10%">Listado de Contribuyentes Extemporaneos para calcular</div>
+ <div class="ui-widget-header " style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; margin-top: 20px; width: 80%; margin-left: 10%">Listado de Contribuyentes Extemporáneos para calcular</div>
         
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar" width="100%">
 	<thead>
 		<tr>
                     
 			<th># </th>
-			<th>Numero de Rif</th>
-                        <th>Razon Social</th>
+			<th>RIF</th>
+                        <th>Raz&oacute;n Social</th>
                         <th>Tipo de Contribuyente</th>
-                        <th>Operaciones</th>
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>

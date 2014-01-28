@@ -38,14 +38,14 @@
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Rif</th>
-                        <th>Razon Social</th>
+			<th>RIF</th>
+                        <th>Raz&oacute;n Social</th>
                         <th>Tipo contribuyente</th>
                         <!--<th>Estado</th>-->
                         <th>Ciudad</th>
                         <th>Domicilio</th>
-                        <th>telefono</th>
-                        <th>Operaciones</th>
+                        <th>Telefono</th>
+                        <th>Opciones</th>
                 </tr>
 	</thead>
 	<tbody>
@@ -66,9 +66,9 @@
                         <td><?php echo  $valor["telef1"]?></td>    
 			
                         <td >
-                        <button txtayuda='informacion de los periodos a fiscalizar' class="ayuda btnverdatos" id="<?php echo $valor["id"]?>" title="" onclick="ver_detalles_omisos('<? echo $baseurl."index.php/mod_gestioncontribuyente/lista_contribuyentes_general_c/detalles_contribuyente_afiscalizar "?>','<?php echo $valor["id"]?>',<? echo $valor['tcontribuid'] ?>,'<? echo $valor['nro_autorizacion'] ?>')" title=""></button>
-                        <button txtayuda=' carga de informacion de los periodos con faltas u omisos' class="ayuda cargafiscalizacion" id="<? echo $valor["idasignacion"]?>"  title=""></button>
-                        <button txtayuda='carga de la informacion de los periodos pagados faltantes en el sistema' class="ayuda cargaperiodospag" id="<?php echo 'cp-'.$valor["idasignacion"]?>" title=""></button>
+                        <button txtayuda='Información de los periodos a fiscalizar' class="ayuda btnverdatos" id="<?php echo $valor["id"]?>" title="" onclick="ver_detalles_omisos('<? echo $baseurl."index.php/mod_gestioncontribuyente/lista_contribuyentes_general_c/detalles_contribuyente_afiscalizar "?>','<?php echo $valor["id"]?>',<? echo $valor['tcontribuid'] ?>,'<? echo $valor['nro_autorizacion'] ?>')" title=""></button>
+                        <button txtayuda=' Carga de información de los periodos con faltas y omisos' class="ayuda cargafiscalizacion" id="<? echo $valor["idasignacion"]?>"  title=""></button>
+                        <button txtayuda='Carga de la información de los periodos pagados faltantes en el sistema' class="ayuda cargaperiodospag" id="<?php echo 'cp-'.$valor["idasignacion"]?>" title=""></button>
                         </td>    
                 </tr>                       
            <?php endforeach;

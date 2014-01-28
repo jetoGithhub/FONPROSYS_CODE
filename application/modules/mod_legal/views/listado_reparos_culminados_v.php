@@ -31,17 +31,17 @@
 };
  </script>
 <div id="espera_repa_culmi"></div>
-<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Listado de reparos culminados por la gerencia de fiscalizacion</div>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 20px; width: 80%; margin-left:10%; ">Listado de Reparos Culminados por la Gerencia de Fiscalizaci&oacute;n</div>
 <table cellpadding="0" cellspacing="0" border="0" class="display usuario" id="listar-repculm" width="100%">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Razon social</th>
+                        <th>Raz&oacute;n social</th>
                         <th>Email</th>
 			<!--<th>Estado</th>-->
 			<th>Fiscal</th>
                         <!--<th>Fecha elaboracion</th>-->
-                        <th>Fecha notificacion</th>
+                        <th>Fecha de Notificaci&oacute;n</th>
                         <th>Estatus</th>
                         <th>Opciones</th> 
                 </tr>
@@ -70,7 +70,7 @@
 //                             <td>'. $valor["estado"].'</td>
                              echo '<td>'. $valor["fiscal"].'</td>';
 //                             <td>'. date('d-m-Y',strtotime($valor["fechaelab"])).'</td>
-                             echo '<td>'. date('d-m-Y',strtotime($valor["fechanoti"])).'</td>
+                             echo '<td>'. date('d/m/Y',strtotime($valor["fechanoti"])).'</td>
                              <td>'. $valor["estatus"].'</td> 
                              <td>';
                             if (($class=="verde") && ($valor["estatus"]=='CANCELADO')) {
@@ -116,7 +116,7 @@
                  </td>   
 
                 <td>
-                    <b> Dentro de los 15 dias habiles</b>
+                    <b> Dentro de los 15 días h&aacute;biles</b>
                 </td>
 
                 <td >            
@@ -124,7 +124,7 @@
                  </td>   
 
                 <td>
-                    <b> Dentro de los 40 dias habiles Esperando descargos</b>
+                    <b> Dentro de los 40 d&iacute;as h&aacute;biles Esperando Descargos</b>
                 </td>
 
                 <td>            
@@ -132,7 +132,7 @@
                  </td>   
 
                 <td>
-                    <b> Calcular sumario</b>
+                    <b> Calcular Sumario</b>
                 </td>
 
         </table></center>
