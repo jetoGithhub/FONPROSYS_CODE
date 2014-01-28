@@ -260,6 +260,11 @@ class Reportes_excel {
                      $objecto_excel->setActiveSheetIndex(0)->setCellValue('G'.$fila,($value['ventaAlquiler']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['ventaAlquiler'])));
                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('H'.$fila,($value['servProduccion']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['servProduccion'])));
                        $objecto_excel->setActiveSheetIndex(0)->setCellValue('I'.$fila,($value['total_autoli']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['total_autoli'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('J'.$fila,($value['interise']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['interise'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('L'.$fila,($value['interesrc']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['interesrc'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('N'.$fila,($value['reparosaf']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['reparosaf'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('O'.$fila,($value['reparosrc']==0? '0,00':$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value['reparosrc'])));
+                       $objecto_excel->setActiveSheetIndex(0)->setCellValue('S'.$fila,$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil(($value['total_autoli']+$value['interise']+$value['interesrc']+$value['reparosaf']+$value['reparosrc'])));
                   
                  $objecto_excel->getActiveSheet()->getRowDimension($fila)->setRowHeight(15);
                  $objecto_excel->getActiveSheet()->getStyle('A'.$fila.':T'.$fila)->applyFromArray($estilo_cuerpo);
@@ -388,8 +393,9 @@ class Reportes_excel {
                 
                  $objecto_excel->setActiveSheetIndex(0)->setCellValue($columnas[$col].$fila2,'RECAUDACION'.$i);
                  $objecto_excel->getActiveSheet()->getStyle($columnas[$col].$fila2)->applyFromArray($estilo4);
-                 $col++;
                  $colum_final=$columnas[$col];
+                 $col++;
+                 
              }
              //CUERPO TABLE CON LOS MESES RECAUDADO POR AÑO
              $estilo5=array(
@@ -438,32 +444,56 @@ class Reportes_excel {
              $objecto_excel->setActiveSheetIndex(0)->setCellValue('A48','DICIEMBRE');
              $objecto_excel->getActiveSheet()->getStyle('A37:A48')->applyFromArray($estiloMes);
              $objecto_excel->getActiveSheet()->getStyle('B37:'.$colum_final.'48')->applyFromArray($estilo5);
+             $objecto_excel->setActiveSheetIndex(0)->setCellValue('A49','TOTAL:');
+             $objecto_excel->getActiveSheet()->getStyle('A49:'.$colum_final.'49')->applyFromArray($estilo4);
             
              // lleno los montos por cada mes y cada anio
              $meses=array('37'=>'01','38'=>'02',"39"=>'03',"40"=>'04',"41"=>'05',"42"=>'06',"43"=>'07',"44"=>'08',"45"=>'09',"46"=>'10',"47"=>'11',"48"=>'12');
+             $col=1;
+             $total_anio=0;
+             // recorro los años desde el 2006 que fue cuando comenzo a recaudar la institucion 
+             //hasta el año actual
              for($i=2006;$i<=date('Y');$i++){
-                 
+                 //recorro el arreglo con los totales por año y lo comparo con cada uno de los años del
+                 // ciclo anterior esto es para determinar en que columna del excel debo llenar los datos
                  foreach ($recau_poranio as $key => $value) {
+                 //verifico si esxiste el año
                  if($key==$i):
+                     //recorro el valor del arreglo anterior el cual tambien es un aareglo que contiene los totales 
+                     // por mes segun el año
                      foreach ($value as $key2 => $value2) {
+                     // recorro el arrecglo mes para obtener a que fila le pertenece el mes que viene del arreglo anterior
+                     // lo cual es el valor de las key de cada mes
                          foreach ($meses as  $key3=>$mes) {
-                             
+                             // si los meses son iguales vacio la informacion segun la colummna que le corresponde al anio y la fila que le corresponda al mes
                              if($mes==$key2):
-                               $objecto_excel->setActiveSheetIndex(0)->setCellValue('B38',$value2[0].'--'.$columnas[$col]); 
-                            
+                               $objecto_excel->setActiveSheetIndex(0)->setCellValue($columnas[$col].$key3,$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($value2[0]));
+                               $total_anio=$total_anio+$value2[0];
+                                
                              endif;
-                             
+                            
                          }
                          
                      }
                  endif; 
                      
-               
+                      
                  } 
                  $col++;
-                
+                $totales[$i]=$total_anio;
+                $total_anio=0;
              }
-            
+             $col=1;
+             // lleno el pie de totales por año
+             for($i=2006;$i<=date('Y');$i++){
+                 foreach ($totales as $key6 => $total_a) {
+                   if($key6==$i):
+                     $objecto_excel->setActiveSheetIndex(0)->setCellValue($columnas[$col].'49',$this->usoci->funciones_complemento->devuelve_cifras_unidades_mil($total_a)); 
+                   endif;
+                 }
+                 $col++;
+
+             }
              
              
              $objecto_excel->getActiveSheet()->setTitle('RECAUDACION'); 
