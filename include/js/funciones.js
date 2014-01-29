@@ -171,7 +171,7 @@ validador = function(formulario_id,url_envio,funcion){
         number: "Ingresa un número válido.",
         digits: "Ingresa sólo letras.",
         creditcard: "Ingresa un número de tarjeta de crédito válido.",
-        equalTo: "Ingresa el nuevo valor de nuevo.",
+        equalTo: "Debe ser igual a la anterior.",
         accept: "Ingresa un valor con extensión válida.",
         maxlength: $.validator.format("Porfavor ingresa menos de {0} caractéres."),
         minlength: $.validator.format("Porfavor ingresa almenos {0} caractéres."),

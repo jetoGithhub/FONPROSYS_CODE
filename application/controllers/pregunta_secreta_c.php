@@ -18,7 +18,7 @@ class Pregunta_secreta_c extends CI_Controller {
 
 //funcion para la actualizacion de la pregunta secreta de usuarios
         function registrarPregunta(){
-
+//            sleep(5);
             $data=array(
 
                         'dw'=>array('id'=>$this->input->post('identificador')),
