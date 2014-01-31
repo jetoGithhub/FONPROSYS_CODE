@@ -5,6 +5,9 @@ $base_url=base_url()."index.php/";
 <script type="text/javascript" >
    
     $(function() {
+        
+    ayudas_input('#','form_ingreso');
+    
         envia_formulario = function(form,url){
             $.ajax({
             type:"post",
@@ -150,11 +153,11 @@ envia_formulario_restaura = function(form,url){
 	
         <br/>
         
-	<div id="captcha_login_container" class="captcha_container ui-widget-content ui-corner-top" align="center">
+	<div id="captcha_login_container" class="captcha_container ui-widget-content ui-corner-top ayuda-input" align="center" txtayudai=" Haga click sobre el codigo de confirmacion para cambiarlo." >
             <img id="captcha_login" src="<?php print(base_url()); ?>include/librerias/securimage/captcha.php" width="99%" height="100" />
 	</div><br />
         <label for="codigo">Código de confirmación:</label>
-        <input id="Field3" type="text" name="codigo" id="codigo" class="requerido ui-widget-content ui-corner-bottom" />
+        <input id="Field3" type="text" name="codigo" id="codigo" class="requerido ui-widget-content ui-corner-bottom "  />
     </form>
     <div class="ui-widget ui-helper-clearfix"></div>
     <button id="btn_olvida_cont" class="btn"> Olvid&oacute; su Contraseña?</button>

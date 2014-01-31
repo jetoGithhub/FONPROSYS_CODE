@@ -147,13 +147,13 @@ ayudas_input=function(tipo,elemento){
         var content='content:{ text:"'+$(this).attr("txtayudai")+'"},';
         var posicion=' position: {my: "left center ",at: "right center"},';
         var estilo='style:{classes: "ui-tooltip-youtube ui-tooltip-rounded"},';
-        var show='show: {event: "focus"},';
-        var hide='hide: {event:"unfocus"}';
+//        var show='show: {event: " focus hover"},';
+//        var hide='hide: {event:"unfocus "}';
 //        var show='show: {effect: function(offset) {$(this).show( "'+effect+'",{direction:"'+direction+'"}, 500 );}}';
         var cierra_qtip='});';
         
-         script.text  = abre_qtip+content+posicion+estilo+show+hide+cierra_qtip;             // use this for inline script
-        
+//         script.text  = abre_qtip+content+posicion+estilo+show+hide+cierra_qtip;             // use this for inline script
+        script.text  = abre_qtip+content+posicion+estilo+cierra_qtip;
          document.body.appendChild(script);
     });
 };

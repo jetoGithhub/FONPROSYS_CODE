@@ -94,38 +94,107 @@ carga_vista_inicio_backend=function(){
                 color: #FBDDDE;
                
             }
+            #opciones-menu-home{
+               position: absolute; 
+               width: 93%;
+               height: 7%;
+               margin-left: 2%;
+               /*border: 2px solid black;*/
+               float: left;
+               /*padding: 0.2em;*/
+                 
+            }
+            .menu-banner-div{
+                float: right;
+                width: 6%;
+                height:35%;
+                /*border: 2px solid black;*/
+                margin-top:3%;
+                padding: 0.2em
+                /*margin-right: 20px*/
+                
+            }
+            #menu-baner-home{
+                background:url('include/imagenes/iconos/home.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                background-position: right center;
+                background-size: 25%;                
+                margin-right: 10px
+                
+                    
+            }
+            .menu-banner-div a{
+                margin-left: 15%;
+                font-size: 12px;
+                margin-top: 2px;                
+                color:#D3D2D1; 
+                font-weight: bold;
+                /*text-decoration:none;*/ 
+                float: left                
+            }
+            .menu-banner-div a:hover{
+                /*font-size: 20px;*/
+                margin-top: 0px;
+                font-size: 11px;
+                color: #5A2D21;
+            }
+            #menu-baner-salir{
+               background:url('include/imagenes/iconos/right_grey.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                background-position: right center;
+                background-size: 25%;
+                border-left: 1px solid white;
+            }
+             
 </style>
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
 
     </div>
     <div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
+    <div id="opciones-menu-home">
+        <div id="menu-baner-salir" class="menu-banner-div" >
+            <a href="#"  id="btn_main_exit"  >
+             <b>Salir</b>           
+            </a>
+            
+        </div>
+        <div id="menu-baner-home" class="menu-banner-div" >
+            <a href="#" id="btn_main_inicio"  >
+             <b>Inicio</b>     
+            </a>
+            
+        </div>
+        
+        
+    </div>
+    
     
     <!--<div id="banner_container" style="border: 0px solid green; ">-->
        <img src="<?php echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>
     <!--</div>--> 
-        <div id="menu-baner-home" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border-right: 2px solid white; padding-top: 5px; padding-bottom: 5px; padding-right: 18px " class="color_vinculo">
+<!--        <div id="menu-baner-home" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border-right: 2px solid white; padding-top: 5px; padding-bottom: 5px; padding-right: 18px " class="color_vinculo">
           <a href="#" id="btn_main_inicio" style="font-size: 11px; color:#D3D2D1; text-decoration:none;"  >
-              <!--<span class="ui-icon ui-icon-home" style="float: left; margin: 0 0px 0px 0; width: 20px; height: 20px"></span>-->
+              <span class="ui-icon ui-icon-home" style="float: left; margin: 0 0px 0px 0; width: 20px; height: 20px"></span>
               <b>Inicio</b>
               <span style="position:absolute; margin-top:-10%;">
-                <img src="<?php echo base_url()."/include/imagenes/iconos/home.png"; ?>" width="24px" height="24px"/>
+                <img src="<?php // echo base_url()."/include/imagenes/iconos/home.png"; ?>" width="24px" height="24px"/>
               </span>
               
           </a>
             
-        </div> 
+        </div> -->
         
         
-        <div id="menu-baner-salir" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 92%; padding-top: 5px; padding-bottom: 5px " class="color_vinculo">
+<!--        <div id="menu-baner-salir" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 92%; padding-top: 5px; padding-bottom: 5px " class="color_vinculo">
          <a href="#"  id="btn_main_exit" style=" font-size: 12px; color:#D3D2D1; text-decoration:none; " >
-             <!--<span class="ui-icon ui-icon-locked" style="float: left; margin: 0 0px 0px 0;"></span>-->
+             <span class="ui-icon ui-icon-locked" style="float: left; margin: 0 0px 0px 0;"></span>
              <b style=" margin-right: 2px">Salir</b> 
              <span style="position:absolute; margin-top:-10%;">
-                    <img src="<?php echo base_url()."/include/imagenes/iconos/right_grey.png"; ?>" width="20px" height="20px"/>
+                    <img src="<?php // echo base_url()."/include/imagenes/iconos/right_grey.png"; ?>" width="20px" height="20px"/>
               </span>
               
          </a>
-        </div>
+        </div>-->
 
 
 <!--        <div id="menu-baner-home" style="width: 6%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border: 2px solid;">

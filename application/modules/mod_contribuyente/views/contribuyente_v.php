@@ -4,6 +4,7 @@ $base_url=base_url()."index.php/";
 ?>
 <script type="text/javascript" >
     $(function() {
+        ayudas_input('#','form_registra');
         //**************FUNCION DE VERIFICACION DE RIF*******
         verificarif = function(form,url,img,divimg){
          //var $contenidoAjaximg = $('div#'+divimg).html('<p><img src="'+img+'" /></p>');
@@ -199,7 +200,7 @@ $base_url=base_url()."index.php/";
             
             <!--        <label for="no_cnac">Tiene Nro. CNAC</label>
             <input type="checkbox" id="nro_cnac" name="nro_cnac" />-->           
-            <div id="captcha_registra_container" class="captcha_container ui-widget-content ui-corner-top" align="center" >
+            <div id="captcha_registra_container" class="captcha_container ui-widget-content ui-corner-top ayuda-input" align="center" txtayudai=" Haga click sobre el codigo de confirmacion para cambiarlo." >
                 <img id="captcha_registra" src="<?php print(base_url()); ?>include/librerias/securimage/captcha.php" width="99%" height="60" />
             </div><br />
             <label for="codigo_registra">C&oacute;digo de Confirmaci&oacute;n:</label><br />
