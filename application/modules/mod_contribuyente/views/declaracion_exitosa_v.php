@@ -88,7 +88,7 @@
     
     </style>
  
-    
+<center><h3 style=" color: #E21E27">Codigo Identificador: <b><?php echo $declaracionid?></b></h3></center>    
 <div id="contenedor-frmdeclara"  class="ui-widget-content ui-corner-all"  >
   
 <!--<form id="frmdeclara">-->    

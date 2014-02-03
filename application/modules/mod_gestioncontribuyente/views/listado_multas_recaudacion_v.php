@@ -206,6 +206,7 @@ espera_cargando_notificacion_rise();// mensage de espera
 	<thead>
 		<tr>
 			<th>#</th>
+                        <th>Identificador</th>
 			<th>RIF</th>
                         <th>Razón Social </th>
                         <th>Tipo de Contribuyente </th>
@@ -228,6 +229,7 @@ espera_cargando_notificacion_rise();// mensage de espera
             $v=$valor['nombre'];
                echo '<tr>
                         <td>'. $con .'</td>
+                        <td>'. $valor["declaraid"].'</td>    
 			<td>'. $valor["rif"].'</td>
                         <td>'. $valor["nombre"].'</td>
                         <td>'. $valor["nomb_tcont"].'</td>';

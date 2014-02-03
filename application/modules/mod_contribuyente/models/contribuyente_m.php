@@ -443,8 +443,8 @@ class Contribuyente_m extends CI_Model{
                 
                 ->from("datos.replegal") 
                
-                ->join('datos.estados','estados.id = replegal.estadoid')                 
-                ->join('datos.ciudades', 'ciudades.id=replegal.ciudadid ' )
+                ->join('datos.estados','estados.id = replegal.estadoid','LEFT')                 
+                ->join('datos.ciudades', 'ciudades.id=replegal.ciudadid','LEFT')
                 ->where(array("replegal.contribuid"=>$id_usuario));
           $query = $this->db->get();
         if( $query->num_rows()>0 ):

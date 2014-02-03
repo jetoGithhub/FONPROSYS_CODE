@@ -126,7 +126,7 @@ var pasa=true;
             break;
         }
     }
-
+//alert(pasa)
     if(pasa){
         
         $("#memsajerror").hide(); 

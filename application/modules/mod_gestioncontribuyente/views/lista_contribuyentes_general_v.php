@@ -8,6 +8,9 @@ $diferenciador = random_string('alnum', 16);
     #volver_detalles_cont<?php print($diferenciador); ?>{
         float: right;
     }
+    .centar-text-lcg td{
+      text-align:center;
+    }
 </style>
 <?php
 if (!empty($metodo)):
@@ -66,7 +69,7 @@ endif;
             $contador_resultados++;
         ?>
 <br/><br/><br/> <b>PERIODOS OMISOS</b><br/><br/>
-        <table class="detalle_general_conusu_<?php print($diferenciador); ?>" cellpadding="0" cellspacing="0" border="0"  width="100%">
+        <table class="detalle_general_conusu_<?php print($diferenciador); ?> centar-text-lcg" cellpadding="0" cellspacing="0" border="0"  width="100%">
             <thead>
                 <tr>
                     <th>Fecha Inicio</th>
@@ -92,11 +95,12 @@ endif;
                         <td>
                             <?php print(date('d-m-Y',  strtotime($valor['fechalim']))); ?>
                         </td>
-                        <td>
+                        <td class="centar-lcgtext">
                             <?php print($valor['ano']); ?>
                         </td>
-                        <?php if($valor['tipo']!=2): ?>
-                        <td>
+                        <td class="centar-lcgtext" style="  ">
+                            <?php if($valor['tipo']!=2): ?>
+                        
                             <?php
                             if($valor['tipo']==0):
                                 print($this->funciones_complemento->devuelve_meses_text($valor['periodo']));
@@ -105,8 +109,12 @@ endif;
                                 print($this->funciones_complemento->devuelve_trimestre_text($valor['periodo']));
                             endif;
                             ?>
+                        
+                        <?php 
+                        else:
+                            print($valor['periodo']);
+                        endif;?>
                         </td>
-                        <?php endif;?>
                         <td>
                             <?php print($valor['nombre']); ?>
                         </td>                       
@@ -131,7 +139,7 @@ endif;
             $contador_resultados++;
         ?>
         <br/><br/><br/> <b>PERIODOS OMISOS  DECLARADOS</b><br/><br/>
-        <table class="detalle_general_conusu_<?php print($diferenciador); ?>" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <table class="detalle_general_conusu_<?php print($diferenciador); ?> centar-text-lcg" cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>
                 <tr>
                     <th>Nro Planilla</th>
@@ -191,7 +199,7 @@ endif;
             $contador_resultados++;
         ?>
         <br/><br/><br/><b> PERIODOS PAGADOS</b><br/><br/>
-        <table class="detalle_general_conusu_<?php print($diferenciador); ?>" cellpadding="0" cellspacing="0" border="0"  width="100%">
+        <table class="detalle_general_conusu_<?php print($diferenciador); ?> centar-text-lcg" cellpadding="0" cellspacing="0" border="0"  width="100%">
             <thead>
                 <tr>
                     <th>Nro Planilla</th>
@@ -251,7 +259,7 @@ endif;
             $contador_resultados++;
         ?>
         <br/><br/><br/><b> PERIODOS EXTEMPORANEOS</b><br/><br/>
-        <table class="detalle_general_conusu_<?php print($diferenciador); ?>" cellpadding="0" cellspacing="0" border="0"  width="100%">
+        <table class="detalle_general_conusu_<?php print($diferenciador); ?> centar-text-lcg" cellpadding="0" cellspacing="0" border="0"  width="100%">
             <thead>
                 <tr>
                     <th>Nro Planilla</th>
@@ -311,7 +319,7 @@ endif;
             $contador_resultados++;
         ?>
         <br/><br/><br/><b> DENTRO DEL LIMITE DE PAGO</b><br/><br/>
-        <table class="detalle_general_conusu_<?php print($diferenciador); ?>" cellpadding="0" cellspacing="0" border="0"  width="100%">
+        <table class="detalle_general_conusu_<?php print($diferenciador); ?> centar-text-lcg" cellpadding="0" cellspacing="0" border="0"  width="100%">
             <thead>
                 <tr>
                     <th>Nro Planilla</th>

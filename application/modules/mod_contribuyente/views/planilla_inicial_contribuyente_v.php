@@ -472,7 +472,7 @@ position: relative;
 
 
     <center>
-        <?php if(!empty($infoplanilla['id_contribu'])): ?> 
+        <?php if(empty($infoplanilla['id_contribu'])): ?> 
         
             <div style="margin-left: 5% ;"><marquee scrollamount="5" width="40"><span class="ui-icon ui-icon-triangle-1-w"></span></marquee><b id="msjmarque" style=" font-family: monospace; font-size: 10px;color:#86000A;">IMPORTANTE: PARA LLENAR ESTA PLANILLA DEBE HABER COMPLETADO LA CARGA DE<br />REPRESENTANTE LEGAL Y LA CARGA DE DOCUMENTOS</b><marquee scrollamount="5" direction="right" width="40"><span class="ui-icon ui-icon-triangle-1-e"></span></marquee></div>
         

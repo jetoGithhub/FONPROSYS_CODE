@@ -14,7 +14,7 @@ class Gestion_pregunta_secreta_c extends CI_Controller {
             $respuesta['preguntas']=$this->load->contribuyente_m->preguntaSecreta($id='');
             
             $respuesta['preactual']=$this->load->contribuyente_m->preguntaSecreta($respuestacontri[0]['pregsecrid']);
-            
+//            print_r($respuesta['preactual']);die;
             $this->load->view('gestion_pregunta_secreta_v',$respuesta);
              
              
