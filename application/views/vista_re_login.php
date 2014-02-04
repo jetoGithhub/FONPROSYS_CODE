@@ -1,4 +1,4 @@
-<?php print($controlador); ?>
+<?php // print($controlador); ?>
 <script>
    
     $(function() { 

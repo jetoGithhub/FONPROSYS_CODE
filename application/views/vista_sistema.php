@@ -58,6 +58,47 @@ $base_url=base_url()."index.php/";
                show: "clip",
                hide:"clip"
             });
+       $("#re_login_2").dialog({
+        show: 'blind',
+        resizable:false,
+        draggable: false,
+        modal: true,
+        autoOpen: false,
+        hide: "fade",
+        stack: true,
+        position: ["center","center"]
+      });     
+       ventana_re_login_2 = function(id_ventana,id_formulario,equis){
+
+            $("#"+id_ventana).dialog({
+               show: 'blind',
+               modal:true,
+               position: ["center","center"]})
+               .dialog("open")
+               .dialog("option", {
+                   title: "Mensaje del Sistema",
+                   buttons : {
+                       "Validar": function(){
+                           $("#"+id_formulario).submit();
+                       },
+                       "Cancelar": function(){
+
+                           location.reload();
+                       }
+                   }
+                   })
+                   .children("#dialog-confirm_message")
+                   .html("Su sesion ha expirado. ¡Debe logearse nuevamente!");
+
+
+                   if (equis==1){
+                   $("#"+id_ventana)
+                   .siblings('.ui-dialog-titlebar')
+                   .find('a.ui-dialog-titlebar-close')
+                   .hide();
+               }
+               $("#"+id_ventana).dialog('open');
+           };      
             
     });  
 </script>
@@ -336,6 +377,44 @@ carga_vista_inicio_backend=function(){
         <p style="text-align:center;"><b>¿ desea cerrar la sesion?</b></p>
         
     </div>
+  <div id="re_login_2">
+
+    <fieldset class="ui-widget-content ui-corner-all ">
+        <legend class="ui-widget-content ui-corner-all" style="border:1px solid #654b24;color:#654b24;padding: 0.7em;">
+            Inicio de Sesion
+        </legend>
+
+        <table>
+            <tr>
+                <td>
+                    <form id="form_re_login">
+                        <label for="reusuario">Usuario:</label>
+                        <input  type="text" name="reusuario" id="reusuario" class="requerido  ui-widget-content ui-corner-all"  />
+
+                        <br/>
+                        <label for="reclave">Clave de acceso:</label>
+                        <input type="password" name="reclave" id="reclave" class="requerido  ui-widget-content ui-corner-all" />
+
+                        <br/>
+
+                    </form>
+                </td>
+                <td>
+                    <img  src="<?php print(base_url()); ?>include/imagenes/token_caducado.png" width="99%" height="100" />
+                </td>
+            </tr>
+            </table>
+        </fieldset><br/>
+                <div id="title_re" class="ui-state-highlight ui-corner-all">
+            <p>Su sesion ha expirado por inactividad prolongada.
+            Debe logearse nuevamente en el sistema.</p>
+        </div>
+<!--    <div class="ui-widget ui-helper-clearfix"></div>-->
+
+<!--    <button id="btn_re_inicia_cont" class="btn">Iniciar Sesion</button>-->
+ 
+    
+</div>
 
 <!--<div style="padding: 0 .7em; width: 150px;"  id="cargando"  >
     
@@ -582,5 +661,55 @@ $("#btn_main_exit").click(function(){
         overflow: auto;
     }
 </style>
+<script>
+monitorea_session=function(){    
+    $.ajax({
+           type:"post",
+           dataType:"json",
+           url:"<?php echo base_url().'index.php/inicio/monitorea_session'?>",
+           success:function(data){
+   
+   
+            if(data.resultado){
+              
+             ventana_re_login_2('re_login_2','form_re_login',1);
+             validador('form_re_login','<?php echo base_url().'index.php/ingreso/re_login'?>','envia_re_login_2');  
+                
+                   
+            }
+            
+       }
+    });
+};
+setInterval(function()
+    {     
+       monitorea_session();
 
+    },10000);
+ envia_re_login_2 = function(form,url){
+        $.ajax({
+            type:"post",
+            data:$('#'+form).serialize(),
+            dataType:"json",
+            url:url,
+            success:function(data){
+            
+            if (data.success){
+                location.reload();
+            }else{
+                
+                $("#dialog-respuesta_relogin")
+                .dialog("open")
+                .children("#dialog-respuesta_mensaje_relogin")
+                .html(data.message);
+            }
+            },
+            error:function(o,estado,excepcion){
+                if(excepcion=='Not Found'){
+                }else{
+                    
+                }
+            }});
+}    
+</script>
 
