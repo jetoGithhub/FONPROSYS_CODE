@@ -145,13 +145,72 @@ carga_vista_inicio_backend=function(){
                 background-size: 25%;
                 border-left: 1px solid white;
             }
-             
+            #tbl-menu-baner{
+                 background:url('include/imagenes/encabezado_final-1220.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                /*background-position: center center;*/
+                background-size: 100%;
+                margin-top: 0px;
+            }
+            #tbl-menu-baner a{
+                margin-left: 15%;
+                font-size: 12px;
+                /*margin-top: 2px;*/                
+                color:#D3D2D1; 
+                font-weight: bold;
+                text-decoration:none; 
+                float: left;
+                width:60px;
+               
+            }
+            #tbl-menu-baner a:hover{
+                /*font-size: 20px;*/
+/*                margin-top: 0px;
+                font-size: 11px;*/
+                color: #5A2D21;
+            }
+             .separador{
+                border-right: 2px solid white;
+                padding-right: 5px
+            }
 </style>
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
 
     </div>
+<table id="tbl-menu-baner" style="width:95%; height: 80px; margin-left:2%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        
+        <td>
+            <table style=" float: right; margin-right: 10px; margin-top: 0px; height: 20px" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td>
+                        <a href="#" id="btn_main_inicio" class="separador"  >
+                            Inicio
+                            <img src="<?php echo base_url()."include/imagenes/iconos/home2.png"; ?>" style=" width:18px; height: 18px;"/>
+                        </a>
+                        
+                    </td>
+                   
+                    <td>
+                        <a href="#" id="btn_main_exit"  >
+                            Salir
+                            <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px;"/>
+                        </a>
+                        
+                    </td>
+               </tr>
+            </table>
+            
+        </td>
+        
+    </tr>   
+    
+</table>
     <div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
-    <div id="opciones-menu-home">
+    <!--<div id="banner_container" style="border: 0px solid green; ">-->
+<!--    <div id="opciones-menu-home">
         <div id="menu-baner-salir" class="menu-banner-div" >
             <a href="#"  id="btn_main_exit"  >
              <b>Salir</b>           
@@ -166,11 +225,11 @@ carga_vista_inicio_backend=function(){
         </div>
         
         
-    </div>
+    </div>-->
     
     
     <!--<div id="banner_container" style="border: 0px solid green; ">-->
-       <img src="<?php echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>
+       <!--<img src="<?php // echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>-->
     <!--</div>--> 
 <!--        <div id="menu-baner-home" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border-right: 2px solid white; padding-top: 5px; padding-bottom: 5px; padding-right: 18px " class="color_vinculo">
           <a href="#" id="btn_main_inicio" style="font-size: 11px; color:#D3D2D1; text-decoration:none;"  >
