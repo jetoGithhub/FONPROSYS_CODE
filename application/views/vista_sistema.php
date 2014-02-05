@@ -213,7 +213,7 @@ carga_vista_inicio_backend=function(){
             }
              .separador{
                 border-right: 2px solid white;
-                padding-right: 5px
+                /*padding-right: 5px*/
             }
 </style>
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
@@ -228,26 +228,27 @@ carga_vista_inicio_backend=function(){
             <table style=" float: right; margin-right: 10px; margin-top: 0px; height: 20px" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     <td>
+                        <center>
                         <a href="#" id="btn_main_inicio" class="separador"  >
                             Inicio
                             <img src="<?php echo base_url()."include/imagenes/iconos/home2.png"; ?>" style=" width:18px; height: 18px;"/>
                         </a>
-                        
+                        </center>
                     </td>
                    
-                    <td>
+                    <td><center>
                         <a href="#" id="btn_main_exit" class="separador" >
                             Salir
                             <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px;"/>
                         </a>
-                        
+                        </center>
                     </td>
-                    <td>
+                    <td><center>
                         <a href="#" id="btn_main_ayuda"  >
                             Ayuda
                             <img src="<?php echo base_url()."include/imagenes/iconos/help.png"; ?>" style=" width:18px; height: 14px;"/>
                         </a>
-                        
+                        </center>
                     </td>
                </tr>
             </table>
