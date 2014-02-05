@@ -116,7 +116,7 @@ carga_vista_inicio_frontend=function(){
                
             }
             
-            #opciones-menu-home{
+           #opciones-menu-home{
                position: absolute; 
                width: 93%;
                height: 7%;
@@ -170,8 +170,8 @@ carga_vista_inicio_frontend=function(){
             #tbl-menu-baner{
                  background:url('../../include/imagenes/encabezado_final-1220.png') no-repeat;
                 /*background-color: #CFCFCF ;*/ 
-                /*background-position: center center;*/
-                background-size: 100%;
+                /*background-position: center center;*/               
+                background-size: 100%;                
                 margin-top: 0px;
             }
             #tbl-menu-baner a{
@@ -200,19 +200,19 @@ carga_vista_inicio_frontend=function(){
 
     </div>
 <div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
-<table id="tbl-menu-baner" style="width:95%; height: 80px; margin-left:2%" cellspacing="0" cellpadding="0" border="0">
+<table id="tbl-menu-baner" style="width:95%; height: 150px; margin-left:2%" cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         
-        <td>
-            <table style=" float: right; margin-right: 10px; margin-top: 0px; height: 20px" cellspacing="0" cellpadding="0" border="0">
+        <td style=" width: 270px">
+            <table  style=" position:absolute;margin-right: 10px; top: 0px; height: 18px" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     <td>
                         <center>
                         <a href="#" id="btn_main_inicio" class="separador"  >
                             Inicio
-                            <img src="<?php echo base_url()."include/imagenes/iconos/home2.png"; ?>" style=" width:18px; height: 18px;"/>
+                            <img src="<?php echo base_url()."include/imagenes/iconos/home2.png"; ?>" style=" width:18px; height: 18px; border: none"/>
                         </a>
                         </center>
                     </td>
@@ -221,7 +221,7 @@ carga_vista_inicio_frontend=function(){
                         <center>
                         <a href="#" id="btn_main_exit" class="separador" >
                             Salir
-                            <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px;"/>
+                            <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px; border: none"/>
                         </a>
                         </center>
                     </td>
@@ -229,7 +229,7 @@ carga_vista_inicio_frontend=function(){
                         <center>
                         <a href="#" id="btn_main_ayuda"  >
                             Ayuda
-                            <img src="<?php echo base_url()."include/imagenes/iconos/help.png"; ?>" style=" width:18px; height: 14px;"/>
+                            <img src="<?php echo base_url()."include/imagenes/iconos/help.png"; ?>" style=" width:18px; height: 14px;border: none"/>
                         </a>
                         </center>
                     </td>
