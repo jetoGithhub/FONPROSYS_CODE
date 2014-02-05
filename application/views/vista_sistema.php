@@ -201,7 +201,7 @@ carga_vista_inicio_backend=function(){
                 font-weight: bold;
                 text-decoration:none; 
                 float: left;
-                width:60px;
+                width:70px;
                
             }
             #tbl-menu-baner a:hover{
@@ -235,9 +235,16 @@ carga_vista_inicio_backend=function(){
                     </td>
                    
                     <td>
-                        <a href="#" id="btn_main_exit"  >
+                        <a href="#" id="btn_main_exit" class="separador" >
                             Salir
                             <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px;"/>
+                        </a>
+                        
+                    </td>
+                    <td>
+                        <a href="#" id="btn_main_ayuda"  >
+                            Ayuda
+                            <img src="<?php echo base_url()."include/imagenes/iconos/help.png"; ?>" style=" width:18px; height: 14px;"/>
                         </a>
                         
                     </td>
@@ -498,7 +505,10 @@ $("#btn_main_exit").click(function(){
             })
             .children("#dialog-confirm_message")
             .html("Esta accion cerrara su sesion. ¿Desea continuar?");
-            });
+});
+$("#btn_main_ayuda").click(function(){
+    window.open('<?php echo base_url().'manual_html/manual_carga_fonprocine.html'?>');
+});
             
             $("#btn_main_inicio").click(function(){
 //                alert('Cargar Inicio');

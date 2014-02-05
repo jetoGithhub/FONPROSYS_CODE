@@ -73,12 +73,130 @@ carga_vista_inicio_frontend=function(){
                 color: #FBDDDE;
                
             }
+            
+            #opciones-menu-home{
+               position: absolute; 
+               width: 93%;
+               height: 7%;
+               margin-left: 2%;
+               /*border: 2px solid black;*/
+               float: left;
+               /*padding: 0.2em;*/
+                 
+            }
+            .menu-banner-div{
+                float: right;
+                width: 6%;
+                height:35%;
+                /*border: 2px solid black;*/
+                margin-top:3%;
+                padding: 0.2em
+                /*margin-right: 20px*/
+                
+            }
+            #menu-baner-home{
+                background:url('include/imagenes/iconos/home.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                background-position: right center;
+                background-size: 25%;                
+                margin-right: 10px
+                
+                    
+            }
+            .menu-banner-div a{
+                margin-left: 15%;
+                font-size: 12px;
+                margin-top: 2px;                
+                color:#D3D2D1; 
+                font-weight: bold;
+                /*text-decoration:none;*/ 
+                float: left                
+            }
+            .menu-banner-div a:hover{
+                /*font-size: 20px;*/
+                margin-top: 0px;
+                font-size: 11px;
+                color: #5A2D21;
+            }
+            #menu-baner-salir{
+               background:url('include/imagenes/iconos/right_grey.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                background-position: right center;
+                background-size: 25%;
+                border-left: 1px solid white;
+            }
+            #tbl-menu-baner{
+                 background:url('../../include/imagenes/encabezado_final-1220.png') no-repeat;
+                /*background-color: #CFCFCF ;*/ 
+                /*background-position: center center;*/
+                background-size: 100%;
+                margin-top: 0px;
+            }
+            #tbl-menu-baner a{
+                margin-left: 15%;
+                font-size: 12px;
+                /*margin-top: 2px;*/                
+                color:#D3D2D1; 
+                font-weight: bold;
+                text-decoration:none; 
+                float: left;
+                width:70px;
+               
+            }
+            #tbl-menu-baner a:hover{
+                /*font-size: 20px;*/
+/*                margin-top: 0px;
+                font-size: 11px;*/
+                color: #5A2D21;
+            }
+             .separador{
+                border-right: 2px solid white;
+                padding-right: 5px
+            }
 </style>
     <div id="dialog-alert" title="Mensaje"><p id="dialog-alert_message"></p>
 
     </div>
 <div id="dialogo-error-conexion" title="Mensaje Web-master"></div>
-   <img src="<?php echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>
+<table id="tbl-menu-baner" style="width:95%; height: 80px; margin-left:2%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        
+        <td>
+            <table style=" float: right; margin-right: 10px; margin-top: 0px; height: 20px" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td>
+                        <a href="#" id="btn_main_inicio" class="separador"  >
+                            Inicio
+                            <img src="<?php echo base_url()."include/imagenes/iconos/home2.png"; ?>" style=" width:18px; height: 18px;"/>
+                        </a>
+                        
+                    </td>
+                   
+                    <td>
+                        <a href="#" id="btn_main_exit" class="separador" >
+                            Salir
+                            <img src="<?php echo base_url()."include/imagenes/iconos/right_grey2.png"; ?>" style=" width:18px; height: 18px;"/>
+                        </a>
+                        
+                    </td>
+                    <td>
+                        <a href="#" id="btn_main_ayuda"  >
+                            Ayuda
+                            <img src="<?php echo base_url()."include/imagenes/iconos/help.png"; ?>" style=" width:18px; height: 14px;"/>
+                        </a>
+                        
+                    </td>
+               </tr>
+            </table>
+            
+        </td>
+        
+    </tr>   
+    
+</table>
+   <!--<img src="<?php // echo base_url()."/include/imagenes/encabezado_final-1220.png"; ?>" style=" width:95%; margin-left:2%"/>-->
 <!--
     <div id="menu-baner-home" style=" width: auto; position:absolute; margin-top: -27px; margin-left: 87%; border: 0px solid">
       <a href="#" id="btn_main_inicio"style=" font-size: 12px; color: #959595" ><span class="ui-icon ui-icon-home" style="float: left; margin: 0 0px 0px 0; width: 20px; height: 20px"></span><b>Inicio</b></a>
@@ -90,12 +208,12 @@ carga_vista_inicio_frontend=function(){
        -->
        
        
-       <div id="menu-baner-home" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border-right: 1px solid white; padding-top: 5px; padding-bottom: 5px; padding-right: 16px " class="color_vinculo">
+<!--       <div id="menu-baner-home" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 85%; border-right: 1px solid white; padding-top: 5px; padding-bottom: 5px; padding-right: 16px " class="color_vinculo">
           <a href="#" id="btn_main_inicio" style="font-size: 11px; color:#D3D2D1; text-decoration:none;" >
-              <!--<span class="ui-icon ui-icon-home" style="float: left; margin: 0 0px 0px 0; width: 20px; height: 20px"></span>-->
+              <span class="ui-icon ui-icon-home" style="float: left; margin: 0 0px 0px 0; width: 20px; height: 20px"></span>
               <b>Inicio</b>
               <span style="position:absolute; margin-top:-10%;">
-                <img src="<?php echo base_url()."/include/imagenes/iconos/home.png"; ?>" width="24px" height="24px"/>
+                <img src="<?php // echo base_url()."/include/imagenes/iconos/home.png"; ?>" width="24px" height="24px"/>
               </span>
               
           </a>
@@ -105,14 +223,14 @@ carga_vista_inicio_frontend=function(){
         
         <div id="menu-baner-salir" style="width: 4%; height: 2%; position:absolute; margin-top: -32px; margin-left: 91%; padding-top: 5px; padding-bottom: 5px " class="color_vinculo">
          <a href="#"  id="btn_main_exit" style=" font-size: 12px; color:#D3D2D1; text-decoration:none; " >
-             <!--<span class="ui-icon ui-icon-locked" style="float: left; margin: 0 0px 0px 0;"></span>-->
+             <span class="ui-icon ui-icon-locked" style="float: left; margin: 0 0px 0px 0;"></span>
              <b style=" margin-right: 2px">Salir</b> 
              <span style="position:absolute; margin-top:-10%;">
-                    <img src="<?php echo base_url()."/include/imagenes/iconos/right_grey.png"; ?>" width="20px" height="20px"/>
+                    <img src="<?php // echo base_url()."/include/imagenes/iconos/right_grey.png"; ?>" width="20px" height="20px"/>
               </span>
               
          </a>
-        </div>
+        </div>-->
        
        
 <!--    <span style=" color:#888888;margin-top:3%; float: left; margin-left:21%;"><b><?php // echo "Bienvenido(a), ".$primer_nombre;?></b></span>
@@ -258,7 +376,10 @@ $("#btn_main_exit").click(function(){
             .children("#dialog-confirm_message")
             .html("Esta accion cerrara su sesion. ¿Desea continuar?");
             });
-            
+$("#btn_main_ayuda").click(function(){
+    window.open('<?php echo base_url().'manual_html/manual_carga_fonprocine.html'?>');
+});
+             
             $("#btn_main_inicio").click(function(){
 //                alert('Cargar Inicio');
                 carga_vista_inicio_frontend();
