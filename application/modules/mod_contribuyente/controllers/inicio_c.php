@@ -41,7 +41,16 @@ class Inicio_c extends CI_Controller {
                 
                 }
                 $this->load->view('vista_pie');
-        }  
-      
+        } 
+        function monitorea_session()
+        {
+          if (!$this->session->userdata('logged')):
+              
+                echo json_encode(array('resultado'=>true));
+          else:
+              echo json_encode(array('resultado'=>FALSE));
+          endif;
         }
+      
+    }
 ?>

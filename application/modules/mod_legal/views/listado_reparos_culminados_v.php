@@ -222,7 +222,19 @@ $("#dialogo_envio_finanzas_legal").html('<p style="font-family: sans-serif; line
                               complete:function(){
                                  $.unblockUI();//cierra mensaje de espera
                                  $("#espera_repa_culmi").empty();
-                              }      
+                              },
+                                error: function (request, status, error) {
+                                   
+                                  var html='<p style=" margin-top: 15px">';
+                                      html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                                      html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                                      html+='</p><br />';
+                                      html+='<center><p>';
+                                      html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                                      html+='</p></center>';
+                                   $("#dialogo-error-conexion").html(html);
+                                   $("#dialogo-error-conexion").dialog('open');
+                               }      
                           });
                     }
                     ,
@@ -303,7 +315,19 @@ activar_descargos=function(form,url){
                               complete:function(){
                                  $.unblockUI();//cierra mensaje de espera
                                  $("#espera_repa_culmi").empty();
-                              }        
+                              },
+                                error: function (request, status, error) {
+                                    $.unblockUI();//cierra mensaje de espera
+                                  var html='<p style=" margin-top: 15px">';
+                                      html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                                      html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                                      html+='</p><br />';
+                                      html+='<center><p>';
+                                      html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                                      html+='</p></center>';
+                                   $("#dialogo-error-conexion").html(html);
+                                   $("#dialogo-error-conexion").dialog('open');
+                               }        
                           });
 
 }

@@ -6,6 +6,7 @@ $base_url=base_url()."index.php/";
 ?>
 <script>
     $(function(){
+       var set;
         ayudas('#','main_menu_container','bottom left ','top right','slide','left');
         carga_vista_inicio_backend()
         
@@ -394,7 +395,7 @@ carga_vista_inicio_backend=function(){
         <table>
             <tr>
                 <td>
-                    <form id="form_re_login">
+                    <form id="form_re_login" class=" focus-estilo form-style">
                         <label for="reusuario">Usuario:</label>
                         <input  type="text" name="reusuario" id="reusuario" class="requerido  ui-widget-content ui-corner-all"  />
 
@@ -412,7 +413,7 @@ carga_vista_inicio_backend=function(){
             </tr>
             </table>
         </fieldset><br/>
-                <div id="title_re" class="ui-state-highlight ui-corner-all">
+                <div id="title_re" class="ui-state-highlight ui-corner-all" style=" padding: 0.7em; font-size: 11px; font-family: monospace; color:#000; font-weight: bold; text-align: justify; line-height: 1.5">
             <p>Su sesion ha expirado por inactividad prolongada.
             Debe logearse nuevamente en el sistema.</p>
         </div>
@@ -681,7 +682,7 @@ monitorea_session=function(){
    
    
             if(data.resultado){
-              
+             clearInterval(set); 
              ventana_re_login_2('re_login_2','form_re_login',1);
              validador('form_re_login','<?php echo base_url().'index.php/ingreso/re_login'?>','envia_re_login_2');  
                 
@@ -691,7 +692,8 @@ monitorea_session=function(){
        }
     });
 };
-setInterval(function()
+
+set=setInterval(function()
     {     
        monitorea_session();
 
@@ -720,6 +722,6 @@ setInterval(function()
                     
                 }
             }});
-}    
+};    
 </script>
 

@@ -91,7 +91,19 @@ $.ajax({
                $(".asocia-modulo").show("clip", 1000);
 
             }
-    }
+    },
+    error: function (request, status, error) {
+      
+      var html='<p style=" margin-top: 15px">';
+          html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+          html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+          html+='</p><br />';
+          html+='<center><p>';
+          html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+          html+='</p></center>';
+       $("#dialogo-error-conexion").html(html);
+       $("#dialogo-error-conexion").dialog('open');
+   }
 
 
 });
@@ -124,7 +136,19 @@ $.ajax({
             $("#"+id_div).html(data.vista)
             $("#"+id_div).dialog('open')
         }
-    }
+    },
+    error: function (request, status, error) {
+      
+      var html='<p style=" margin-top: 15px">';
+          html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+          html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+          html+='</p><br />';
+          html+='<center><p>';
+          html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+          html+='</p></center>';
+       $("#dialogo-error-conexion").html(html);
+       $("#dialogo-error-conexion").dialog('open');
+   }
 
 
 });
@@ -148,7 +172,19 @@ envio_form=function(form,url){
                     $('#dialog-perfiles').dialog('close');
                     alert('Ya existe un perfil con ese nombre');
                 }
-            }
+            },
+            error: function (request, status, error) {
+              
+              var html='<p style=" margin-top: 15px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+               $("#dialogo-error-conexion").dialog('open');
+           }
 
         });
 
@@ -168,7 +204,19 @@ envio_form=function(form,url){
                     cargar_modulos(id,nombre,"<?php echo base_url().'index.php/mod_administrador/roles_c/carga_modulos'?>");
                  
                 }
-            }
+            },
+            error: function (request, status, error) {
+              
+              var html='<p style=" margin-top: 15px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+               $("#dialogo-error-conexion").dialog('open');
+           }
 
         });
  
@@ -193,7 +241,19 @@ dialog_elimina_perfil=function(url,id){
                                $('#muestra_cuerpo_message').load('<?php echo base_url()."index.php/mod_administrador/principal_c?padre=104"; ?>')
 
                              }
-                        }
+                        },
+                        error: function (request, status, error) {
+                          
+                          var html='<p style=" margin-top: 15px">';
+                              html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                              html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                              html+='</p><br />';
+                              html+='<center><p>';
+                              html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                              html+='</p></center>';
+                           $("#dialogo-error-conexion").html(html);
+                           $("#dialogo-error-conexion").dialog('open');
+                       }
                     });
                    
                     },

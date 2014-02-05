@@ -154,10 +154,22 @@ if($identificador==2){
                
            }
            
+       },
+        error: function (request, status, error) {
+         
+          var html='<p style=" margin-top: 15px">';
+              html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+              html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+              html+='</p><br />';
+              html+='<center><p>';
+              html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+              html+='</p></center>';
+           $("#dialogo-error-conexion").html(html);
+           $("#dialogo-error-conexion").dialog('open');
        }
     });
     
-}
+};
         
 carga_periodo_omiso=function(valor){
 //alert(valor)
@@ -180,10 +192,22 @@ carga_periodo_omiso=function(valor){
                   }
            }
            
+       },
+        error: function (request, status, error) {
+          
+          var html='<p style=" margin-top: 15px">';
+              html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+              html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+              html+='</p><br />';
+              html+='<center><p>';
+              html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+              html+='</p></center>';
+           $("#dialogo-error-conexion").html(html);
+           $("#dialogo-error-conexion").dialog('open');
        }
     });
     
-}
+};
 
 
 busca_alicuota_omisos=function(){
@@ -225,6 +249,18 @@ var data=$('#form_carga_asignacion').serialize();
 
                }
 
+           },           
+            error: function (request, status, error) {
+              
+              var html='<p style=" margin-top: 15px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+               $("#dialogo-error-conexion").dialog('open');
            }
         });
    
@@ -364,6 +400,18 @@ if($identificador==3){
                
            }
            
+       },
+        error: function (request, status, error) {
+         
+          var html='<p style=" margin-top: 15px">';
+              html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+              html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+              html+='</p><br />';
+              html+='<center><p>';
+              html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+              html+='</p></center>';
+           $("#dialogo-error-conexion").html(html);
+           $("#dialogo-error-conexion").dialog('open');
        }
     });
     
@@ -390,6 +438,18 @@ carga_periodo_omiso=function(valor){
                   }
            }
            
+       },
+        error: function (request, status, error) {
+          
+          var html='<p style=" margin-top: 15px">';
+              html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+              html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+              html+='</p><br />';
+              html+='<center><p>';
+              html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+              html+='</p></center>';
+           $("#dialogo-error-conexion").html(html);
+           $("#dialogo-error-conexion").dialog('open');
        }
     });
     
@@ -434,6 +494,18 @@ carga_periodos_pagados=function(form,url){
 
                }
 
+           },
+            error: function (request, status, error) {
+              
+              var html='<p style=" margin-top: 15px">';
+                  html+='<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>';
+                  html+='Disculpe ocurrio un error de conexion intente de nuevo <br /> <b>ERROR:"'+error+'"</b>';
+                  html+='</p><br />';
+                  html+='<center><p>';
+                  html+='<b>Si el error persiste comuniquese al correo soporte@cnac.gob.ve</b>';
+                  html+='</p></center>';
+               $("#dialogo-error-conexion").html(html);
+               $("#dialogo-error-conexion").dialog('open');
            }
         });
    
