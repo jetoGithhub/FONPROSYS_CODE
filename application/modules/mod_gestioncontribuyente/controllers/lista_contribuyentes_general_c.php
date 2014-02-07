@@ -59,10 +59,10 @@
                       $periodo_vigente = $this->funciones_complemento->define_periodo($valor_tipocont['tcontid'],$mes_actual);
                       $datos_periodos_grav = $this->lista_contribuyentes_general_m->busca_periodo_gravable($valor_tipocont['tcontid'],$anio_registro);
                       $datos_busca_declaraciones = $this->lista_contribuyentes_general_m->busca_declaraciones(0,$datos_conusu[0]['id']);
-//                      print_r($datos_busca_declaraciones);
+//                      print_r($datos_busca_declaraciones);die;
                       //inicio ciclo de periodos
                       foreach ($datos_periodos_grav as $periodos):
-                          
+                         
                           if(!empty($this->anio_filtro)):
                               if($periodos['ano']==$this->anio_filtro):
                               if(!empty($this->periodo_filtro) ):
@@ -70,12 +70,15 @@
                                       if ($datos_busca_declaraciones):
                                           $verifica=0;
 
-                                                  foreach ($datos_busca_declaraciones as $declaraciones):
+                                               foreach ($datos_busca_declaraciones as $declaraciones):
                                                    
                                                     //Si existe en la tabla declara
                                                     if($periodos['id']==$declaraciones['calpagodid']):
                                                         $verifica++;
-                                                        if ($declaraciones['bln_reparo']=='f'):
+                                                       //si es distinta de cero la declaracion 
+                                                       if($declaraciones['bln_declaro0']=='f'):
+                                                        
+                                                           if ($declaraciones['bln_reparo']=='f'):
                                                             
                                                                 if ($periodos['ano']==$anio_registro):
                                                                     if($periodos['periodo']>=$periodo_registro):
@@ -191,8 +194,13 @@
                                                         
                                                       // fin de la verificacion de si la declaracion fue cargada por reparo fiscal o no  
                                                       endif;
+                                                      
+                                                      else:
+                                                          
+                                                      endif;// fin si no es declarado en 0
                                                     //fin Si existe en la tabla declara
                                                     endif;
+                                                    
                                                     endforeach;
                                                     if($verifica==0):
                                                         $verifica_period=$this->lista_contribuyentes_general_m->verifica_periodo_omiso_enfiscalizacion($this->id,$valor_tipocont['tcontid'],$periodos['ano'], $nroaut);
@@ -241,11 +249,14 @@
                                       $verifica=0;
 
                                               foreach ($datos_busca_declaraciones as $declaraciones):
-
+                                               
                                                 //Si existe en la tabla declara
                                                 if($periodos['id']==$declaraciones['calpagodid']):
                                                     $verifica++;
-                                                    if ($declaraciones['bln_reparo']=='f'):
+                                                    //si es distinta de cero la declaracion 
+                                                  if($declaraciones['bln_declaro0']=='f'):
+                                                    
+                                                      if ($declaraciones['bln_reparo']=='f'):
                                                         
 //                                                    print($this->anio_filtro); die;
                                                         if ($periodos['ano']==$anio_registro):
@@ -356,8 +367,13 @@
 //                                                    else:
 
                                                     endif;
+                                                  
+                                                  else:
+                                                      
+                                                  endif; // fin bln declaro 0 
 
                                                 endif;
+                                                
                                                 endforeach;
                                                 if($verifica==0):
                                                     $verifica_period=$this->lista_contribuyentes_general_m->verifica_periodo_omiso_enfiscalizacion($this->id,$valor_tipocont['tcontid'],$periodos['ano'], $nroaut);
@@ -407,11 +423,14 @@
                                   $verifica=0;
 
                                           foreach ($datos_busca_declaraciones as $declaraciones):
-
+                                        
                                             //Si existe en la tabla declara
                                             if($periodos['id']==$declaraciones['calpagodid']):
                                                 $verifica++;
-                                                if ($declaraciones['bln_reparo']=='f'):
+                                                //si es distinta de cero la declaracion 
+                                               if($declaraciones['bln_declaro0']=='f'):
+                                                
+                                                   if ($declaraciones['bln_reparo']=='f'):
                                                     
                                                     if ($periodos['ano']==$anio_registro):
                                                         if($periodos['periodo']>=$periodo_registro):
@@ -528,8 +547,13 @@
 //                                                else:
 
                                                 endif;
+                                                
+                                             else:
+
+                                             endif; //fin blndeclaro 0
 
                                             endif;
+                                           
                                             endforeach;
                                             if($verifica==0):
                                                $verifica_period=$this->lista_contribuyentes_general_m->verifica_periodo_omiso_enfiscalizacion($this->id,$valor_tipocont['tcontid'],$periodos['ano'], $nroaut);

@@ -31,7 +31,7 @@ class Gestion_pagos_c extends CI_Controller {
         
         switch ($tipo_pago) {
             case "1":
-                $where=array("declara.conusuid"=>  $this->session->userdata("id"),"declara.fechapago"=>NULL,"declara.bln_reparo"=>"false");    
+                $where=array("declara.conusuid"=>  $this->session->userdata("id"),"declara.fechapago"=>NULL,"declara.bln_reparo"=>"false","declara.bln_declaro0"=>'false');    
                 $data = $this->gestion_pagos_m->busca_pagos_pendientes($where,$tipo_pago);
                 $tipo="Autoliquidaciones";
                 break;
