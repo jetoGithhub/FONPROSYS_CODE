@@ -535,7 +535,7 @@ class Contribuyente_m extends CI_Model{
         $this->db
                 ->select('*')
                 ->from('datos.tdeclara')
-                ->where(array('tipo'=>0));
+                ->where(array('id'=>2));
         $query = $this->db->get();
         if ($query->num_rows()>0):
             $data = array();

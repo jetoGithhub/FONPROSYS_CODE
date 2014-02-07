@@ -67,7 +67,7 @@ carga_periodo=function(valor){
 
 carga_anio_declara=function(valor){
     $("#bimponible").val('');
-    $("#tdeclaracion").val('');
+//    $("#tdeclaracion").val('');
     $("#aimpositiva").val('');
     $("#exhoneracion").val('');
     $("#cfiscal").val('');
@@ -113,6 +113,7 @@ var valor=$('#tcotribuyente').val();
 var anio=$('#aniod').val();
 var periodo=$('#tperiodo').val();
 var base=$("#bimponible").val();
+var tdeclaracion=$("#tdeclaracion").val();
 
 var arrayselect = document.getElementsByTagName("select");
 var i=0;
@@ -133,7 +134,7 @@ var pasa=true;
             //alert(valor)
             $.ajax({       
                    type:'post',
-                   data:{tcontribuid:valor,anio:anio,periodo:periodo,base:base},
+                   data:{tcontribuid:valor,anio:anio,periodo:periodo,base:base,tdeclaracion:tdeclaracion},
                    dataType:'json',
                    url:'<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/calculoDeclaracion"; ?>',
                    success:function(data){
@@ -414,11 +415,11 @@ jQuery(function($){
                 
                     <td>
                      <select name="tdeclaracion" class="ui-state-highlight" id="tdeclaracion" style=" width: 250px; height:20px ;font-size:12px;" onChange="limpia_formulario(this.id)" >
-                        <option value="">Seleccione</option>
+                        <!--<option value="">Seleccione</option>-->
                     <?php
                        if (sizeof($tipo_declaracion)>0):
                            foreach ($tipo_declaracion as $tipo_declaracion):
-                           print("<option value='$tipo_declaracion[id]'>$tipo_declaracion[nombre]</option>");
+                           print("<option selected='selected' value='$tipo_declaracion[id]'>$tipo_declaracion[nombre]</option>");
                            endforeach;
                        endif;
 
