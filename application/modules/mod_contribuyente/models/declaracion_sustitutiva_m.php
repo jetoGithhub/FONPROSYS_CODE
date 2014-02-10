@@ -28,6 +28,28 @@ class Declaracion_sustitutiva_m extends CI_Model {
 //        'decl.tipocontribuid'=>$tcontribu,'decl.conusuid'=>$counusid,
         
     }
+    function anio_declaracion_asustituir($declaraid)
+    {
+      $this->db
+                ->select('calp.ano')
+                ->from('datos.declara decl')
+                ->join('datos.calpagod calpd','decl.calpagodid = calpd.id')
+                ->join('datos.calpago calp','calpd.calpagoid = calp.id')
+               ->where(array('decl.id'=>$declaraid));
+       $query = $this->db->get();
+            if( $query->num_rows()>0 ){
+                 
+                foreach ($query->result() as $row):
+                            
+                            $anio=$row->ano;
+                                           
+                 endforeach;
+
+           }
+           
+           return $anio;
+//        return ($query->num_rows()>0 ? $query->result_array() : false);  
+    }
     
 }
 

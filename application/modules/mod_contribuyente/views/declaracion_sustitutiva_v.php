@@ -12,7 +12,7 @@ $(function() {
 //    }
 
 $( "#confirm-declaracion-sus" ).dialog({ autoOpen: false });
-     $("#memsajerror").hide();
+     $("#memsajerror-s").hide();
       $("#anio-declara").hide();
 
     validador('frmdeclara','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/guardaDeclaracion"; ?>','guarda_declarcion');
@@ -75,6 +75,90 @@ $.ajax({
 };
 
 calcula_nuevo_monto=function(){
+  
+  $("#memsajerror-s").hide();
+  $("#tpagar").val('');
+//  var array=$("#bimponible").val().split(',');
+//  var array2=$("#nbimponible").val().split(',');
+//  var bimponible=array[0].replace('.',',');
+//  var nbimponible=array2[0].replace('.',',');
+//  var bimponible=array[0].replace('.',',')+'.'+array[1];
+//  var nbimponible=array2[0].replace('.',',')+'.'+array2[1];
+  var pasa=true;
+  var msj=0;
+ 
+  if($("#nbimponible").val()==''){   
+    msj=1;
+    var pasa=false;
+  }
+//  if(nbimponible > bimponible){
+//     pasa=true;
+//     
+//  }
+  
+  if(pasa){
+   $.ajax({       
+       type:'post',
+       data:{valor1:$("#tcotribuyente").val(),valor2:$("#tdeclaracion").val(),valor3:$("#bimponible").val(),valor4:$("#nbimponible").val()},
+       dataType:'json',
+       url:'<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c/calcula_declaracion_sustitutiva"; ?>',
+       success:function(data){
+        if(data.resultado=='true'){ 
+        
+                $("#tpagar").val(data.total);
+        
+        }else{
+               $("#nbimponible").val('');            
+               if(data.fueraRango){
+
+                    $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong>su declaracion no alacanza el minimo de U.T<br /><center> "IGUALMENET DEBE TRAMITAR SU DECLARACION EN 0"</center></p>')
+                    $("#memsajerror-s").addClass('ui-state-error'); 
+                    $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+                    $("#memsajerror-s").show('drop',1000);
+
+               }
+               if(data.fuera_monto){
+                    $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong> el monto de la nueva base imponible debe ser mayor a la que va a sustituir.<br /><center>Para reclamar declaraciones con base imponible menores a las ya declaradas dirijase a las oficinas de FONPROCINE</center></p>')
+                    $("#memsajerror-s").addClass('ui-state-error'); 
+                    $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+                    $("#memsajerror-s").show('drop',1000);
+               }
+                           
+       }
+                
+          
+       },beforeSend:function(){
+         
+         $("#btncalcular").attr('disabled','disabled');
+         $("#cargando-calc").html('<img  src="<?php print(base_url()); ?>include/imagenes/loader.gif" width="10" height="10" />')
+         
+       },complete:function(){
+         
+         $("#btncalcular").removeAttr('disabled');
+         $("#cargando-calc").empty();
+         
+       },error:function(){
+           
+       }
+    });
+   
+   
+  }else{
+      
+      if(msj==0){
+          $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong> el monto de la nueva base imponible debe ser mayor a la que va a sustituir.<br /><center>Para reclamar declaraciones con base imponible menores a las ya declaradas dirijase a las oficinas de FONPROCINE</center></p>')
+      
+      }else{
+          $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong>Cargue la nueva base imponible para poder realizar el calculo</p>')
+      }
+      
+     $("#memsajerror-s").addClass('ui-state-error'); 
+     $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+     $("#memsajerror-s").show('drop',1000);
+     $("#nbimponible").val('');
+      
+  }
+   
   
 };
 
@@ -254,7 +338,7 @@ jQuery(function($){
  
   </fieldset>  
   
-         <button type="button" id="btncalcular" onclick="calcula_nuevo_monto()" style=" margin-left: 20%;"> <img style=" float:left; margin-right: 5px; "  border="0" width="18px" height="15px" src="<?php echo base_url().'/include/imagenes/iconos/calculator.png'?>"  />Calcular</button>
+    <button type="button" id="btncalcular" onclick="calcula_nuevo_monto()" style=" margin-left: 20%;"> <img style=" float:left; margin-right: 5px; "  border="0" width="18px" height="15px" src="<?php echo base_url().'/include/imagenes/iconos/calculator.png'?>"  />Calcular &nbsp;<span id="cargando-calc" style=" float: right;"></span></button>
          <button type="button" id="compromiso"> <img style=" float:left; margin-right: 5px "  border="0" width="18px" height="15px" src="<?php echo base_url().'/include/imagenes/iconos/icono_declarar.png'?>" />Compromiso de pago</button>
     
 </form>
@@ -264,7 +348,7 @@ jQuery(function($){
 
  <br />
  <!--<center><button id="btn-frmcontrasena" style="width:100px; height: 25px; margin-top:-10px; margin-left: 20px; position: relative" title="">Actualizar</button><br /><br /></center>-->
-<div style="padding: 0 .7em; width: 400px; margin-top: 15px; margin-left:20%; margin-bottom: 10px" class="ui-corner-all" id="memsajerror">
+<div style="padding: 0 .7em; width: 400px; margin-top: 15px; margin-left:20%; margin-bottom: 10px" class="ui-corner-all" id="memsajerror-s">
 		
  </div>
 </div>
