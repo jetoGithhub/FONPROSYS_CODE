@@ -944,9 +944,10 @@ class Contribuyente_c extends CI_Controller{
     function declaracion_exitosa(){
         
          $id=  $this->input->get('declaraid');
+         
      
          $result=$this->contribuyente_m->datos_declaracion($id);
-        
+            $result['ident']=$this->input->get('ident');
          $this->load->view('declaracion_exitosa_v',$result);
     }
     

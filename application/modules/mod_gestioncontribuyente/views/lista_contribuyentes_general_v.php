@@ -143,6 +143,7 @@ endif;
             <thead>
                 <tr>
                     <th>Nro Planilla</th>
+                    <th>Tipo de declaracion</th>
                     <th>Fecha Elaboracion</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
@@ -159,6 +160,9 @@ endif;
                     <tr>
                         <td>
                             <?php print($valor['nudeclara']); ?>
+                        </td>
+                        <td>
+                            <?php ($valor['tdeclaraid']==2?print('Autoliquidacion') : print('Sustitutiva')); ?>
                         </td>
                         <td>
                             <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>
@@ -263,6 +267,7 @@ endif;
             <thead>
                 <tr>
                     <th>Nro Planilla</th>
+                    <th>Tipo de Declaracion</th>
                     <th>Fecha Elaboracion</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
@@ -279,6 +284,9 @@ endif;
                     <tr>
                         <td>
                             <?php print($valor['nudeclara']); ?>
+                        </td>
+                        <td>
+                            <?php ($valor['tdeclaraid']==2?print('Autoliquidacion') : print('Sustitutiva')); ?>
                         </td>
                         <td>
                             <?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?>

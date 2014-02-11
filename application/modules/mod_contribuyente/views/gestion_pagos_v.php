@@ -182,6 +182,7 @@
     <select  name="tipo_pago" id="tipo_pago" title="Seleccione el estatus">
         <option  ></option>
         <option value="1" >AUTOLIQUIDACIONES</option>
+        <option value="6" >SUSTITUTIVAS</option>
         <option value="2">REPAROS FISCALES</option>
         <option value="3" >RESOLUCION POR EXTEMPORANEIDAD</option>
         <option value="4" >CULMINATORIA DE FISCALIZACION</option>

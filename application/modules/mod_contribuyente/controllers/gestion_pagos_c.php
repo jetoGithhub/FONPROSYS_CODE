@@ -31,7 +31,7 @@ class Gestion_pagos_c extends CI_Controller {
         
         switch ($tipo_pago) {
             case "1":
-                $where=array("declara.conusuid"=>  $this->session->userdata("id"),"declara.fechapago"=>NULL,"declara.bln_reparo"=>"false","declara.bln_declaro0"=>'false');    
+                $where=array("declara.conusuid"=>  $this->session->userdata("id"),"declara.fechapago"=>NULL,"declara.bln_reparo"=>"false","declara.bln_declaro0"=>'false','tdeclaraid'=>2);    
                 $data = $this->gestion_pagos_m->busca_pagos_pendientes($where,$tipo_pago);
                 $tipo="Autoliquidaciones";
                 break;
@@ -56,6 +56,11 @@ class Gestion_pagos_c extends CI_Controller {
                  $datos = $this->gestion_pagos_m->busca_pagos_pendientes($where,$tipo_pago);
                  $data=  $this->__limpia_datos_multa($datos);
                  $tipo="Culminatoria de Sumario";
+                break;
+            case "6":
+                $where=array("declara.conusuid"=>  $this->session->userdata("id"),"declara.fechapago"=>NULL,"declara.bln_reparo"=>"false","declara.bln_declaro0"=>'false','tdeclaraid'=>3);    
+                $data = $this->gestion_pagos_m->busca_pagos_pendientes($where,$tipo_pago);
+                $tipo="Sustitutivas";
                 break;
             default:
                 break;
@@ -98,7 +103,7 @@ class Gestion_pagos_c extends CI_Controller {
         );
         $result=$this->operaciones_bd->seleciona_BD($select);
         if(empty($result)){
-        if(($tipo=='1') || ($tipo=='2')){
+        if(($tipo=='1') || ($tipo=='2') || ($tipo=='6')){
             
              $tabla='datos.declara'; 
              $datos=array(

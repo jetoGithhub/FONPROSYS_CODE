@@ -15,7 +15,7 @@ class Gestion_pagos_m extends CI_Model{
     function busca_pagos_pendientes($where,$tipo_pago)
     {
         $data=array();
-        if(($tipo_pago=='1') || ($tipo_pago=='2')){
+        if(($tipo_pago=='1') || ($tipo_pago=='2') || ($tipo_pago=='6') ){
         $this->db
                 ->select("declara.id,declara.nudeclara,declara.fechaelab,declara.baseimpo,declara.montopagar,")
                 ->select("calpd.periodo")

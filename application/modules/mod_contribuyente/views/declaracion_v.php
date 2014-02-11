@@ -198,7 +198,7 @@ $( "#confirm-declaracion" ).dialog({
                     
                     if(data.resultado){
                         
-                        $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.id);                    
+                        $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.id+'&ident='+0);                    
                         $("#tabs").tabs("load",0);
                         
                     }else{
@@ -210,7 +210,7 @@ $( "#confirm-declaracion" ).dialog({
                          
                          $('#verdeclaracion').click(function(){  
                 
-                                $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.iddeclara);                    
+                                $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.iddeclara+'&ident='+0);                    
                                 $("#tabs").tabs("load",0);    
 
                          });  

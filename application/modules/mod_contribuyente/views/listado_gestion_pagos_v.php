@@ -50,7 +50,7 @@ $(".cargar_pago").click(function(){
             html+="<select id='bancos' name='bancos' class='requerido ui-corner-all ui-widget-content' onChange='numero_cuenta(this.value,1);' ><option value='' selected='selected'>Seleccione</option></select>";
             html+="<label>Numero de cuenta</label>";       
             html+="<select id='cuentas' name='cuentas' class='requerido ui-corner-all ui-widget-content' ><option value='' selected='selected'>Seleccione</option></select>";
-            if((tipo_pago!=1) && (tipo_pago!=2)){
+            if((tipo_pago!=1) && (tipo_pago!=2) && (tipo_pago!=6)){
                 html+="<fieldset class='secciones' style='margin-top:0px; border-top:1px solid #CDCCCB;padding:0px 0px 0px 0px '><legend class='ui-widget-content ui-corner-all'style=' color: #654B24' align= 'center' ><h4 style=''>Deposito de intereses</h4></legend><br />";
                 html+="<label>Numero del deposito</label>";
                 html+="<input type='text' name='depositoi' id='depositoi' class=' requerido ui-widget-content ui-corner-all' />";
@@ -130,17 +130,17 @@ numero_cuenta=function(id,iden){
   
      <table cellpadding="0" cellspacing="0" border="0" class="display" id="listar-getion" width="100%">
 	<?php 
-        if(($tipo_pago==1) || ($tipo_pago==2)){
+        if(($tipo_pago==1) || ($tipo_pago==2) || ($tipo_pago==6)){
         ?>
          
                 <thead>
                        <tr>
                                <th>#</th>
                                <th>Numero</th>
-                               <th>Fecha de la declaracion</th>
+                               <!--<th>Tipo de declaracion</th>-->
                                <th>Tipo Contribuyente</th>
 <!--                               <th>Base imponible</th>
-                               <th>Año declarado</th>-->
+                               --><th>Año declarado</th>
                                <th>Periodo declarado</th>
                                <th>Total a pagar</th>
                                <th>Opciones</th>
@@ -157,11 +157,22 @@ numero_cuenta=function(id,iden){
                    ?>
                         <tr>
                                <td><?php print($con); ?></td>
-                               <td><?php ($tipo_pago==1? print($valor['numero']) : print('CNAC/FONPROCINE/GFT/AFR-'.$valor['nreparo']) ) ?></td>
-                               <td><?php print(date('d-m-Y',strtotime($valor['fechaelab']))); ?></td>
+                               <td><?php if($tipo_pago==6): 
+                                            print($valor['numero']); 
+                                          else:
+                                            ($tipo_pago==1? print($valor['numero']) : print('CNAC/FONPROCINE/GFT/AFR-'.$valor['nreparo']) ); 
+                                          endif;
+                                   ?>
+                               </td>
+<!--                               <td><?php // if($tipo_pago==6): 
+//                                            print('Sustitutiva'); 
+//                                          else:
+//                                            ($tipo_pago==1? print('Autoliquidacion') : print('Declaracion Reparo') ); 
+//                                          endif;
+                                   ?></td>-->
                                <td><?php print($valor['contribuyente_text']); ?></td>
                                <!--<td><?php // print($this->funciones_complemento->devuelve_cifras_unidades_mil($valor['base'])); ?></td>-->
-                               <!--<td><?php // print($valor['anio']); ?></td>-->
+                               <td><?php print($valor['anio']); ?></td>
                                <?php if($valor['periodo_gravable']==0):?>
                                <td><?php echo $this->funciones_complemento->devuelve_meses_text($valor["periodo"]); ?></td> 
                                <?php endif;?>

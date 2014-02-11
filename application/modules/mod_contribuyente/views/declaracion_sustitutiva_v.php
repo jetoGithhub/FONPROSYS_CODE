@@ -10,29 +10,25 @@ $(function() {
 //    jQuery.fn.reset = function () {
 //      $(this).each (function() { this.reset(); });
 //    }
-
+ayudas_input('#','frmdeclarasus');
 $( "#confirm-declaracion-sus" ).dialog({ autoOpen: false });
      $("#memsajerror-s").hide();
       $("#anio-declara").hide();
 
-    validador('frmdeclara','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/guardaDeclaracion"; ?>','guarda_declarcion');
+    validador('frmdeclarasus','<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c/guarda_declaracion_sustitutiva"; ?>','guarda_declarcion_sustitutiva');
    
-   $( "#btn-frmcontrasena" ).button({
-                icons: {
-                    primary: "ui-icon-tag"
-                }
-                
-      });
-      
-      $("#btn-frmcontrasena").click(function(){     
-          
-                
-       $("#frmcontrasena").submit();    
-          
-      });    
+   $('#compromiso').click(function(){
+    
+        $('#frmdeclarasus').submit();
+    });
 
-      $('button').button() 
- 
+      $('button').button(); 
+        $('#buscar_declasus').button({
+                           icons: {
+                           primary: "ui-icon-search"
+                           },
+                           text: false
+                           });
 
 });    
 carga_declara_sus=function(valor){
@@ -58,20 +54,44 @@ carga_declara_sus=function(valor){
     
 };
 datos_declaracion=function(valor){
-$.ajax({       
-       type:'post',
-       data:{valor:valor},
-       dataType:'json',
-       url:'<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c/datos_declarcion_asustituir"; ?>',
-       success:function(data){
-         
-         $("#bimponible").val(data.baseimpo);
-         $("#mpagado").val(data.montopagar);
-         $("#nbimponible").removeAttr('readonly');
-         $("#nbimponible").css('background','');        
-          
-       }
-    });
+    $("#memsajerror-s").hide();
+    $("#bimponible").val('');
+    $("#mpagado").val('');
+    $("#declasus").val('');
+    $("#tpagar").val('');
+    if($("#tcotribuyente").val()==''){
+            
+            $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong>Disculpe debe selecionar un tipo de contribuyente.</p>')
+            $("#memsajerror-s").addClass('ui-state-error'); 
+            $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+            $("#memsajerror-s").show('drop',1000);
+    }else{
+
+    $.ajax({       
+           type:'post',
+           data:{valor:valor,valor2:$("#tcotribuyente").val()},
+           dataType:'json',
+           url:'<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c/datos_declarcion_asustituir"; ?>',
+           success:function(data){
+                if(data.resultado){ 
+
+                    $("#bimponible").val(data.baseimpo);
+                    $("#mpagado").val(data.montopagar);
+                    $("#declasus").val(data.declaraid);
+                    $("#nbimponible").removeAttr('readonly');
+                    $("#nbimponible").css('background',''); 
+
+                }else{
+                     $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong>No se encontro niguna declaracion con ese numero verifique.<br /><center> "RECUERDE QUE PARA REALIZAR UNA DECLAARCION SUSTITUTIVA DEBE HABER CANCELADO LA AUTOLIQUIDACION A LA CUAL VA A SUSTITUIR"</center></p>')
+                    $("#memsajerror-s").addClass('ui-state-error'); 
+                    $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+                    $("#memsajerror-s").show('drop',1000);
+
+
+                }   
+           }
+        });
+    }
 };
 
 calcula_nuevo_monto=function(){
@@ -99,7 +119,7 @@ calcula_nuevo_monto=function(){
   if(pasa){
    $.ajax({       
        type:'post',
-       data:{valor1:$("#tcotribuyente").val(),valor2:$("#tdeclaracion").val(),valor3:$("#bimponible").val(),valor4:$("#nbimponible").val()},
+       data:{valor1:$("#tcotribuyente").val(),valor2:$("#declasus").val(),valor3:$("#bimponible").val(),valor4:$("#nbimponible").val(),valor5:$("#mpagado").val()},
        dataType:'json',
        url:'<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c/calcula_declaracion_sustitutiva"; ?>',
        success:function(data){
@@ -161,7 +181,68 @@ calcula_nuevo_monto=function(){
    
   
 };
+guarda_declarcion_sustitutiva=function(form,url){
 
+
+$( "#confirm-declaracion-sus" ).dialog({
+      resizable: false,
+      height:140,
+      modal: true,
+      show:"blind",
+      buttons: {
+            "SI": function() {
+              $( this ).dialog( "close" );
+              $.ajax({  
+                
+                   type:'post',
+                   data:$('#'+form).serialize(),
+                   dataType:'json',
+                   url:url,
+                   success:function(data){
+                    
+                    if(data.resultado){
+                        
+                        $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.id+'&ident='+1);                    
+                        $("#tabs").tabs("load",0);
+                        
+                    }else{
+                        
+                         $('#memsajerror-s').html('<p style="font-family: sans-serif;color:#CD0A0A;"><span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span><strong>Alerta: </strong>'+data.mensaje+'</p>')
+                         $("#memsajerror-s").addClass('ui-state-error'); 
+                         $("#memsajerror-s").css({background:'#FEF6F3',border:'1px solid #CD0A0A'});
+                         $("#memsajerror-s").show('drop',1000);  
+                         
+//                         $('#verdeclaracion').click(function(){  
+//                
+//                                $('#a0').attr('href','<?php // echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_exitosa?declaraid="?>'+data.iddeclara);                    
+//                                $("#tabs").tabs("load",0);    
+//
+//                         });  
+                        
+                    }
+                    
+                   }
+            });  
+            
+            
+        },
+        'NO': function() {
+        
+            $("#nbimponible").val(''); 
+            $("#tpagar").val('');
+            $("#memsajerror-s").hide();
+            
+          $( this ).dialog( "close" );
+        }
+//        alert($('#'+form).serialize());    
+            
+      }      
+
+    });
+    
+    $('#confirm-declaracion-sus').html('<p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Esta usted conforme con lo declarado en el sistema?</p>')
+   $('#confirm-declaracion-sus').dialog( "open" );
+};
 
 
 
@@ -241,7 +322,8 @@ jQuery(function($){
     
 <div id="contenedor-frmdeclara-sus"  class="ui-widget-content ui-corner-all"  >
   
-<form id="frmdeclarasus">    
+<form id="frmdeclarasus">  
+    <input type="hidden"  name="declasus" id="declasus" class=" limpia"  />
     <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24; font-size: 10px" align="center"><h4>FORMULARIO PARA DECLARACIONES SUSTITUTIVAS</h4></legend><br />
 
         
@@ -285,14 +367,17 @@ jQuery(function($){
             
             <tr>
                 <td class="linea-right">
-                    <label><strong>Declaraciones:</strong></label><br />
+                    <label><strong>Nº de la declaracion:</strong></label><br />
                 </td>
                 <td >
-                   <select name="declasus" class=" ui-state-highlight" id="declasus" style="width: 250px;height:20px ;font-size:12px;" onChange="datos_declaracion(this.value)" >
+                   <input type="text" placeholder=""  name="declasus2" id="declasus2"  onkeypress="$('.limpia').val('');"class=" ayuda-input ui-state-highlight requerido" txtayudai="Colocar el numero identificador que le salio al momento de hacer la declaracion" style="width: 220px; height:15px ;font-size:12px; font-weight: bold;float: left;margin-left: 7px" />
+                   <span style=" float: right; width: 20px; height: 20px; margin-top: -2px" id="buscar_declasus" onclick="datos_declaracion($('#declasus2').val())"></span> <br /> 
+
+<!--                   <select name="declasus" class=" ui-state-highlight" id="declasus" style="width: 250px;height:20px ;font-size:12px;" onChange="datos_declaracion(this.value)" >
                         <option value="">Seleccione</option>
                            
 
-                    </select>   
+                    </select>   -->
                 </td>
             
             </tr>
@@ -302,7 +387,7 @@ jQuery(function($){
                      <label><strong>Base imponible:</strong></label><br />
                 </td>
                 <td class="">
-                    <input type="text" placeholder="0"  name="bimponible" id="bimponible" readonly="readonly" class=" ui-state-highlight" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right;background: #D9D3CC" /> 
+                    <input type="text" placeholder="0"  name="bimponible" id="bimponible" readonly="readonly" class=" ui-state-highlight limpia" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right;background: #D9D3CC" /> 
                 </td>
                 
             </tr>
@@ -311,7 +396,7 @@ jQuery(function($){
                      <label><strong>Monto pagado:</strong></label><br />
                 </td>
                 <td class="">
-                    <input type="text" placeholder="0" readonly="readonly" name="mpagado" id="mpagado" class=" ui-state-highlight" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
+                    <input type="text" placeholder="0" readonly="readonly" name="mpagado" id="mpagado" class=" ui-state-highlight limpia" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
                      
                 </td>
             </tr>
@@ -320,7 +405,7 @@ jQuery(function($){
                 <label><strong>Nueva base imponible::</strong></label><br />
                 </td>
                 <td class="">
-                    <input type="text" placeholder="0" readonly="readonly" name="nbimponible"  id="nbimponible" class="ui-state-highlight" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
+                    <input type="text" placeholder="0" readonly="readonly" name="nbimponible"  id="nbimponible" class="ui-state-highlight limpia requerido" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
                 </td>
             </tr>
              <tr>
@@ -328,7 +413,7 @@ jQuery(function($){
                 <label><strong>Nuevo total a pagar:</strong></label><br />
                 </td>
                 <td class="">
-                    <input type="text" placeholder="0" name="tpagar" id="tpagar" class=" requerido ui-state-highlight" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
+                    <input type="text" placeholder="0" name="tpagar" id="tpagar" class=" requerido ui-state-highlight limpia" style="width: 250px; height:15px ;font-size:12px; font-weight: bold; text-align: right; background: #D9D3CC"  /> 
                 </td>
             </tr>
                

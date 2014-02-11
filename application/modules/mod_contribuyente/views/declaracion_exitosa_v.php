@@ -26,9 +26,14 @@
                  }); 
      });
      
-     volver=function(){
+     volver=function(ident){
 //         ./mod_contribuyente/contribuyente_c/declaracion
+          if(ident==0){
           $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion"?>');                    
+          }else{
+          $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_sustitutiva_c"?>');                    
+            
+          }
           $("#tabs").tabs("load",0);
          
          
@@ -199,7 +204,7 @@
  
   </fieldset><br /><br />  
     <center>
-        <button type="button" id="btnvolver" onclick="volver()">Volver</button>
+        <button type="button" id="btnvolver" onclick="volver(<?php echo $ident ?>)">Volver</button>
          <button type="button" id="btnimprimir">Imprimir</button>
     </center>
 <!--</form>-->

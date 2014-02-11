@@ -22,7 +22,7 @@ class Declaracion_sustitutiva_m extends CI_Model {
                 ->join('datos.calpagod calpd','decl.calpagodid = calpd.id')
                 ->join('datos.calpago calp','calpd.calpagoid = calp.id')
                 ->join('datos.tipegrav tgrav','calp.tipegravid = tgrav.id')
-                ->where(array( 'decl.tipocontribuid'=>$tcontribu,'decl.conusuid'=>$counusid,'decl.fechapago'=> NULL,'decl.bln_declaro0'=>'false'));
+                ->where(array( 'decl.tipocontribuid'=>$tcontribu,'decl.conusuid'=>$counusid,'decl.nudeposito !='=>'','decl.bln_declaro0'=>'false','tdeclaraid'=>2));
         $query = $this->db->get();
         return ($query->num_rows()>0 ? $query->result_array() : false);
 //        'decl.tipocontribuid'=>$tcontribu,'decl.conusuid'=>$counusid,
