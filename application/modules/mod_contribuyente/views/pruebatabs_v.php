@@ -30,22 +30,39 @@ armatabs=function(id_padre,url){
          $( "#tabs" ).tabs({
 
              beforeLoad: function( event, ui ) {
-                ui.jqXHR.error(function() {
-                ui.panel.html(
-                "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
-                "Intente nuevamente." );
-                });
+//                 $("#tabs-load").show();
+                //mintras carga los datos el ajax colocamos un mensaje
+                if (ui.panel.is(":empty")) {
+                    ui.panel.html(
+                        '<center><img id="tabs-load" width="25" height="25"  src="./include/imagenes/loader.gif" /><br />' +
+                        "Cargando el contenido de la pestaña.....</centen>" ),
+    //             ui.jqXHR.complete(function() {
+    //                    $("#tabs-load").hide();
+    //                }),
+                    ui.jqXHR.error(function() {
+                    ui.panel.html(
+                    "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
+                    "Intente nuevamente." );
+                    });
+               }else{
+                   
+                    ui.jqXHR.error(function() {
+                    ui.panel.html(
+                    "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
+                    "Intente nuevamente." );
+                    });
+               }
             }
-            ,
-            load: function (event, ui) {
-                $('#cargando').hide();
-             },
-             select: function (e, ui) {
-                 var $panel = $(ui.panel);
-                 if ($panel.is(":empty")) {
-                     $('#cargando').show();
-                 }
-             }
+//            ,
+//            load: function (event, ui) {
+//                $('#cargando').hide();
+//             },
+//             select: function (e, ui) {
+//                 var $panel = $(ui.panel);
+//                 if ($panel.is(":empty")) {
+//                     $('#cargando').show();
+//                 }
+//             }
          });
 //          
            

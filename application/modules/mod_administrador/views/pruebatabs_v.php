@@ -63,11 +63,28 @@ armatabs=function(id_padre,url){
 
          $( "#tabs" ).tabs({
             beforeLoad: function( event, ui ) {
-                ui.jqXHR.error(function() {
-                ui.panel.html(
-                "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
-                "Intente nuevamente." );
-                });
+//                 $("#tabs-load").show();
+                //mintras carga los datos el ajax colocamos un mensaje
+                if (ui.panel.is(":empty")) {
+                    ui.panel.html(
+                        '<center><img id="tabs-load" width="25" height="25"  src="./include/imagenes/loader.gif" /><br />' +
+                        "Cargando el contenido de la pestaña.....</centen>" ),
+    //             ui.jqXHR.complete(function() {
+    //                    $("#tabs-load").hide();
+    //                }),
+                    ui.jqXHR.error(function() {
+                    ui.panel.html(
+                    "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
+                    "Intente nuevamente." );
+                    });
+               }else{
+                   
+                    ui.jqXHR.error(function() {
+                    ui.panel.html(
+                    "Disculpe al momento de cargar el contenido de esta opcion ocurrio algo inesperado . " +
+                    "Intente nuevamente." );
+                    });
+               }
             }
         });
 //          
@@ -115,7 +132,8 @@ recarga_div=function(div,url,valor,valor2){
         
         <ul id="ul">
             <?php if($nombrerol=='SUPER_ADMINISTRADOR'){?> <button txtayuda="crear nueva pestaña" id="add_tab" class=" ayuda" style=" float: right">Nuevo</button><?php }?>
-
+            <!--<span id="tabs-load" style=" float: right; margin-top: 5px; margin-right: 5px"><img width="20" height="20"  src="./include/imagenes/loader.gif" /></span>-->
+ 
         </ul>
 
     </div>
