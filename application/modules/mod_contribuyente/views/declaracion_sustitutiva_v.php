@@ -126,6 +126,7 @@ calcula_nuevo_monto=function(){
         if(data.resultado=='true'){ 
         
                 $("#tpagar").val(data.total);
+                $("#total_base").val(data.total_base)
         
         }else{
                $("#nbimponible").val('');            
@@ -324,6 +325,7 @@ jQuery(function($){
   
 <form id="frmdeclarasus">  
     <input type="hidden"  name="declasus" id="declasus" class=" limpia"  />
+    <input type="hidden"  name="total_base" id="total_base" class=" limpia"  />
     <fieldset class="secciones" style="margin-top:-30px; border:none; "><legend class="ui-widget-content ui-corner-all" style=" color: #654B24; font-size: 10px" align="center"><h4>FORMULARIO PARA DECLARACIONES SUSTITUTIVAS</h4></legend><br />
 
         
@@ -370,7 +372,7 @@ jQuery(function($){
                     <label><strong>Nº de la declaracion:</strong></label><br />
                 </td>
                 <td >
-                   <input type="text" placeholder=""  name="declasus2" id="declasus2"  onkeypress="$('.limpia').val('');"class=" ayuda-input ui-state-highlight requerido" txtayudai="Colocar el numero identificador que le salio al momento de hacer la declaracion" style="width: 220px; height:15px ;font-size:12px; font-weight: bold;float: left;margin-left: 7px" />
+                   <input type="text" placeholder=""  name="declasus2" id="declasus2"  onkeypress="$('.limpia').val('');"class=" ayuda-input ui-state-highlight requerido" txtayudai="Colocar el numero identificador que le salio al momento de hacer la declaracion" style="width: 220px; height:15px ;font-size:12px; font-weight: bold;float: left;margin-left: 0px" />
                    <span style=" float: right; width: 20px; height: 20px; margin-top: -2px" id="buscar_declasus" onclick="datos_declaracion($('#declasus2').val())"></span> <br /> 
 
 <!--                   <select name="declasus" class=" ui-state-highlight" id="declasus" style="width: 250px;height:20px ;font-size:12px;" onChange="datos_declaracion(this.value)" >

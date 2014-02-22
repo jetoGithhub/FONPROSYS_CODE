@@ -31,7 +31,7 @@
           if(ident==0){
           $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion"?>');                    
           }else{
-          $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/contribuyente_c/declaracion_sustitutiva_c"?>');                    
+          $('#a0').attr('href','<?php echo base_url()."index.php/mod_contribuyente/declaracion_sustitutiva_c"?>');                    
             
           }
           $("#tabs").tabs("load",0);

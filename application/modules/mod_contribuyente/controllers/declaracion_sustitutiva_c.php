@@ -124,7 +124,7 @@ class Declaracion_sustitutiva_c extends CI_Controller {
                
                 if(!$fueraRango):
 
-                    $datos=array('h'=>$base_limpia,'resultado'=>'true','alicuota'=>$alicuota['variable0'],'total'=>$total_sustitutiva,'fueraRango'=>$fueraRango);
+                    $datos=array('h'=>$base_limpia,'resultado'=>'true','alicuota'=>$alicuota['variable0'],'total'=>$total_sustitutiva,'fueraRango'=>$fueraRango,'total_base'=>$total);
 
                 else:
 
@@ -196,7 +196,7 @@ class Declaracion_sustitutiva_c extends CI_Controller {
             $validadorBanco=$this->funciones_complemento->numero_verificador($ndeposito);
 //            print_r(array($ndeposito.'-'.$validadorBanco));die;
              $datos=array(
-                                            'nudeclara'=>$ndeposito.$validadorBanco,
+//                                            'nudeclara'=>$ndeposito.$validadorBanco,
                                             'tdeclaraid'=>$tdeclaracion,
                                             'fechaelab'=>"now()",
                                             'fechaini'=>$resul['variable0'],
@@ -213,7 +213,10 @@ class Declaracion_sustitutiva_c extends CI_Controller {
                                             'plasustid'=>$declaid,
                                             'montopagar'=>$total,
                                             'calpagodid'=>$resul['variable4'],
-                                            'bln_declaro0'=>($total==0 ? 'true' : 'false')
+                                            'bln_declaro0'=>($total==0 ? 'true' : 'false'),
+                                            'ident_banco'=>$validadorBanco,
+                                            'plasus_alicuota'=>$this->input->post('total_base')
+                                            
                                         );
                             $tabla='datos.declara';
 

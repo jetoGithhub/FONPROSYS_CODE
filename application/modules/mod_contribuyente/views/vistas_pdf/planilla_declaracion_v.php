@@ -58,6 +58,18 @@
 										</table>
 									</td>
 								</tr>-->
+                                                                <tr>
+                                                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>
+                                                                            <p><b>Declaraci&oacute;n Nº</b></p>
+									</td>
+									<td>
+										<p><b><?php echo $planilla[0]['nudeclara'] ?></b></p>
+									</td>
+                                                                   
+                                                                </tr>
 								<tr>
                                                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -168,8 +180,8 @@
              <td style=" text-align: right" ><p><b><?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($planilla[0]['baseimpo']) ?></b></p></td>
          </tr>
          <tr>
-             <td colspan="2" class="tercer_bloque">18. ALICUOTA IMPOSITIVA ( 1,0% ) ............................................................</td>
-             <td style=" text-align: right" ><p><b><?php echo strtoupper( $planilla[0]['alicuota']) ?></b></p></td>
+             <td colspan="2" class="tercer_bloque">18. ALICUOTA IMPOSITIVA ( <?php echo strtoupper( $planilla[0]['alicuota']) ?>% ) ............................................................</td>
+             <td style=" text-align: right" ><p><b><?php echo ($planilla[0]['tdeclaraid']==2? $this->funciones_complemento->devuelve_cifras_unidades_mil($planilla[0]['montopagar']) : $this->funciones_complemento->devuelve_cifras_unidades_mil($planilla[0]['plasus_alicuota']) )?></b></p></td>
          </tr>
          <tr>
              <td colspan="2" class="tercer_bloque">19. MENOS EXONERACIÓN O REBAJA (SEGÚN ACTO N°_________)............</td>
@@ -181,7 +193,7 @@
          </tr>
          <tr>
              <td colspan="2" class="tercer_bloque">21. MENOS CONTRIBUCIÓN PAGADA EN PERIODOS ANTERIORES ..............</td>
-             <td style=" text-align: right" ><p><b>0</b></p></td>
+             <td style=" text-align: right" ><p><b><?php echo ($planilla[0]['tdeclaraid']==2? 0 : $this->funciones_complemento->devuelve_cifras_unidades_mil($planilla[0]['monto_anterior']) ) ?></b></p></td>
          </tr>
          <tr>
              <td colspan="2" class="tercer_bloque">22. TOTAL CONTRIBUCIÓN A PAGAR .............................................................</td>
@@ -321,6 +333,14 @@
 			</td>
 			<td>
 				<br> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->funciones_complemento->devuelve_cifras_unidades_mil($planilla[0]['montopagar']) ?><br> 
+			</td>
+		</tr>
+                <tr>
+			<td>
+				<br>  <b>Validador: </b> <br>  
+			</td>
+			<td>
+				<br> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $planilla[0]['ident_banco'] ?><br> 
 			</td>
 		</tr>
 	 </table>	 

@@ -906,7 +906,7 @@ class Contribuyente_c extends CI_Controller{
                               $validadorBanco=$this->funciones_complemento->numero_verificador($ndeposito);
 
                               $datos=array(
-                                            'nudeclara'=>$ndeposito.$validadorBanco,
+//                                            'nudeclara'=>$ndeposito.$validadorBanco,
                                             'tdeclaraid'=>$tdeclaracion,
                                             'fechaelab'=>"now()",
                                             'fechaini'=>$inicio,
@@ -922,7 +922,8 @@ class Contribuyente_c extends CI_Controller{
                                             'conusuid'=>$this->session->userdata('id'),
                                             'montopagar'=>$total,
                                             'calpagodid'=>$fechas['id'],
-                                            'bln_declaro0'=>($total==0 ? 'true' : 'false')
+                                            'bln_declaro0'=>($total==0 ? 'true' : 'false'),
+                                            'ident_banco'=>$validadorBanco
                                         );
                             $tabla='datos.declara';
 
