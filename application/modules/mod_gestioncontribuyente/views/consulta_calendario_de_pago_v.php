@@ -5,7 +5,10 @@
     }
     
 </style>
+<?php if(isset($ident)): ?>
+<div class="ui-widget-header" style="text-align:center; font-size: 12px; font-style: italic; margin-bottom: 10px; width: 80%; margin-left: 10%">Calendario de Obligaciones Tributarias FONPROCINE</div>
 
+<?php endif;?>
 <form id="calendario_consu" class="" name="calendario_consu">
 <br/><br/>
 <table id="table_consu_contri">

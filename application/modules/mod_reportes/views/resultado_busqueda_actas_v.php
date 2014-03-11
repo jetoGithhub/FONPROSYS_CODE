@@ -129,7 +129,7 @@ $("#btn_excel_conciliados").click(function(){
 </table>    
 
 <style>
-    #resul-actas tbody,td{
+    #resul-actas td{
         height: 25px;
         padding: 5px;
         border-left: 1px solid #EEEEEE;
@@ -141,7 +141,10 @@ $("#btn_excel_conciliados").click(function(){
        font-weight: bold;
             
     } 
-    
+    th.ui-state-default div{
+        padding-top: 15px;
+        height: 25px;
+    }
     .botonera_reportes button{
       color:#000;
                         

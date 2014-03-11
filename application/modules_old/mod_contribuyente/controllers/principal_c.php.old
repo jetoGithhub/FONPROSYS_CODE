@@ -1,0 +1,27 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Principal_c extends CI_Controller {
+
+	
+	public function index()
+	{
+            $padre=  $this->input->get('padre');
+            
+            $data=array(
+                'padre'=>$padre
+            );
+		$this->load->view('pruebatabs_v',$data);
+	}
+        
+        
+        
+        function buscar_hijos(){
+            
+            $padre=  $this->input->post('padre');
+            $this->load->model('mod_contribuyente/principal_m');
+            $data=$this->principal_m->buscar_hijos($padre);
+            echo json_encode($data);
+            
+        }
+          
+}

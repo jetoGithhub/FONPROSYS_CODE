@@ -124,8 +124,18 @@
         height: 25px;
         padding: 5px;
         border-left: 1px solid #EEEEEE;
+        text-align: center;            
             
-    }   
+    } 
+     #listado_conciliados thead, th{
+       text-align: center;
+       font-weight: bold;
+            
+    } 
+    th.ui-state-default div{
+        padding-top: 15px;
+        height: 25px;
+    }
     .numero{
         
         width: 25px;
